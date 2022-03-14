@@ -1,0 +1,26 @@
+module.exports = {
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	theme: {
+		extend: {
+			colors: {
+				'prtr-fresh-green': '#b1f4b4',
+				'prtr-deep-blue': '#08274c',
+				'prtr-undp-blue': '#0968B1',
+				'prtr-healthy-blue': '#20AAD7',
+				'prtr-air-blue': '#B6E8F8',
+				'prtr-grey': '#C4C4C4',
+				'prtr-border-purple': '#373746',
+				'prtr-border-blue': '#08274C',
+				'prtr-gradient-a' : '#B6E8F8',
+				'prtr-gradient-b' : '#D4F5D5',
+				'prtr-gradient-c' : '#20AAD7'
+			},
+            fontFamily: {
+                termtem: ['termtem'],
+                baijamjuree: ['BaiJamjuree'],
+				anakotmai: ['anakotmai']
+            },
+		},
+	},
+	plugins: [],
+};

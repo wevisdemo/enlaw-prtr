@@ -1,0 +1,60 @@
+@import './tailwind.css';
+
+@import '@wevisdemo/ui/styles/typography.css';
+@import '@wevisdemo/ui/styles/components.css';
+
+/* Font Anakotmai */
+@font-face {
+	font-family: 'Anakotmai';
+	src: url('./assets/fonts/anakotmai-light.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Anakotmai';
+	src: url('./assets/fonts/anakotmai-medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Anakotmai';
+	src: url('./assets/fonts/anakotmai-bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+/* Font BaiJumjuree */
+@font-face {
+	font-family: 'BaiJamjuree';
+	src: url('./assets/fonts/BaiJamjuree-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'BaiJamjuree';
+	src: url('./assets/fonts/BaiJamjuree-Regular.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+
+/* Font Termtem */
+@import url(https://use.typekit.net/owg3wcb.css);
+
+/* @font-face {
+	font-family: 'termtem', 'sans-serif';
+	src: url('./assets/fonts/BaiJamjuree-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'termtem', 'sans-serif';
+	src: url('./assets/fonts/BaiJamjuree-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'termtem', 'sans-serif';
+	src: url('./assets/fonts/BaiJamjuree-Regular.ttf') format('truetype');
+	font-weight: 700;
+	font-style: italic;
+} */
