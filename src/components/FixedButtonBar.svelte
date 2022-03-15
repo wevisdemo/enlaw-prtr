@@ -1,10 +1,6 @@
 <script>
 	import LinkIconWrapper from './FixedButtonBar/LinkIconWrapper.svelte';
 
-	import FacebookIcon from './FixedButtonBar/icon/FacebookIcon.svelte';
-	import LineIcon from './FixedButtonBar/icon/LineIcon.svelte';
-	import TweeterIcon from './FixedButtonBar/icon/TweeterIcon.svelte';
-
 	import PenIcon from './FixedButtonBar/icon/PenIcon.svelte';
 </script>
 
@@ -14,13 +10,13 @@
 			<p class="break-normal mr-2 my-1 font-anakotmai">แชร์ให้เพื่อน</p>
 
 			<LinkIconWrapper url="https://www.google.com/">
-				<FacebookIcon />
+				<img src="img/share_icon/share_facebook_default.svg" alt='share facebook' height="32px" width="32px" />
 			</LinkIconWrapper>
 			<LinkIconWrapper url="https://www.google.com/">
-				<TweeterIcon />
+				<img src="img/share_icon/share_twitter_default.svg" alt='share twitter' height="32px" width="32px" />
 			</LinkIconWrapper>
 			<LinkIconWrapper url="https://www.google.com/">
-				<LineIcon />
+				<img src="img/share_icon/share_line_default.svg" alt='share line' height="32px" width="32px" />
 			</LinkIconWrapper>
 		</div>
 

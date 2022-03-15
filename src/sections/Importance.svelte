@@ -6,13 +6,14 @@
 	import FemaleVector from '../components/ImportanceComponent/FemaleVector.svelte';
 </script>
 
-<div
-	class=" bg-prtr-fresh-green flex justify-center items-center pt-24"
->
+<div class=" bg-prtr-fresh-green flex justify-center items-center pt-24 bg-center bg-no-repeat bg-fixed" style="background-image: url('img/bg/bg_3.svg')">
 	<div
-		class="flex flex-col bg-[url('../components/ImportanceComponent/BgCogVector.svelte)]"
+		class="flex flex-col"
 	>
-		<div class="flex">
+		<div
+			class="flex"
+			
+		>
 			<div class="importance_left_content pt-5 text-prtr-deep-blue">
 				<p class="title_font mb-6 ">เรื่องนี้สำคัญ อย่างไร</p>
 				<p class="text-3xl ">

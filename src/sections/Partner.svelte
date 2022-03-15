@@ -1,5 +1,5 @@
 <script>
-	import ContactButton from '../components/ContactComponent/ContactButton.svelte';
+	import PartnerButton from '../components/PartnerComponent/PartnerButton.svelte';
 </script>
 
 <div
@@ -21,9 +21,9 @@
 		</div>
 		<div class="pt-0.5 mx-9">
 			<p class=" text_font mb-2">ติดตาม ENLAW</p>
-			<ContactButton icon="img/client/logo/share_web.svg" text="Website" />
-			<ContactButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
-			<ContactButton icon="img/client/logo/share_twitter.svg" text="Twitter" />
+			<PartnerButton icon="img/client/logo/share_web.svg" text="Website" />
+			<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
+			<PartnerButton icon="img/client/logo/share_twitter.svg" text="Twitter" />
 		</div>
 		<div class="pt-0.5 mx-9">
 			<img
@@ -36,8 +36,8 @@
 		</div>
 		<div class="pt-0.5 mx-9">
 			<p class=" text_font mb-2">ติดตาม EARTH</p>
-			<ContactButton icon="img/client/logo/share_web.svg" text="Website" />
-			<ContactButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
+			<PartnerButton icon="img/client/logo/share_web.svg" text="Website" />
+			<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
 		</div>
 	</div>
 

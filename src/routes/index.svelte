@@ -8,13 +8,13 @@
 	import Operation from '../sections/Operation.svelte';
 	import Importance from '../sections/Importance.svelte';
 	import Sign from '../sections/Sign.svelte';
-	import Contact from '../sections/Contact.svelte';
+	import Partner from '../sections/Partner.svelte';
 	import About from '../sections/About.svelte';
 
 </script>
 
 <div>
-	<div class="sticky top-0 py-3 px-11 bg-prtr-fresh-green shadow-md">
+	<div class="sticky top-0 py-3 px-11 bg-prtr-fresh-green shadow-md  z-50">
 		<FixedTopBar />
 	</div>
 
@@ -27,7 +27,7 @@
 		<Operation />
 		<Importance />
 		<Sign />
-		<Contact />
+		<Partner />
 		<About />
 	</div>
 

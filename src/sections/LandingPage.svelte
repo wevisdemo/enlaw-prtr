@@ -25,8 +25,9 @@
 			</div>
 
 			<div class="mt-7 w-full">
-				<div class=" w-full flex justify-end">
-					<p class="font-anakotmai">10,000</p>
+				<div class=" w-full flex justify-end items-center">
+					<p class="font-anakotmai mt-1">10,000</p>
+					<img class="ml-0.5" src="img/milestone/milestone_check_light.svg" alt='check light' />
 				</div>
 				<div
 					class="w-full h-[30px] bg-prtr-air-blue border border-prtr-deep-blue"
@@ -39,37 +40,38 @@
 
 		<div class="landing_spacing" />
 
-		<div class="right_box text-prtr-deep-blue">
-			<h1
-				class="text-4xl
-			"
-			>
-				“มลพิษไม่ใช่ความลับ และหน่วยงานรัฐก็ต้องไม่ปิด”
-			</h1>
-			<h1 class="text-4xl">“มลพิษไม่ใช่ความลับ และหน่วยงานรัฐก็ต้องไม่ปิด”</h1>
-			<p class="text-2xl">
-				ร่วมเป็นส่วนหนึ่งสนับสนุนให้มีการรายงานการ
-				ปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อมเพื่อ
-				ให้การเข้าถึงข้อมูลมลพิษเป็นสิทธิของประชาชน อย่างแท้จริง
-			</p>
-
-			<div class="mt-4">
-				<p class="p-1.5 border border-prtr-deep-blue w-fit font-anakotmai">
-					อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65
+		<div
+			class="right_box text-prtr-deep-blue bg-contain flex flex-col justify-center items-center px-[60px]"
+			style="background-image: url('img/bg/bg_1.svg')"
+		>
+			<div>
+				<h1 class="text-4xl">
+					“มลพิษไม่ใช่ความลับ และหน่วยงานรัฐก็ต้องไม่ปิด”
+				</h1>
+				<p class="text-2xl mt-4">
+					ร่วมเป็นส่วนหนึ่งสนับสนุนให้มีการรายงานการ
+					ปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อมเพื่อ
+					ให้การเข้าถึงข้อมูลมลพิษเป็นสิทธิของประชาชน อย่างแท้จริง
 				</p>
+
+				<div class="mt-4">
+					<p class="p-1.5 border border-prtr-deep-blue w-fit font-anakotmai">
+						อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="flex justify-between w-full mt-6 mb-1">
 		<div
-			class=" bg-white text-prtr-deep-blue w-[180px] flex flex-col justify-center p-1.5"
+			class=" bg-white text-prtr-deep-blue w-[180px] h-fit flex flex-col justify-center p-1.5"
 		>
 			<p>*Note:</p>
 			<p>เลขวิ่งๆๆๆ</p>
 		</div>
 		<div
-			class=" bg-white text-prtr-deep-blue w-[180px] flex flex-col justify-center p-3"
+			class=" bg-white text-prtr-deep-blue w-[180px] h-fit flex flex-col justify-center p-3"
 		>
 			<p>*Note:</p>
 			<p>แถบ fixed ไว้ Scroll</p>
@@ -98,6 +100,7 @@
 	}
 
 	.right_box {
-		width: 370px;
+		width: 510px;
+		height: 445px;
 	}
 </style>

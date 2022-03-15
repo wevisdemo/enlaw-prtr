@@ -4,7 +4,7 @@
 </script>
 
 <div
-	class={`flex justify-${icon ? 'center' : 'start'} items-center bg-prtr-${
+	class={`flex justify-${icon === undefined ? 'center' : 'start'} items-center bg-prtr-${
 		isSecondary ? 'healthy' : 'deep'
 	}-blue py-2.5 px-5 mb-1 border border-white rounded-lg text-white`}
 >
