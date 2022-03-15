@@ -18,7 +18,7 @@ module.exports = {
             fontFamily: {
                 termtem: ['termtem'],
                 baijamjuree: ['BaiJamjuree'],
-				anakotmai: ['anakotmai']
+				anakotmai: ['Anakotmai']
             },
 		},
 	},

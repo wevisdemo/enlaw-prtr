@@ -31,7 +31,7 @@
 			<div class="importance_right_content flex flex-col">
 				{#each ImportanceTranslate as Card, i}
 					<div class={`${i === 0 ? '' : 'mt-6'}`}>
-						<CommonCard title={Card.title}>
+						<CommonCard title={Card.title} icon={Card.icon}>
 							<div>
 								<p>
 									{Card.content}

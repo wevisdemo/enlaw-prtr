@@ -11,7 +11,6 @@
 	import Contact from '../sections/Contact.svelte';
 	import About from '../sections/About.svelte';
 
-	import Temp from '../sections/Temp.svelte';
 </script>
 
 <div>
@@ -20,7 +19,6 @@
 	</div>
 
 	<div>
-		<!-- <Temp /> -->
 		<div class="border-b-4 border-pink-300">
 			<Landing />
 		</div>

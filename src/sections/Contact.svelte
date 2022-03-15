@@ -1,4 +1,5 @@
 <script>
+	import ContactButton from '../components/ContactComponent/ContactButton.svelte';
 </script>
 
 <div
@@ -8,18 +9,35 @@
 		<p class=" title_font">เกี่ยวกับเรา</p>
 	</div>
 
-	<div class="flex px-[104px]">
-		<div class=" mt-10 pt-0.5 mx-9">
-			<p class=" text_font">ติดตาม ENLAW</p>
+	<div class="flex px-[104px] pt-10">
+		<div class="pt-0.5 mx-9">
+			<img
+				src="img/client/img/client_enlaw.png"
+				alt="client enlaw"
+				class="mr-2.5"
+				height="100px"
+				width="220px"
+			/>
 		</div>
-		<div class=" mt-10 pt-0.5 mx-9">
-			<p class=" text_font">ติดตาม ENLAW</p>
+		<div class="pt-0.5 mx-9">
+			<p class=" text_font mb-2">ติดตาม ENLAW</p>
+			<ContactButton icon="img/client/logo/share_web.svg" text="Website" />
+			<ContactButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
+			<ContactButton icon="img/client/logo/share_twitter.svg" text="Twitter" />
 		</div>
-		<div class=" mt-10 pt-0.5 mx-9">
-			<p class=" text_font">ติดตาม ENLAW</p>
+		<div class="pt-0.5 mx-9">
+			<img
+				src="img/client/img/client_earth.png"
+				alt="client earth"
+				class="mr-2.5"
+				height="180px"
+				width="180px"
+			/>
 		</div>
-		<div class=" mt-10 pt-0.5 mx-9">
-			<p class=" text_font">ติดตาม EARTH</p>
+		<div class="pt-0.5 mx-9">
+			<p class=" text_font mb-2">ติดตาม EARTH</p>
+			<ContactButton icon="img/client/logo/share_web.svg" text="Website" />
+			<ContactButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
 		</div>
 	</div>
 

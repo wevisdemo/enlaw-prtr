@@ -19,9 +19,9 @@
 	</div>
 
 	<div
-		class="tmp2 bg-prtr-healthy-blue flex justify-center items-center mt-16 w-full rounded-3xl shadow-md"
+		class="tmp2 bg-prtr-healthy-blue flex justify-center items-center mt-16 w-full rounded-3xl shadow-md p-2"
 	>
-		TEST
+		<img src="img/flowchart/flowchart.svg" alt="flowchart" />
 	</div>
 </div>
 

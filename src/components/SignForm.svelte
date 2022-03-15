@@ -140,7 +140,7 @@
 
 	<div class="mb-2.5 flex">
 		<input
-			class="h-5 w-5 mr-3 border-2 border-prtr-deep-blue rounded-sm accent-prtr-deep-blue transition duration-200 cursor-pointer"
+			class="h-5 w-5 mr-3 border-2 border-prtr-deep-blue rounded-sm accent-prtr-deep-blue transition duration-200 cursor-pointer font-baijamjuree"
 			type="checkbox"
 			value={formData.isAgree}
 			on:input={() => (formData.isAgree = !formData.isAgree)}

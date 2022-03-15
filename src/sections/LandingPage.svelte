@@ -2,6 +2,10 @@
 	import LandingTitle from '../components/LandingComponent/LandingTitle.svelte';
 
 	let couting = 23112;
+
+	const getNumberWithCommas = (x) => {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	};
 </script>
 
 <div
@@ -14,26 +18,32 @@
 				<p>มีแล้วกว่า</p>
 				<p>รายชื่อ</p>
 			</div>
-			<div class="bg-prtr-healthy-blue shadow-md rounded-xl">
-				<p class="counting_number text-white">{couting}</p>
+			<div
+				class="bg-prtr-healthy-blue shadow-md rounded-xl flex justify-center"
+			>
+				<p class="counting_number text-white">{getNumberWithCommas(couting)}</p>
 			</div>
-			<div class="mt-4">
-				<p class="p-1.5 border border-prtr-deep-blue w-fit font-anakotmai">
-					อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65
-				</p>
+
+			<div class="mt-7 w-full">
+				<div class=" w-full flex justify-end">
+					<p class="font-anakotmai">10,000</p>
+				</div>
+				<div
+					class="w-full h-[30px] bg-prtr-air-blue border border-prtr-deep-blue"
+				>
+					<p class="float-right pr-2">ยังขาดอีก 4,000 รายชื่อ</p>
+					<div class=" h-full bg-prtr-healthy-blue" style="width: 45%" />
+				</div>
 			</div>
 		</div>
 
 		<div class="landing_spacing" />
 
 		<div class="right_box text-prtr-deep-blue">
-			<h1 class="text-4xl font-anakotmai">
-				“มลพิษไม่ใช่ความลับ และหน่วยงานรัฐก็ต้องไม่ปิด”
-			</h1>
-			<h1 class="text-4xl font-baijamjuree">
-				“มลพิษไม่ใช่ความลับ และหน่วยงานรัฐก็ต้องไม่ปิด”
-			</h1>
-			<h1 class="text-4xl font-termtem">
+			<h1
+				class="text-4xl
+			"
+			>
 				“มลพิษไม่ใช่ความลับ และหน่วยงานรัฐก็ต้องไม่ปิด”
 			</h1>
 			<h1 class="text-4xl">“มลพิษไม่ใช่ความลับ และหน่วยงานรัฐก็ต้องไม่ปิด”</h1>
@@ -42,6 +52,12 @@
 				ปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อมเพื่อ
 				ให้การเข้าถึงข้อมูลมลพิษเป็นสิทธิของประชาชน อย่างแท้จริง
 			</p>
+
+			<div class="mt-4">
+				<p class="p-1.5 border border-prtr-deep-blue w-fit font-anakotmai">
+					อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65
+				</p>
+			</div>
 		</div>
 	</div>
 
