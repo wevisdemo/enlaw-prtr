@@ -7,6 +7,7 @@
 	import RangeMonth from '../values/RangeMonth';
 	import RangeYear from '../values/RangeYear';
 
+	let isValid = false
 	let formData = {
 		location: undefined,
 		citizenId: undefined,
@@ -29,17 +30,34 @@
 		year: RangeYear,
 	};
 
+	const changeCallBack = (v, f) => {
+		formData[f] = v;
+	};
+
+	const changeBirthDate = (v, f) => {
+		formData.birthDay[f] = v;
+	};
+
+	const handleSubmit = () => {
+		console.log('formData', formData);
+	};
+
+	const validateForm = (isValid) => {
+		console.log('TEST', isValid)
+	}
+
+	$: validateForm(isValid)
 </script>
 
-<!-- <form class="bg-white Card_Container p-5 font-normal text-prtr-deep-blue"> -->
 <div class="bg-white Card_Container p-5 font-normal text-prtr-deep-blue">
 	<div class="mb-2.5">
 		<InputField
 			label="เขียนที่*"
 			subLabel="ระบุสถานที่กรอกข้อมูลเช่น จังหวัด"
 			required
-			bind:value={formData.location}
-			on:change={(e) => console.log('e' ,e)}
+			value={formData.location}
+			id="location"
+			onChange={(v) => changeCallBack(v, 'location')}
 		/>
 	</div>
 
@@ -49,34 +67,75 @@
 			subLabel="ใส่เลขประจำตัวประชาชน 13 หลักไม่ต้องเว้นวรรค"
 			type="number"
 			required
+			value={formData.citizenId}
+			id="citizenId"
+			onChange={(v) => changeCallBack(v, 'citizenId')}
 		/>
 	</div>
 
 	<div class="basis-full flex mb-2.5">
 		<div class="basis-1/4  pr-2.5">
-			<InputField label="คำนำหน้าชื่อ" SelectOption={formOption.title} bind:value={formData.location} />
+			<InputField
+				label="คำนำหน้าชื่อ"
+				required
+				SelectOption={formOption.title}
+				value={formData.title}
+				id="title"
+				onChange={(v) => changeCallBack(v, 'title')}
+			/>
 		</div>
 		<div class="basis-3/4">
-			<InputField label="ชื่อ*" subLabel="ระบุชื่อจริงเป็นภาษาไทย" required />
+			<InputField
+				label="ชื่อ*"
+				subLabel="ระบุชื่อจริงเป็นภาษาไทย"
+				required
+				value={formData.surname}
+				id="surname"
+				onChange={(v) => changeCallBack(v, 'surname')}
+			/>
 		</div>
 	</div>
 
 	<div class="mb-2.5">
-		<InputField label="นามสกุล*" subLabel="ระบุนามสกุลเป็นภาษาไทย" required />
+		<InputField
+			label="นามสกุล*"
+			subLabel="ระบุนามสกุลเป็นภาษาไทย"
+			required
+			value={formData.lastname}
+			id="lastname"
+			onChange={(v) => changeCallBack(v, 'lastname')}
+		/>
 	</div>
 
 	<div class="basis-full flex mb-2.5">
 		<div class="basis-1/3 pr-1">
-			<InputField label="วันเกิด*" SelectOption={formOption.day} required />
+			<InputField
+				label="วันเกิด*"
+				SelectOption={formOption.day}
+				required
+				value={formData.birthDay.day}
+				id="birthDay"
+				onChange={(v) => changeBirthDate(v, 'day')}
+			/>
 		</div>
 		<div class="basis-1/3 pr-1">
-			<InputField label="เดือนเกิด*" SelectOption={formOption.month} required />
+			<InputField
+				label="เดือนเกิด*"
+				SelectOption={formOption.month}
+				required
+				value={formData.birthDay.month}
+				id="birthDay"
+				onChange={(v) => changeBirthDate(v, 'month')}
+			/>
 		</div>
 		<div class="basis-1/3">
 			<InputField
-				label=" ปีพ.ศ.เกิด*"
+				label="ปีพ.ศ.เกิด*"
 				SelectOption={formOption.year}
 				required
+				value={formData.birthDay.year}
+				id="birthDay"
+				onChange={(v) => changeBirthDate(v, 'year')}
 			/>
 		</div>
 	</div>
@@ -85,6 +144,10 @@
 		<InputField
 			label="เบอร์โทรศัพท์ (Optional)"
 			subLabel="ระบุเบอร์โทรศัพท์ที่ใช้งานในปัจจุบันสำหรับการอ้างอิง ข้อมูลจะเก็บเป็นความลับ"
+			required
+			value={formData.tel}
+			id="tel"
+			onChange={(v) => changeCallBack(v, 'tel')}
 		/>
 	</div>
 
@@ -155,14 +218,13 @@
 	<button
 		class="flex justify-center w-full bg-white text-prtr-deep-blue border border-prtr-deep-blue py-5 rounded shadow-md"
 		required
-		on:click={() => console.log('formData', formData)}
+		on:click={() => handleSubmit()}
 	>
 		<span class="mr-1">ลงชื่อ</span>
 		<PenIcon />
 	</button>
 </div>
 
-<!-- </form> -->
 <style scoped>
 	.Card_Container {
 		width: 420px;
