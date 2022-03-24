@@ -10,6 +10,30 @@
 	import Sign from '../sections/Sign.svelte';
 	import Partner from '../sections/Partner.svelte';
 	import About from '../sections/About.svelte';
+	
+	import { onMount } from 'svelte';
+	import { getData } from '../config/db';
+	
+	const goal = [10000, 20000, 50000, 100000];
+
+	let currentGoal = goal[0];
+	// let couting = 40000;
+	let couting
+	
+	$: currentGoal = goal[goal.filter((i) => i < couting).length] || goal[3];
+			
+	onMount(() => {
+		initData()
+	});
+	
+	async function initData() {
+		try {
+			couting = await (await getData()).length;
+			console.log('couting', couting);
+		} catch (e) {
+			console.log('e', e);
+		}
+	}
 </script>
 
 <div>
@@ -19,7 +43,7 @@
 
 	<div>
 		<div class="border-b-4 border-pink-300">
-			<Landing />
+			<Landing couting={couting} />
 		</div>
 		<Introduce />
 		<Benefit />

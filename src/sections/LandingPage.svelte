@@ -1,14 +1,15 @@
 <script>
 	import LandingTitle from '../components/LandingComponent/LandingTitle.svelte';
 	import DocumentButton from '../components/Common/DocumentButton.svelte';
+	import DocumentIcon from '../components/ImportanceComponent/DocumentIcon.svelte';
 
 	import { onMount } from 'svelte';
-	import { getData } from '../config/db';
+
+	export let couting;
 
 	const goal = [10000, 20000, 50000, 100000];
 
 	let currentGoal = goal[0];
-	let couting = 40000;
 	let percentWidth = 0;
 
 	$: currentGoal = goal[goal.filter((i) => i < couting).length] || goal[3];
@@ -17,20 +18,9 @@
 			? Math.round((couting / currentGoal) * 100 * 100) / 100
 			: 100;
 
-	onMount(() => {});
-
 	const getNumberWithCommas = (x) => {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	};
-
-	async function initData() {
-		try {
-			couting = await (await getData()).length;
-			console.log('couting', couting);
-		} catch (e) {
-			console.log('e', e);
-		}
-	}
 </script>
 
 <div
@@ -48,11 +38,13 @@
 			<div
 				class="w-[240px] h-[44px] sm:w-[380px] sm:h-[78px] bg-prtr-healthy-blue shadow-md rounded-xl flex justify-center items-center"
 			>
-				<p
-					class="font-anakotmai text-6xl tracking-[0.24em] counting_number_big text-white"
-				>
-					{couting && getNumberWithCommas(couting)}
-				</p>
+				{#if couting}
+					<p
+						class="font-anakotmai text-6xl tracking-[0.24em] counting_number_big text-white"
+					>
+						{getNumberWithCommas(couting)}
+					</p>
+				{/if}
 			</div>
 
 			<div class="mt-1 sm:mt-7 w-full">
@@ -118,7 +110,19 @@
 			</div>
 
 			<div class="mt-4 flex justify-center w-[26px] md:w-[370px]">
-				<DocumentButton>อ่านร่างพ.ร.บ.ฉบับเต็ม</DocumentButton>
+				<button
+					class="flex justify-center px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
+					on:click={() => {
+						console.log('currentGoal', currentGoal);
+						console.log('couting', couting);
+					}}
+				>
+					<span
+						class="mr-[12.5px] font-anakotmai whitespace-nowrap overflow-hidden"
+						>อ่านร่างพ.ร.บ.ฉบับเต็ม</span
+					>
+					<DocumentIcon />
+				</button>
 			</div>
 		</div>
 		<div

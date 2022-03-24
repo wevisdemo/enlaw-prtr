@@ -5,9 +5,9 @@
 	export let SelectOption = undefined;
 	export let id = '';
 	let value = '';
-	export let onChange
+	export let onChange;
 
-	$: onChange(value)
+	$: onChange(value);
 </script>
 
 <div class="basis-full flex flex-col">
@@ -41,3 +41,9 @@
 		<p class="text-xs">{subLabel}</p>
 	{/if}
 </div>
+
+<style>
+	.submitted input:focus:invalid {
+		outline: 1px solid #c00;
+	}
+</style>

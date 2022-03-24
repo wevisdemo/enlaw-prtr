@@ -2,12 +2,14 @@
 	import SignForm from '../components/SignForm.svelte';
 	import CommonExpand from '../components/Common/CommonExpand.svelte';
 	import DocumentButton from '../components/Common/DocumentButton.svelte';
+
+	export let couting;
 </script>
 
 <div class="bg-prtr-deep-blue flex justify-center pt-20 pb-[69px]">
 	<div class="flex flex-col lg:flex-row">
 		<div class="w-[280px] md:w-[640px] lg:w-[425px] flex flex-col text-white">
-			<p class="text-4xl md:text-title font-kanit font-bold leading-title mb-6">
+			<p class="text-4xl md:text-title font-kanit font-bold leading-title mb-6 text-center lg:text-left">
 				ร่วมเป็นหนึ่งชื่อสนับสนุนเปิดข้อมูลมลพิษ
 			</p>
 			<p class="text-xl md:text-3xl text-center md:text-left">
@@ -26,7 +28,7 @@
 
 		<div class="flex flex-col items-center lg:items-start">
 			<div class="flex justify-center lg:justify-start">
-				<SignForm />
+				<SignForm couting={couting}/>
 			</div>
 			<p class="pt-6 pb-6 text-white text-center">อ่านเพิ่มเติม</p>
 			<div class="w-[300px] md:w-[420px]">
