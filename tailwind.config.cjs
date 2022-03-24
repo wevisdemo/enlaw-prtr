@@ -11,15 +11,26 @@ module.exports = {
 				'prtr-grey': '#C4C4C4',
 				'prtr-border-purple': '#373746',
 				'prtr-border-blue': '#08274C',
-				'prtr-gradient-a' : '#B6E8F8',
-				'prtr-gradient-b' : '#D4F5D5',
-				'prtr-gradient-c' : '#20AAD7'
+				'prtr-gradient-a': '#B6E8F8',
+				'prtr-gradient-b': '#D4F5D5',
+				'prtr-gradient-c': '#20AAD7',
 			},
-            fontFamily: {
-                termtem: ['termtem'],
-                baijamjuree: ['BaiJamjuree'],
-				anakotmai: ['Anakotmai']
-            },
+			fontFamily: {
+				kanit: ['Kanit'],
+				termtem: ['Termtem'],
+				baijamjuree: ['BaiJamjuree'],
+				anakotmai: ['Anakotmai'],
+			},
+			fontSize: {
+				'title': '80px',
+				'mini-title': '28px'
+			},
+			lineHeight: {
+				'title': '90%',
+			},
+			screens: {
+				xs: '425px',
+			},
 		},
 	},
 	plugins: [],

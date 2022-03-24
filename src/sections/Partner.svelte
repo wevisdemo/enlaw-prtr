@@ -6,51 +6,53 @@
 	class="flex justify-center items-center pt-14 pb-16 mb-1.5 flex-col text-prtr-deep-blue"
 >
 	<div class="flex justify-center items-center">
-		<p class=" title_font">เกี่ยวกับเรา</p>
+		<p class="font-kanit font-bold leading-title text-4xl md:text-title">เกี่ยวกับเรา</p>
 	</div>
 
-	<div class="flex px-[104px] pt-10">
-		<div class="pt-0.5 mx-9">
-			<img
-				src="img/client/img/client_enlaw.png"
-				alt="client enlaw"
-				class="mr-2.5"
-				height="100px"
-				width="220px"
-			/>
+	<div class="flex flex-col lg:flex-row">
+		<div class="flex flex-col md:flex-row mt-3 md:mt-8 lg:mt-[42px] items-center md:items-start">
+			<div class="mr-0 md:mr-[64px] lg:mr-[76px] w-[165px] md:w-[180px] lg:w-[219px] h-[97px]  md:h-[80px] lg:h-[72px]">
+				<img
+					src="img/client/img/client_enlaw.png"
+					alt="client enlaw"
+				/>
+			</div>
+			<div class="">
+				<p class="font-kanit font-bold leading-7 text-xl md:text-[28px] mb-3">ติดตาม ENLAW</p>
+				<PartnerButton icon="img/client/logo/share_web.svg" text="Website" link="https://www.earththailand.org/th/"/>
+				<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" link="https://www.facebook.com/EarthEcoAlert/"/>
+				<PartnerButton icon="img/client/logo/share_twitter.svg" text="Twitter" link="https://twitter.com/EarthTH2009@EarthTH2009" />
+			</div>
 		</div>
-		<div class="pt-0.5 mx-9">
-			<p class=" text_font mb-2">ติดตาม ENLAW</p>
-			<PartnerButton icon="img/client/logo/share_web.svg" text="Website" />
-			<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
-			<PartnerButton icon="img/client/logo/share_twitter.svg" text="Twitter" />
-		</div>
-		<div class="pt-0.5 mx-9">
-			<img
-				src="img/client/img/client_earth.png"
-				alt="client earth"
-				class="mr-2.5"
-				height="180px"
-				width="180px"
-			/>
-		</div>
-		<div class="pt-0.5 mx-9">
-			<p class=" text_font mb-2">ติดตาม EARTH</p>
-			<PartnerButton icon="img/client/logo/share_web.svg" text="Website" />
-			<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
+
+		<div class="w-[97px] hidden lg:block" />
+
+		<div class="flex flex-col md:flex-row mt-8 md:mt-6 lg:mt-[42px] items-center md:items-start">
+			<div class="pt-0.5 mr-0 md:mr-[64px] lg:mr-[76px] w-[180px] h-[176px]">
+				<img
+					src="img/client/img/client_earth.png"
+					alt="client earth"
+					class="mr-2.5"
+				/>
+			</div>
+			<div class="mt-8 md:mt-0">
+				<p class="font-kanit font-bold leading-7 text-xl md:text-[28px] mb-3">ติดตาม EARTH</p>
+				<PartnerButton icon="img/client/logo/share_web.svg" text="Website" />
+				<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
+				<PartnerButton icon="img/client/logo/share_twitter.svg" text="Twitter" />
+			</div>
 		</div>
 	</div>
 
-	<div class="flex justify-center items-center mt-28">
-		<p class=" title_font">Partners</p>
+	<div class="flex justify-center items-center mt-8 lg:mt-[114px]">
+		<p class="font-kanit font-bold leading-title text-xl md:text-title">Partners</p>
 	</div>
 
 	<div class="flex justify-center items-center mt-11">
-		{#each Array(6) as _, i}
-			<div class="mx-2">
+		<div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+			{#each Array(6) as _, i}
+			<div class="w-[100px] md:w-[120px] h-[100px] md:h-[120px]">
 				<svg
-					width="120"
-					height="120"
 					viewBox="0 0 120 120"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
@@ -59,23 +61,6 @@
 				</svg>
 			</div>
 		{/each}
+		</div>
 	</div>
 </div>
-
-<style>
-	.title_font {
-		font-size: 80px;
-		font-family: 'Termtem';
-		font-style: normal;
-		font-weight: 700;
-		line-height: 90%;
-	}
-
-	.text_font {
-		font-size: 28px;
-		font-family: 'Termtem';
-		font-style: normal;
-		font-weight: 700;
-		line-height: 90%;
-	}
-</style>

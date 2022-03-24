@@ -10,11 +10,10 @@
 	import Sign from '../sections/Sign.svelte';
 	import Partner from '../sections/Partner.svelte';
 	import About from '../sections/About.svelte';
-
 </script>
 
 <div>
-	<div class="sticky top-0 py-3 px-11 bg-prtr-fresh-green shadow-md  z-50">
+	<div class="sticky top-0 py-3 px-11 bg-prtr-fresh-green shadow-md z-50">
 		<FixedTopBar />
 	</div>
 
@@ -31,7 +30,7 @@
 		<About />
 	</div>
 
-	<div class="sticky bottom-0 py-3.5 px-8 bg-prtr-deep-blue border border-white">
+	<div class="sticky bottom-0 py-3.5 px-[15px] md:px-11 xl:px-[193px] bg-prtr-deep-blue border border-white">
 		<FixedButtonBar />
 	</div>
 </div>

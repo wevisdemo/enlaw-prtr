@@ -7,7 +7,7 @@
 <span>
 	<div class="flex flex-row justify-between menu-font text-white">
 		<div class="flex grow">
-			<p class="break-normal mr-2 my-1 font-anakotmai">แชร์ให้เพื่อน</p>
+			<p class="break-normal mr-2 my-1 font-anakotmai hidden md:block">แชร์ให้เพื่อน</p>
 
 			<LinkIconWrapper url="https://www.google.com/">
 				<img src="img/share_icon/share_facebook_default.svg" alt='share facebook' height="32px" width="32px" />
@@ -21,9 +21,9 @@
 		</div>
 
 		<button
-			class="bg-white text-prtr-deep-blue rounded px-5 py-1 mx-6 flex items-center font-anakotmai"
+			class="bg-white text-prtr-deep-blue rounded w-[158px] md:w-[331px] lg:w-[480px] py-1 ml-5 mr-0 sm:mr-6 lg:mr-[58px] flex justify-center items-center font-anakotmai"
 		>
-			<span>ลงชื่อเลย</span>
+			<span class="text-xl">ลงชื่อเลย</span>
 			<span class="ml-1.5"><PenIcon /></span>
 		</button>
 	</div>

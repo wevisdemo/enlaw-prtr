@@ -11,9 +11,9 @@
 	}
 </script>
 
-<div>
-	<button on:click={() => handleExpand()}>
-		<ExpandHeaderBox {isExpand}>{title}</ExpandHeaderBox>
+<div class=" w-full">
+	<button on:click={() => handleExpand()} class=" w-full">
+		<ExpandHeaderBox {isExpand} >{title}</ExpandHeaderBox>
 	</button>
 	{#if isExpand}
 		<ExpandContentBox><slot /></ExpandContentBox>

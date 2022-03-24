@@ -5,9 +5,9 @@
 <div
 	class={`flex justify-between bg-prtr-healthy-blue py-6 px-6 mb-1 border border-prtr-border-purple rounded-lg text-white`}
 >
-	<div class="shrink text-2xl mr-5 text-left"><slot /></div>
-	<div class="flex flex-col items-center w-max">
-		<p class="text-sm w-max">{isExpand ? 'ปิด' : 'อ่านเพิ่มเติม'}</p>
+	<p class="text-2xl mr-5 text-left"><slot /></p>
+	<div class="flex flex-col items-center w-fit">
+		<p class="text-sm whitespace-nowrap">{isExpand ? 'ปิด' : 'อ่านเพิ่มเติม'}</p>
 
 		<!-- rotate icon animation -->
 		{#if isExpand}

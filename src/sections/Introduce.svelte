@@ -1,28 +1,41 @@
 <script>
 	import CommonCard from '../components/Common/CommonCard.svelte';
-	import BigLogo from '../components/Common/BigLogo.svelte';
-	import IntroduceClipArt from '../components/IntroduceComponent/IntroduceClipArt.svelte';
 </script>
 
-<div class="bg-prtr-healthy-blue flex justify-center items-center pt-16 pb-20">
-	<div class="ml-52 mt-2 mb-0.5 flex flex-col">
-		<div class="flex mb-16">
-			<p class="title_font text-prtr-deep-blue mr-4">รู้จัก</p>
-			<BigLogo />
+<div
+	class="bg-prtr-healthy-blue pt-8 md:pt-16 pb-9 md:pb-28 w-full flex justify-center"
+>
+	<div class="max-w-7xl pl-0 lg:pl-[53px]">
+		<div class="flex justify-center md:justify-start items-center">
+			<p
+				class="font-kanit text-4xl md:text-title font-bold leading-title text-prtr-deep-blue mr-2 md:mr-4"
+			>
+				รู้จัก
+			</p>
+			<div class="w-[132px] md:w-[240px] h-8 md:h-[56px]">
+				<img src="img/logo/logo_default.svg" alt="logo" />
+			</div>
 		</div>
 
-		<div class="flex mt-1.5">
-			<div class="flex flex-col introduce_content">
-				<div class="grow w-full h-full flex justify-end items-end">
-					<IntroduceClipArt />
+		<div
+			class="mt-2 md:mt-[62px] ml-0 lg:ml-[86px] flex flex-col lg:flex-row items-center"
+		>
+			<div class="flex flex-col w-[155px] md:w-[420px] items-center mt-6">
+				<div
+					class="grow flex justify-center lg:justify-end
+					w-[155px] md:w-[334px] h-[170px] md:h-[369px]"
+				>
+					<img src="img/illust/illust_1.svg" alt="introduction illust" />
 				</div>
 			</div>
 
-			<div class="introduce_spacing" />
+			<div class=" w-[4vw] hidden lg:block" />
 
-			<div class="introduce_content flex items-center">
+			<div
+				class="w-[280px] md:w-[420px] flex items-center justify-center mt-[29px] lg:mt-0"
+			>
 				<div>
-					<CommonCard title="PRTR คืออะไร​ ?" isNoIcon>
+					<CommonCard title="PRTR คืออะไร​ ?">
 						<div>
 							<h1>
 								กฎหมายที่กำหนดให้มีการรายงานและเปิดเผยข้อมูลการปล่อยและเคลื่อนย้ายสารมลพิษโดยหน่วยงานที
@@ -39,20 +52,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	.introduce_content {
-		width: 420px;
-	}
-	.introduce_spacing {
-		width: 75px;
-	}
-
-	.title_font {
-		font-size: 80px;
-		font-family: 'Termtem';
-		font-style: normal;
-		font-weight: 700;
-		line-height: 90%;
-	}
-</style>

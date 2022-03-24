@@ -1,106 +1,153 @@
 <script>
 	import LandingTitle from '../components/LandingComponent/LandingTitle.svelte';
+	import DocumentButton from '../components/Common/DocumentButton.svelte';
 
-	let couting = 23112;
+	import { onMount } from 'svelte';
+	import { getData } from '../config/db';
+
+	const goal = [10000, 20000, 50000, 100000];
+
+	let currentGoal = goal[0];
+	let couting = 40000;
+	let percentWidth = 0;
+
+	$: currentGoal = goal[goal.filter((i) => i < couting).length] || goal[3];
+	$: percentWidth =
+		couting < goal[3]
+			? Math.round((couting / currentGoal) * 100 * 100) / 100
+			: 100;
+
+	onMount(() => {});
 
 	const getNumberWithCommas = (x) => {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	};
+
+	async function initData() {
+		try {
+			couting = await (await getData()).length;
+			console.log('couting', couting);
+		} catch (e) {
+			console.log('e', e);
+		}
+	}
 </script>
 
 <div
-	class="bg-gradient-to-b from-prtr-gradient-a via-prtr-gradient-b to-prtr-gradient-c flex flex-col justify-center items-center pt-40 pb-20"
+	class="bg-gradient-to-b from-prtr-gradient-a font-kanit via-prtr-gradient-b to-prtr-gradient-c flex flex-col justify-center items-center pt-8 md:pt-40 md:pb-[170px] lg:pb-[160px]"
 >
-	<div class="flex text-prtr-deep-blue mt-0.5">
-		<div class="left_box">
+	<div
+		class="flex text-prtr-deep-blue mt-0.5 lg:flex-row flex-col items-center ml-0 lg:ml-[20px]"
+	>
+		<div class="w-60 md:w-[380px]">
 			<LandingTitle />
 			<div class="flex justify-between mt-4">
-				<p>มีแล้วกว่า</p>
+				<p>ลงชื่อแล้ว</p>
 				<p>รายชื่อ</p>
 			</div>
 			<div
-				class="bg-prtr-healthy-blue shadow-md rounded-xl flex justify-center"
+				class="w-[240px] h-[44px] sm:w-[380px] sm:h-[78px] bg-prtr-healthy-blue shadow-md rounded-xl flex justify-center items-center"
 			>
-				<p class="counting_number text-white">{getNumberWithCommas(couting)}</p>
-			</div>
-
-			<div class="mt-7 w-full">
-				<div class=" w-full flex justify-end items-center">
-					<p class="font-anakotmai mt-1">10,000</p>
-					<img class="ml-0.5" src="img/milestone/milestone_check_light.svg" alt='check light' />
-				</div>
-				<div
-					class="w-full h-[30px] bg-prtr-air-blue border border-prtr-deep-blue"
+				<p
+					class="font-anakotmai text-6xl tracking-[0.24em] counting_number_big text-white"
 				>
-					<p class="float-right pr-2">ยังขาดอีก 4,000 รายชื่อ</p>
-					<div class=" h-full bg-prtr-healthy-blue" style="width: 45%" />
-				</div>
-			</div>
-		</div>
-
-		<div class="landing_spacing" />
-
-		<div
-			class="right_box text-prtr-deep-blue bg-contain flex flex-col justify-center items-center px-[60px]"
-			style="background-image: url('img/bg/bg_1.svg')"
-		>
-			<div>
-				<h1 class="text-4xl">
-					“มลพิษไม่ใช่ความลับ และหน่วยงานรัฐก็ต้องไม่ปิด”
-				</h1>
-				<p class="text-2xl mt-4">
-					ร่วมเป็นส่วนหนึ่งสนับสนุนให้มีการรายงานการ
-					ปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อมเพื่อ
-					ให้การเข้าถึงข้อมูลมลพิษเป็นสิทธิของประชาชน อย่างแท้จริง
+					{couting && getNumberWithCommas(couting)}
 				</p>
+			</div>
 
-				<div class="mt-4">
-					<p class="p-1.5 border border-prtr-deep-blue w-fit font-anakotmai">
+			<div class="mt-1 sm:mt-7 w-full">
+				<div class=" w-full flex justify-end items-center">
+					<p class="font-anakotmai mt-1">{getNumberWithCommas(currentGoal)}</p>
+					<img
+						class="ml-0.5"
+						src="img/milestone/milestone_check_light.svg"
+						alt="check light"
+					/>
+				</div>
+				{#if couting < goal[0]}
+					<div
+						class="w-full h-[30px] bg-prtr-air-blue border border-prtr-deep-blue"
+					>
+						<p class="float-right pr-2">
+							ยังขาดอีก ${getNumberWithCommas(goal[0] - couting)} รายชื่อ
+						</p>
+						<div
+							class="h-full bg-prtr-healthy-blue"
+							style="width: {percentWidth}%"
+						/>
+					</div>
+				{:else}
+					<div
+						class="w-full h-[30px] bg-prtr-air-blue border border-prtr-deep-blue flex overflow-hidden"
+					>
+						<div
+							class="h-full bg-prtr-deep-blue"
+							style="width: {(goal[0] / currentGoal) * 100}%"
+						/>
+						<div
+							class="h-full bg-prtr-healthy-blue"
+							style="width: {percentWidth - (goal[0] / currentGoal) * 100}%"
+						/>
+					</div>
+				{/if}
+
+				<div class="mt-4 flex justify-center">
+					<p class="p-1.5 w-fit font-anakotmai">
 						อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65
 					</p>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="flex justify-between w-full mt-6 mb-1">
+		<div class="w-[6vw] hidden md:block" />
+
 		<div
-			class=" bg-white text-prtr-deep-blue w-[180px] h-fit flex flex-col justify-center p-1.5"
+			class="w-[510px] h-[445px] text-prtr-deep-blue bg-contain  flex-col justify-center items-center px-[60px]
+			mt-[118px] lg:mt-0 hidden sm:flex"
+			style="background-image: url('img/bg/bg_1_big.svg')"
 		>
-			<p>*Note:</p>
-			<p>เลขวิ่งๆๆๆ</p>
+			<div>
+				<p class="text-2xl sm:text-4xl font-bold text-center lg:text-left">
+					“ข้อมูลมลพิษ คือสิทธิที่ประชาชนต้องเข้าถึงได้”
+				</p>
+				<p class="text-2xl mt-4 text-center lg:text-left">
+					ร่วมเป็นส่วนหนึ่งสนับสนุนให้มีการรายงานการ
+					ปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อมเพื่อ
+					ให้การเข้าถึงข้อมูลมลพิษเป็นสิทธิของประชาชน อย่างแท้จริง
+				</p>
+			</div>
+
+			<div class="mt-4 flex justify-center w-[26px] md:w-[370px]">
+				<DocumentButton>อ่านร่างพ.ร.บ.ฉบับเต็ม</DocumentButton>
+			</div>
 		</div>
 		<div
-			class=" bg-white text-prtr-deep-blue w-[180px] h-fit flex flex-col justify-center p-3"
+			class=" text-prtr-deep-blue bg-contain flex flex-col justify-center items-center
+		mt-[118px] lg:mt-0 mb-0 lg:mb-[152px] sm:hidden"
 		>
-			<p>*Note:</p>
-			<p>แถบ fixed ไว้ Scroll</p>
-			<p>ไปส่วนที่ลงชื่อ 👇</p>
+			<div class=" px-[30px]">
+				<h1 class="text-2xl sm:text-4xl font-bold text-center">
+					“ข้อมูลมลพิษ คือสิทธิที่ประชาชนต้องเข้าถึงได้”
+				</h1>
+				<p class="text-lg mt-4 text-center">
+					ร่วมเป็นส่วนหนึ่งสนับสนุนให้มีการรายงานการ
+					ปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อมเพื่อ
+					ให้การเข้าถึงข้อมูลมลพิษเป็นสิทธิของประชาชน อย่างแท้จริง
+				</p>
+
+				<div class="mt-4 flex justify-center lg:block">
+					<p class="p-1.5 border border-prtr-deep-blue w-fit font-anakotmai">
+						อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65
+					</p>
+				</div>
+
+				<div class=" w-full flex justify-center items-center">
+					<div
+						class="mt-3 w-[231px] h-[201px] bg-cover bg-center"
+						style="background-image: url('img/bg/bg_1_small.svg')"
+					/>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-
-<style>
-	.counting_number {
-		font-family: Anakotmai;
-		font-size: 60px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: 72px;
-		letter-spacing: 0.24em;
-		text-align: left;
-	}
-
-	.left_box {
-		width: 377px;
-	}
-
-	.landing_spacing {
-		width: 120px;
-	}
-
-	.right_box {
-		width: 510px;
-		height: 445px;
-	}
-</style>

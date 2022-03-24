@@ -35,7 +35,8 @@
   },
   "type": "module",
   "dependencies": {
-    "@wevisdemo/ui": "^3.1.0",
-    "signature_pad": "^4.0.2"
+    "@wevisdemo/ui": "^3.1.1",
+    "firebase": "^9.6.9",
+    "signature_pad": "^4.0.3"
   }
 }
