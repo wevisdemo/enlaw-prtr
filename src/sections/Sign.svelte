@@ -2,8 +2,6 @@
 	import SignForm from '../components/SignForm.svelte';
 	import CommonExpand from '../components/Common/CommonExpand.svelte';
 	import DocumentButton from '../components/Common/DocumentButton.svelte';
-
-	export let couting;
 </script>
 
 <div class="bg-prtr-deep-blue flex justify-center pt-20 pb-[69px]">
@@ -28,7 +26,7 @@
 
 		<div class="flex flex-col items-center lg:items-start">
 			<div class="flex justify-center lg:justify-start">
-				<SignForm couting={couting}/>
+				<SignForm />
 			</div>
 			<p class="pt-6 pb-6 text-white text-center">อ่านเพิ่มเติม</p>
 			<div class="w-[300px] md:w-[420px]">

@@ -1,7 +1,8 @@
 <script>
-	import { createForm } from "svelte-forms-lib";
+	import { createForm } from 'svelte-forms-lib';
 	import * as yup from 'yup';
-	
+	import { imask } from 'svelte-imask';
+
 	import InputField from './FormComponent/InputField.svelte';
 	import PenIcon from './FixedButtonBar/icon/PenIcon.svelte';
 
@@ -15,30 +16,23 @@
 
 	import { submitData } from '../config/db';
 
-	export let couting;
-
 	let signature_value;
 	let signature_canvas_b;
 	let signature_canvas_s;
 
-	let isValid = false;
 	let submitted = false;
-	let isAgree = false;
-	let formData = {
-		birthDay: {
-			day: undefined,
-			month: undefined,
-			year: undefined,
-		},
-		tel: undefined,
-		signature: undefined,
-	};
+	let signature = undefined;
+
 	const formOption = {
 		title: TitleValue,
 		day: RangeDay[2],
 		month: RangeMonth,
 		year: RangeYear,
 	};
+	const telMask = {
+		mask: '000-000-0000',
+	};
+	const phoneRegExp = /^[1-9]\d{2}-\d{3}-\d{4}/gm;
 
 	function resizeCanvas(canvas, w, h) {
 		canvas.width = w;
@@ -61,13 +55,19 @@
 		);
 	});
 
-	const { form, errors, state, handleChange, handleSubmit} = createForm({
+	const { form, errors, handleChange, handleSubmit } = createForm({
 		initialValues: {
-			location: "",
-			citizenId: "",
-			title: "",
-			surname: "",
-			lastname: "",
+			location: '',
+			citizenId: '',
+			title: '',
+			surname: '',
+			lastname: '',
+			birthDay_day: '',
+			birthDay_month: '',
+			birthDay_year: '',
+			email: '',
+			tel: '',
+			isAgree: false
 		},
 		validationSchema: yup.object().shape({
 			location: yup.string().required(),
@@ -75,31 +75,36 @@
 			title: yup.string().required(),
 			surname: yup.string().required(),
 			lastname: yup.string().required(),
+			birthDay_day: yup.string().required(),
+			birthDay_month: yup.string().required(),
+			birthDay_year: yup.string().required(),
+			email: yup.string().email('Email is not valid'),
+			tel: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+			isAgree: yup.boolean().isTrue()
 		}),
-		onSubmit: values => {
-			doSubmit(values)
-		}
-	})
+		onSubmit: (values) => {
+			doSubmit(values);
+		},
+	});
 
-	const changeCallBack = (v, f) => {
-		console.log('v', v);
-		formData[f] = v;
-	};
+	// const changeCallBack = (v, f) => {
+	// 	console.log('v', v);
+	// 	formData[f] = v;
+	// };
 
-	const changeBirthDate = (v, f) => {
-		formData.birthDay[f] = v;
-	};
+	// const changeBirthDate = (v, f) => {
+	// 	formData.birthDay[f] = v;
+	// };
 
 	const handleClear = () => {
 		signature_value.clear();
 	};
 
 	const doSubmit = (values) => {
-		console.log('values', values)
-		const submitBody = { ...form };
-		console.log('submitBody', submitBody);
+		const submitBody = { ...values };
 		// submitBody.signature = signature_value.toDataURL('image/jpeg');
 		// delete submitBody.citizenId;
+		console.log('submitBody', submitBody);
 
 		// submitData({ cb: TestCb, body: submitBody, id: formData.citizenId });
 	};
@@ -107,52 +112,33 @@
 	function TestCb() {
 		console.log('signature_value', signature_value.toDataURL('image/jpeg'));
 	}
-
-	const validateForm = (isValid) => {
-		console.log('TEST VALIDATE');
-	};
-
-	$: validateForm(isValid);
 </script>
 
 <div
 	class="bg-white w-[300px] md:w-[420px] py-5 px-2.5 md:px-5 font-normal text-prtr-deep-blue"
 >
-	<form class:submitted on:submit|preventDefault={doSubmit}>
-		<!-- <input type="text" class="form-control" placeholder="First name" required>
-		<input type="text" class="form-control" placeholder="Last name" required> -->
-
+	<!-- <InputField
+					label="ชื่อ*"
+					subLabel="ระบุชื่อจริงเป็นภาษาไทย"
+					required
+					value={formData.surname}
+					id="surname"
+					onChange={(v) => changeCallBack(v, 'surname')}
+				/> -->
+	<form on:submit={handleSubmit}>
 		<div class="mb-2.5">
-			<!-- <InputField
-				label="เขียนที่*"
-				subLabel="ระบุเป็นชื่อจังหวัด"
-				required
-				value={formData.location}
-				id="location"
-				onChange={(v) => changeCallBack(v, 'location')}
-			/> -->
-			<label class="mb-0.5 font-anakotmai" for="location">
-				เขียนที่*
-			</label>
+			<label class="mb-0.5 font-anakotmai" for="location">เขียนที่*</label>
 			<input
 				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				required
 				bind:value={$form.location}
+				on:change={handleChange}
 				id="location"
 			/>
 			<p class="text-xs">ระบุเป็นชื่อจังหวัด</p>
 		</div>
 
 		<div class="mb-2.5">
-			<!-- <InputField
-				label="เลขประจำตัวประชาชน*"
-				subLabel="ใส่เลขประจำตัวประชาชน 13 หลักไม่ต้องเว้นวรรค"
-				type="number"
-				required
-				value={formData.citizenId}
-				id="citizenId"
-				onChange={(v) => changeCallBack(v, 'citizenId')}
-			/> -->
 			<label class="mb-0.5 font-anakotmai" for="citizenId">
 				เลขประจำตัวประชาชน*
 			</label>
@@ -161,6 +147,7 @@
 				type="number"
 				required
 				bind:value={$form.citizenId}
+				on:change={handleChange}
 				id="citizenId"
 			/>
 			<p class="text-xs">ใส่เลขประจำตัวประชาชน 13 หลักไม่ต้องเว้นวรรค</p>
@@ -168,20 +155,13 @@
 
 		<div class="basis-full flex mb-2.5">
 			<div class="basis-1/4  pr-2.5">
-				<!-- <InputField
-					label="คำนำหน้าชื่อ"
-					required
-					SelectOption={formOption.title}
-					value={formData.title}
-					id="title"
-					onChange={(v) => changeCallBack(v, 'title')}
-				/> -->
 				<label class="mb-0.5 font-anakotmai" for="title">คำนำหน้าชื่อ</label>
 				<select
 					class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
 					id="title"
 					required
 					bind:value={$form.title}
+					on:change={handleChange}
 				>
 					{#each formOption.title as o}
 						<option>{o}</option>
@@ -189,88 +169,128 @@
 				</select>
 			</div>
 			<div class="basis-3/4">
-				<!-- <InputField
-					label="ชื่อ*"
-					subLabel="ระบุชื่อจริงเป็นภาษาไทย"
-					required
-					value={formData.surname}
-					id="surname"
-					onChange={(v) => changeCallBack(v, 'surname')}
-				/> -->
-
-				<label class="mb-0.5 font-anakotmai" for="citizenId"> ชื่อ* </label>
+				<label class="mb-0.5 font-anakotmai" for="surname">ชื่อ*</label>
 				<input
 					class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 					required
 					bind:value={$form.surname}
+					on:change={handleChange}
+					on:blur={handleChange}
 					id="surname"
 				/>
 				<p class="text-xs">ระบุชื่อจริงเป็นภาษาไทย</p>
 			</div>
 		</div>
 
-		<!-- <div class="mb-2.5">
-			<InputField
-				label="นามสกุล*"
-				subLabel="ระบุนามสกุลเป็นภาษาไทย"
+		<div class="mb-2.5">
+			<label class="mb-0.5 font-anakotmai" for="lastname">นามสกุล*</label>
+			<input
+				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				required
-				value={formData.lastname}
+				bind:value={$form.lastname}
+				on:change={handleChange}
 				id="lastname"
-				onChange={(v) => changeCallBack(v, 'lastname')}
 			/>
+			<p class="text-xs">ระบุนามสกุลเป็นภาษาไทย</p>
 		</div>
-	
+
 		<div class="basis-full flex mb-2.5">
 			<div class="basis-1/3 pr-1">
-				<InputField
-					label="วันเกิด*"
-					SelectOption={formOption.day}
-					required
-					value={formData.birthDay.day}
-					id="birthDay"
-					onChange={(v) => changeBirthDate(v, 'day')}
-				/>
+				<div class="flex flex-col">
+					<label class="mb-0.5 font-anakotmai" for="birthDay_day">วันเกิด*</label>
+					<select
+						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
+						id="birthDay_day"
+						required
+						bind:value={$form.birthDay_day}
+						on:change={handleChange}
+					>
+						{#each formOption.day as o}
+							<option value={o}>{o}</option>
+						{/each}
+					</select>
+				</div>
 			</div>
 			<div class="basis-1/3 pr-1">
-				<InputField
-					label="เดือนเกิด*"
-					SelectOption={formOption.month}
-					required
-					value={formData.birthDay.month}
-					id="birthDay"
-					onChange={(v) => changeBirthDate(v, 'month')}
-				/>
+				<div class="flex flex-col">
+					<label class="mb-0.5 font-anakotmai" for="birthDay_month"
+						>เดือนเกิด*</label
+					>
+					<select
+						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
+						id="birthDay_month"
+						required
+						bind:value={$form.birthDay_month}
+						on:change={handleChange}
+					>
+						{#each formOption.month as o}
+							<option value={o}>{o}</option>
+						{/each}
+					</select>
+				</div>
 			</div>
 			<div class="basis-1/3">
-				<InputField
-					label="ปีพ.ศ.เกิด*"
-					SelectOption={formOption.year}
-					required
-					value={formData.birthDay.year}
-					id="birthDay"
-					onChange={(v) => changeBirthDate(v, 'year')}
-				/>
+				<div class="flex flex-col">
+					<label class="mb-0.5 font-anakotmai" for="birthDay_year"
+						>ปีพ.ศ.เกิด*</label
+					>
+					<select
+						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
+						id="birthDay_year"
+						required
+						bind:value={$form.birthDay_year}
+						on:change={handleChange}
+					>
+						{#each formOption.year as o}
+							<option value={o}>{o}</option>
+						{/each}
+					</select>
+				</div>
 			</div>
 		</div>
-	
+
 		<div class="mb-2.5">
-			<InputField
-				label="เบอร์โทรศัพท์ (Optional)"
-				subLabel="ระบุเบอร์โทรศัพท์ที่ใช้งานในปัจจุบันสำหรับการอ้างอิง ข้อมูลจะเก็บเป็นความลับ"
-				required
-				value={formData.tel}
-				id="tel"
-				onChange={(v) => changeCallBack(v, 'tel')}
+			<label class="mb-0.5 font-anakotmai" for="email">อีเมล (Optional)</label>
+			<input
+				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				bind:value={$form.email}
+				on:change={handleChange}
+				id="email"
+				type="email"
 			/>
+			<p class="text-xs">
+				E-mail ที่ใช้งานในปัจจุบัน - สำหรับรับเอกสารยืนยันการลงลายมือชื่อ
+			</p>
 		</div>
-	
+
 		<div class="mb-2.5">
-			<p class="mb-0.5">ลงลายมือชื่อ*</p>
+			<label class="mb-0.5 font-anakotmai" for="tel">
+				เบอร์โทรศัพท์ (Optional)
+			</label>
+			<input
+				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				bind:value={$form.tel}
+				on:change={handleChange}
+				id="tel"
+				type="tel"
+				use:imask={telMask}
+			/>
+			<p class="text-xs">
+				ระบุเบอร์โทรศัพท์ที่ใช้งานในปัจจุบันสำหรับการอ้างอิง
+				ข้อมูลจะเก็บเป็นความลับ
+			</p>
+		</div>
+
+		<div class="mb-2.5">
+			<p class="mb-0.5 font-anakotmai">ลงลายมือชื่อ* (validation in progress)</p>
 			<canvas
 				bind:this={signature_canvas_b}
 				class="cursor-crosshair hidden md:block"
 			/>
-			<canvas bind:this={signature_canvas_s} class="cursor-crosshair md:hidden" />
+			<canvas
+				bind:this={signature_canvas_s}
+				class="cursor-crosshair md:hidden"
+			/>
 			<div class=" w-full flex justify-end">
 				<button
 					class="border border-prtr-deep-blue p-1.5 flex items-center rounded"
@@ -313,25 +333,25 @@
 				</button>
 			</div>
 		</div>
-	
+
 		<div class="mb-2.5 flex">
 			<input
 				class="h-5 w-5 mr-3 border-2 border-prtr-deep-blue rounded-sm accent-prtr-deep-blue transition duration-200 cursor-pointer font-baijamjuree"
 				type="checkbox"
-				value={isAgree}
-				on:input={() => (isAgree = !isAgree)}
+				id="isAgree"
+				bind:value={$form.isAgree}
+				on:input={handleChange}
 			/>
 			<div>
 				<p class="text-sm">
 					ข้าพเจ้ายินยอมลงชื่อเสนอกฎหมาย อ่านนโยบายคุ้มครอง ข้อมูลส่วนบุคคล
 				</p>
 			</div>
-		</div> -->
+		</div>
 
 		<button
 			class="flex justify-center w-full bg-white text-prtr-deep-blue border border-prtr-deep-blue py-5 rounded shadow-md"
-			required
-			on:click={() => submitted = true}
+			type="submit"
 		>
 			<!-- on:click={() => doSubmit()} -->
 			<span class="mr-1">ลงชื่อ</span>

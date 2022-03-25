@@ -42,16 +42,16 @@
 	</div>
 
 	<div>
-		<div class="border-b-4 border-pink-300">
+		<!-- <div class="border-b-4 border-pink-300">
 			<Landing couting={couting} />
 		</div>
 		<Introduce />
 		<Benefit />
 		<Operation />
-		<Importance />
+		<Importance /> -->
 		<Sign />
-		<Partner />
-		<About />
+		<!-- <Partner />
+		<About /> -->
 	</div>
 
 	<div class="sticky bottom-0 py-3.5 px-[15px] md:px-11 xl:px-[193px] bg-prtr-deep-blue border border-white">

@@ -5,7 +5,7 @@ function RangeYear() {
     let i;
     let tmp = [];
     for (i = min; i <= max; i++) {
-        tmp.push(i);
+        tmp.push(i.toString());
     }
     return tmp;
 }

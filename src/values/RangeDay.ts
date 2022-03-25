@@ -2,7 +2,7 @@ function genDay(max) {
     let i;
     let tmp = [];
     for (i = 1; i <= max; i++) {
-        tmp.push(i);
+        tmp.push(i.toString());
     }
     return tmp;
 }
