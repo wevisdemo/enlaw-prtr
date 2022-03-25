@@ -10,7 +10,7 @@
 	$: onChange(value);
 </script>
 
-<div class="basis-full flex flex-col">
+<span class="basis-full flex flex-col submitted">
 	<label class="mb-0.5 font-anakotmai" for={id}>
 		{label}
 	</label>
@@ -40,10 +40,10 @@
 	{#if subLabel !== undefined}
 		<p class="text-xs">{subLabel}</p>
 	{/if}
-</div>
+</span>
 
 <style>
-	.submitted input:focus:invalid {
+	.submitted input:invalid {
 		outline: 1px solid #c00;
 	}
 </style>

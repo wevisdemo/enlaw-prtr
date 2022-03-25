@@ -13,8 +13,23 @@ export async function getData() {
 	});
 }
 
+let formData = {
+	location: undefined,
+	citizenId: undefined,
+	title: undefined,
+	surname: undefined,
+	lastname: undefined,
+	birthDay: {
+		day: undefined,
+		month: undefined,
+		year: undefined,
+	},
+	tel: undefined,
+	signature: undefined,
+};
 // '2000000000002'
 export async function submitData(props) {
+
 	console.log('props', props);
 	const { cb, body, id } = props;
 	const { db } = getFirebase();

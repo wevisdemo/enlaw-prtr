@@ -1,4 +1,7 @@
 <script>
+	import { createForm } from "svelte-forms-lib";
+	import * as yup from 'yup';
+	
 	import InputField from './FormComponent/InputField.svelte';
 	import PenIcon from './FixedButtonBar/icon/PenIcon.svelte';
 
@@ -22,13 +25,6 @@
 	let submitted = false;
 	let isAgree = false;
 	let formData = {
-		location: undefined,
-		citizenId: undefined,
-		title: undefined,
-		name: {
-			surname: undefined,
-			lastname: undefined,
-		},
 		birthDay: {
 			day: undefined,
 			month: undefined,
@@ -65,7 +61,28 @@
 		);
 	});
 
+	const { form, errors, state, handleChange, handleSubmit} = createForm({
+		initialValues: {
+			location: "",
+			citizenId: "",
+			title: "",
+			surname: "",
+			lastname: "",
+		},
+		validationSchema: yup.object().shape({
+			location: yup.string().required(),
+			citizenId: yup.number().required(),
+			title: yup.string().required(),
+			surname: yup.string().required(),
+			lastname: yup.string().required(),
+		}),
+		onSubmit: values => {
+			doSubmit(values)
+		}
+	})
+
 	const changeCallBack = (v, f) => {
+		console.log('v', v);
 		formData[f] = v;
 	};
 
@@ -77,13 +94,14 @@
 		signature_value.clear();
 	};
 
-	const handleSubmit = () => {
-		// console.log('formData', formData);
-		const submitBody = { ... formData }
-		submitBody.signature = signature_value.toDataURL("image/jpeg")
-		delete submitBody.citizenId
+	const doSubmit = (values) => {
+		console.log('values', values)
+		const submitBody = { ...form };
+		console.log('submitBody', submitBody);
+		// submitBody.signature = signature_value.toDataURL('image/jpeg');
+		// delete submitBody.citizenId;
 
-		submitData({cb: TestCb, body: submitBody, id: formData.citizenId});
+		// submitData({ cb: TestCb, body: submitBody, id: formData.citizenId });
 	};
 
 	function TestCb() {
@@ -91,7 +109,7 @@
 	}
 
 	const validateForm = (isValid) => {
-		// console.log('TEST', isValid)
+		console.log('TEST VALIDATE');
 	};
 
 	$: validateForm(isValid);
@@ -100,25 +118,33 @@
 <div
 	class="bg-white w-[300px] md:w-[420px] py-5 px-2.5 md:px-5 font-normal text-prtr-deep-blue"
 >
-	<form class:submitted on:submit|preventDefault={handleSubmit}>
-
+	<form class:submitted on:submit|preventDefault={doSubmit}>
 		<!-- <input type="text" class="form-control" placeholder="First name" required>
 		<input type="text" class="form-control" placeholder="Last name" required> -->
 
-
-		<!-- <div class="mb-2.5">
-			<InputField
+		<div class="mb-2.5">
+			<!-- <InputField
 				label="เขียนที่*"
 				subLabel="ระบุเป็นชื่อจังหวัด"
 				required
 				value={formData.location}
 				id="location"
 				onChange={(v) => changeCallBack(v, 'location')}
+			/> -->
+			<label class="mb-0.5 font-anakotmai" for="location">
+				เขียนที่*
+			</label>
+			<input
+				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				required
+				bind:value={$form.location}
+				id="location"
 			/>
-		</div> -->
-	
+			<p class="text-xs">ระบุเป็นชื่อจังหวัด</p>
+		</div>
+
 		<div class="mb-2.5">
-			<InputField
+			<!-- <InputField
 				label="เลขประจำตัวประชาชน*"
 				subLabel="ใส่เลขประจำตัวประชาชน 13 หลักไม่ต้องเว้นวรรค"
 				type="number"
@@ -126,38 +152,69 @@
 				value={formData.citizenId}
 				id="citizenId"
 				onChange={(v) => changeCallBack(v, 'citizenId')}
+			/> -->
+			<label class="mb-0.5 font-anakotmai" for="citizenId">
+				เลขประจำตัวประชาชน*
+			</label>
+			<input
+				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				type="number"
+				required
+				bind:value={$form.citizenId}
+				id="citizenId"
 			/>
+			<p class="text-xs">ใส่เลขประจำตัวประชาชน 13 หลักไม่ต้องเว้นวรรค</p>
 		</div>
-	
+
 		<div class="basis-full flex mb-2.5">
 			<div class="basis-1/4  pr-2.5">
-				<InputField
+				<!-- <InputField
 					label="คำนำหน้าชื่อ"
 					required
 					SelectOption={formOption.title}
 					value={formData.title}
 					id="title"
 					onChange={(v) => changeCallBack(v, 'title')}
-				/>
+				/> -->
+				<label class="mb-0.5 font-anakotmai" for="title">คำนำหน้าชื่อ</label>
+				<select
+					class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
+					id="title"
+					required
+					bind:value={$form.title}
+				>
+					{#each formOption.title as o}
+						<option>{o}</option>
+					{/each}
+				</select>
 			</div>
 			<div class="basis-3/4">
-				<InputField
+				<!-- <InputField
 					label="ชื่อ*"
 					subLabel="ระบุชื่อจริงเป็นภาษาไทย"
 					required
-					value={formData.name.surname}
+					value={formData.surname}
 					id="surname"
 					onChange={(v) => changeCallBack(v, 'surname')}
+				/> -->
+
+				<label class="mb-0.5 font-anakotmai" for="citizenId"> ชื่อ* </label>
+				<input
+					class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+					required
+					bind:value={$form.surname}
+					id="surname"
 				/>
+				<p class="text-xs">ระบุชื่อจริงเป็นภาษาไทย</p>
 			</div>
 		</div>
-	
-		<div class="mb-2.5">
+
+		<!-- <div class="mb-2.5">
 			<InputField
 				label="นามสกุล*"
 				subLabel="ระบุนามสกุลเป็นภาษาไทย"
 				required
-				value={formData.name.lastname}
+				value={formData.lastname}
 				id="lastname"
 				onChange={(v) => changeCallBack(v, 'lastname')}
 			/>
@@ -269,14 +326,14 @@
 					ข้าพเจ้ายินยอมลงชื่อเสนอกฎหมาย อ่านนโยบายคุ้มครอง ข้อมูลส่วนบุคคล
 				</p>
 			</div>
-		</div>
-	
+		</div> -->
+
 		<button
 			class="flex justify-center w-full bg-white text-prtr-deep-blue border border-prtr-deep-blue py-5 rounded shadow-md"
 			required
 			on:click={() => submitted = true}
 		>
-		<!-- on:click={() => handleSubmit()} -->
+			<!-- on:click={() => doSubmit()} -->
 			<span class="mr-1">ลงชื่อ</span>
 			<PenIcon />
 		</button>
@@ -284,7 +341,11 @@
 </div>
 
 <style>
-	.submitted input:focus:invalid {
+	.submitted input:invalid {
+		outline: 1px solid #c00;
+	}
+
+	.submitted select:invalid {
 		outline: 1px solid #c00;
 	}
 </style>
