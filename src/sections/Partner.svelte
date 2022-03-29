@@ -19,9 +19,9 @@
 			</div>
 			<div class="">
 				<p class="font-kanit font-bold leading-7 text-xl md:text-[28px] mb-3">ติดตาม ENLAW</p>
-				<PartnerButton icon="img/client/logo/share_web.svg" text="Website" link="https://www.earththailand.org/th/"/>
-				<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" link="https://www.facebook.com/EarthEcoAlert/"/>
-				<PartnerButton icon="img/client/logo/share_twitter.svg" text="Twitter" link="https://twitter.com/EarthTH2009@EarthTH2009" />
+				<PartnerButton icon="img/client/logo/share_web.svg" text="Website" link="https://enlawfoundation.org/"/>
+				<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" link="https://www.facebook.com/Enlawthai2001"/>
+				<PartnerButton icon="img/client/logo/share_twitter.svg" text="Twitter" link="https://twitter.com/enlawthai" />
 			</div>
 		</div>
 
@@ -37,9 +37,9 @@
 			</div>
 			<div class="mt-8 md:mt-0">
 				<p class="font-kanit font-bold leading-7 text-xl md:text-[28px] mb-3">ติดตาม EARTH</p>
-				<PartnerButton icon="img/client/logo/share_web.svg" text="Website" />
-				<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" />
-				<PartnerButton icon="img/client/logo/share_twitter.svg" text="Twitter" />
+				<PartnerButton icon="img/client/logo/share_web.svg" text="Website" link="https://www.earththailand.org/th"/>
+				<PartnerButton icon="img/client/logo/share_facebook.svg" text="Facebook" link="https://www.facebook.com/EarthEcoAlert"/>
+				<PartnerButton icon="img/client/logo/share_twitter.svg" text="Twitter" link="https://twitter.com/EarthTH2009@EarthTH2009"/>
 			</div>
 		</div>
 	</div>

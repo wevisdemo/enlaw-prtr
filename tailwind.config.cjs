@@ -30,7 +30,13 @@ module.exports = {
 			},
 			screens: {
 				xs: '425px',
+				'4xl': '1850px'
 			},
+			backgroundPosition: {
+				'center-1': 'center',
+				'center-2': 'center right -15rem',
+				'center-3': 'center left 2.75rem',
+			}
 		},
 	},
 	plugins: [],

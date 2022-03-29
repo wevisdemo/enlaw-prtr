@@ -4,23 +4,37 @@
 	import DocumentIcon from '../components/ImportanceComponent/DocumentIcon.svelte';
 
 	import { onMount } from 'svelte';
-
-	export let couting;
+	import { getRealTimeCounting, getAll, getOneTimeCounting } from '../config/db';
 
 	const goal = [10000, 20000, 50000, 100000];
 
+	let couting
 	let currentGoal = goal[0];
 	let percentWidth = 0;
+			
+	onMount(() => {
+		getRealTimeCounting(updateCounting)
+	});
+	
+	const getNumberWithCommas = (x) => {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	};
+	
+	const updateCounting = (newValue) => {
+		couting = newValue
+	}
 
+	const fetchAllPettitor = async () => {
+		const result = await getAll()
+		console.log('result', result)
+	}
+	
 	$: currentGoal = goal[goal.filter((i) => i < couting).length] || goal[3];
 	$: percentWidth =
 		couting < goal[3]
 			? Math.round((couting / currentGoal) * 100 * 100) / 100
 			: 100;
 
-	const getNumberWithCommas = (x) => {
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	};
 </script>
 
 <div
@@ -113,8 +127,7 @@
 				<button
 					class="flex justify-center px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
 					on:click={() => {
-						console.log('currentGoal', currentGoal);
-						console.log('couting', couting);
+						fetchAllPettitor()
 					}}
 				>
 					<span

@@ -13,7 +13,7 @@
 				<img src="img/share_icon/share_facebook_default.svg" alt='share facebook' height="32px" width="32px" />
 			</LinkIconWrapper>
 			<LinkIconWrapper url="https://www.google.com/">
-				<img src="img/share_icon/share_twitter_default.svg" alt='share twitter' height="32px" width="32px" />
+				<img src="img/share_icon/share_twitter_default.svg" alt='share twitter' height="32px" width="32px" class="mx-2" />
 			</LinkIconWrapper>
 			<LinkIconWrapper url="https://www.google.com/">
 				<img src="img/share_icon/share_line_default.svg" alt='share line' height="32px" width="32px" />

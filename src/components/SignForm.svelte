@@ -3,7 +3,6 @@
 	import * as yup from 'yup';
 	import { imask } from 'svelte-imask';
 
-	import InputField from './FormComponent/InputField.svelte';
 	import PenIcon from './FixedButtonBar/icon/PenIcon.svelte';
 
 	import TitleValue from '../values/TitleValue';
@@ -15,13 +14,16 @@
 	import SignaturePad from 'signature_pad';
 
 	import { submitData } from '../config/db';
+	
+    import { getContext } from 'svelte';
+    import Popup from './Popup.svelte';
+    const { open } = getContext('simple-modal');
+    const showSurprise = () => open(Popup);
 
 	let signature_value;
-	let signature_canvas_b;
-	let signature_canvas_s;
+	let signature_canvas;
 
-	let submitted = false;
-	let signature = undefined;
+	let track_w = 380;
 
 	const formOption = {
 		title: TitleValue,
@@ -34,28 +36,15 @@
 	};
 	const phoneRegExp = /^[1-9]\d{2}-\d{3}-\d{4}/gm;
 
-	function resizeCanvas(canvas, w, h) {
-		canvas.width = w;
-		canvas.height = h;
-		return canvas;
-	}
-
 	onMount(() => {
-		signature_value = new SignaturePad(
-			resizeCanvas(signature_canvas_b, 380, 260),
-			{
-				backgroundColor: '#B6E8F8',
-			}
-		);
-		signature_value = new SignaturePad(
-			resizeCanvas(signature_canvas_s, 280, 260),
-			{
-				backgroundColor: '#B6E8F8',
-			}
-		);
+		signature_canvas.width = track_w;
+		signature_canvas.height = 260;
+		signature_value = new SignaturePad(signature_canvas, {
+			backgroundColor: '#B6E8F8',
+		});
 	});
 
-	const { form, errors, handleChange, handleSubmit } = createForm({
+	const { form, errors, handleChange, handleSubmit, handleReset } = createForm({
 		initialValues: {
 			location: '',
 			citizenId: '',
@@ -67,7 +56,7 @@
 			birthDay_year: '',
 			email: '',
 			tel: '',
-			isAgree: false
+			isAgree: false,
 		},
 		validationSchema: yup.object().shape({
 			location: yup.string().required(),
@@ -79,52 +68,41 @@
 			birthDay_month: yup.string().required(),
 			birthDay_year: yup.string().required(),
 			email: yup.string().email('Email is not valid'),
-			tel: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
-			isAgree: yup.boolean().isTrue()
+			tel: yup.string().matches(phoneRegExp, {
+				message: 'Phone number is not valid',
+				excludeEmptyString: true,
+			}),
+			isAgree: yup.boolean().isTrue(),
 		}),
 		onSubmit: (values) => {
+			showSurprise()
 			doSubmit(values);
 		},
 	});
 
-	// const changeCallBack = (v, f) => {
-	// 	console.log('v', v);
-	// 	formData[f] = v;
-	// };
-
-	// const changeBirthDate = (v, f) => {
-	// 	formData.birthDay[f] = v;
-	// };
-
-	const handleClear = () => {
+	const doClearSignPad = () => {
 		signature_value.clear();
 	};
 
 	const doSubmit = (values) => {
 		const submitBody = { ...values };
-		// submitBody.signature = signature_value.toDataURL('image/jpeg');
-		// delete submitBody.citizenId;
-		console.log('submitBody', submitBody);
+		console.log('signature_value', signature_value);
+		submitBody.signature = signature_value.toDataURL('image/jpeg');
+		delete submitBody.citizenId;
+		console.log('submitBody.signature', submitBody.signature);
 
-		// submitData({ cb: TestCb, body: submitBody, id: formData.citizenId });
+		submitData({ onSuccess: doSuccess, body: submitBody, id: values.citizenId });
 	};
 
-	function TestCb() {
-		console.log('signature_value', signature_value.toDataURL('image/jpeg'));
+	const doSuccess = () => {
+		handleReset()
+		doClearSignPad()
 	}
 </script>
 
 <div
 	class="bg-white w-[300px] md:w-[420px] py-5 px-2.5 md:px-5 font-normal text-prtr-deep-blue"
 >
-	<!-- <InputField
-					label="ชื่อ*"
-					subLabel="ระบุชื่อจริงเป็นภาษาไทย"
-					required
-					value={formData.surname}
-					id="surname"
-					onChange={(v) => changeCallBack(v, 'surname')}
-				/> -->
 	<form on:submit={handleSubmit}>
 		<div class="mb-2.5">
 			<label class="mb-0.5 font-anakotmai" for="location">เขียนที่*</label>
@@ -197,7 +175,9 @@
 		<div class="basis-full flex mb-2.5">
 			<div class="basis-1/3 pr-1">
 				<div class="flex flex-col">
-					<label class="mb-0.5 font-anakotmai" for="birthDay_day">วันเกิด*</label>
+					<label class="mb-0.5 font-anakotmai" for="birthDay_day"
+						>วันเกิด*</label
+					>
 					<select
 						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
 						id="birthDay_day"
@@ -282,19 +262,16 @@
 		</div>
 
 		<div class="mb-2.5">
-			<p class="mb-0.5 font-anakotmai">ลงลายมือชื่อ* (validation in progress)</p>
-			<canvas
-				bind:this={signature_canvas_b}
-				class="cursor-crosshair hidden md:block"
-			/>
-			<canvas
-				bind:this={signature_canvas_s}
-				class="cursor-crosshair md:hidden"
-			/>
+			<p class="mb-0.5 font-anakotmai">
+				ลงลายมือชื่อ* (validation in progress)
+			</p>
+			<div class="w-[280px] md:w-[380px] h-[260px]" bind:clientWidth={track_w}>
+				<canvas bind:this={signature_canvas} class="cursor-crosshair" />
+			</div>
 			<div class=" w-full flex justify-end">
 				<button
 					class="border border-prtr-deep-blue p-1.5 flex items-center rounded"
-					on:click={handleClear}
+					on:click={doClearSignPad}
 				>
 					<span class="mr-1">ล้าง</span>
 					<svg
@@ -353,19 +330,8 @@
 			class="flex justify-center w-full bg-white text-prtr-deep-blue border border-prtr-deep-blue py-5 rounded shadow-md"
 			type="submit"
 		>
-			<!-- on:click={() => doSubmit()} -->
 			<span class="mr-1">ลงชื่อ</span>
 			<PenIcon />
 		</button>
 	</form>
 </div>
-
-<style>
-	.submitted input:invalid {
-		outline: 1px solid #c00;
-	}
-
-	.submitted select:invalid {
-		outline: 1px solid #c00;
-	}
-</style>
