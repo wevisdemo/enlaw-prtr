@@ -16,6 +16,7 @@ const config = {
 			fallback: 'index.html',
             precompress: false,
 		}),
+		
 	},
 };
 
