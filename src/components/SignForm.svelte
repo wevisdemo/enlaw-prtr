@@ -88,7 +88,7 @@
 		const submitBody = { ...values };
 		console.log('signature_value', signature_value);
 		submitBody.signature = signature_value.toDataURL('image/jpeg');
-		delete submitBody.citizenId;
+		delete submitBody.isAgree;
 		console.log('submitBody.signature', submitBody.signature);
 
 		submitData({ onSuccess: doSuccess, body: submitBody, id: values.citizenId });

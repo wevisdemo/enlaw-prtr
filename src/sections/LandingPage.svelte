@@ -2,39 +2,70 @@
 	import LandingTitle from '../components/LandingComponent/LandingTitle.svelte';
 	import DocumentButton from '../components/Common/DocumentButton.svelte';
 	import DocumentIcon from '../components/ImportanceComponent/DocumentIcon.svelte';
+	import { ExportToCsv } from 'export-to-csv';
 
 	import { onMount } from 'svelte';
-	import { getRealTimeCounting, getAll, getOneTimeCounting } from '../config/db';
+	import { getRealTimeCounting, getAll } from '../config/db';
 
 	const goal = [10000, 20000, 50000, 100000];
 
-	let couting
+	let couting;
 	let currentGoal = goal[0];
 	let percentWidth = 0;
-			
+
 	onMount(() => {
-		getRealTimeCounting(updateCounting)
+		getRealTimeCounting(updateCounting);
 	});
-	
+
 	const getNumberWithCommas = (x) => {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	};
-	
+
 	const updateCounting = (newValue) => {
-		couting = newValue
-	}
+		couting = newValue;
+	};
 
 	const fetchAllPettitor = async () => {
-		const result = await getAll()
-		console.log('result', result)
+		let result = await getAll();
+		// console.log('result', result);
+		exportCvs(result);
+	};
+
+	function exportCvs(data) {
+		console.log('data', data);
+		const reportName = 'pettitor';
+		const result = data.map((d, i) => ({
+			id: i + 1,
+			title: d.title,
+			name: `${d.surname} ${d.lastname}`,
+			citizen_id: d.citizenId.replace(/(\d{1})(\d{4})(\d{5})(\d{2})(\d{1})/,"$1-$2-$3-$4-$5"),
+			birthDay: `${d.birthDay_day}/${d.birthDay_month}/${d.birthDay_year}`,
+			email: d.email,
+			tel: d.tel,
+			location: `${d.location} `,
+			signature: d.signature,
+		}));
+		console.log('result', result);
+
+		const options = {
+			fieldSeparator: ',',
+			decimalSeparator: '.',
+			showTitle: true,
+			title: reportName,
+			useTextFile: false,
+			useKeysAsHeaders: true,
+			filename: reportName,
+		};
+
+		const csvExporter = new ExportToCsv(options);
+		csvExporter.generateCsv(result);
 	}
-	
+
 	$: currentGoal = goal[goal.filter((i) => i < couting).length] || goal[3];
 	$: percentWidth =
 		couting < goal[3]
 			? Math.round((couting / currentGoal) * 100 * 100) / 100
 			: 100;
-
 </script>
 
 <div
@@ -127,7 +158,7 @@
 				<button
 					class="flex justify-center px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
 					on:click={() => {
-						fetchAllPettitor()
+						fetchAllPettitor();
 					}}
 				>
 					<span

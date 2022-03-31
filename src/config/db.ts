@@ -1,11 +1,18 @@
 import { getFirebase } from './firebase';
-import { collection, getDoc, getDocs, doc, setDoc, onSnapshot } from 'firebase/firestore';
+import {
+	collection,
+	getDoc,
+	getDocs,
+	doc,
+	setDoc,
+	onSnapshot,
+} from 'firebase/firestore';
 
 export async function getRealTimeCounting(doUpdate) {
 	const { db } = getFirebase();
 	const colRef = collection(db, 'participant');
 	await onSnapshot(colRef, { includeMetadataChanges: true }, (doc) => {
-		doUpdate(doc.docs.length)
+		doUpdate(doc.docs.length);
 	});
 }
 export async function getOneTimeCounting() {
@@ -13,18 +20,19 @@ export async function getOneTimeCounting() {
 	const colRef = collection(db, 'participant');
 	const snapshot = await getDocs(colRef);
 
-	return snapshot.size
+	return snapshot.size;
 }
 
 export async function getAll() {
 	const { db } = getFirebase();
 	const colRef = collection(db, 'participant');
 	const snapshot = await getDocs(colRef);
-	let result = []
+	let result = [];
 	snapshot.forEach((doc) => {
-		result.push(doc.data())
-	})
-	return result
+		result.push(doc.data());
+	});
+
+	return result;
 }
 
 // '2000000000002'
@@ -39,8 +47,8 @@ export async function submitData(props) {
 			alert("Sorry, user cannot 'RESIGN' this petition");
 		} else {
 			await setDoc(colRef, body).then((res) => {
-			    onSuccess()
-			})
+				onSuccess();
+			});
 		}
 	} catch (e) {
 		console.error('Error adding document: ', e);

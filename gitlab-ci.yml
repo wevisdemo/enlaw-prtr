@@ -1,0 +1,43 @@
+default:
+  image: node:14
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .npm/
+
+stages:
+  - build
+  - release
+
+# Condition to meet to run this pipeline
+workflow:
+  rules:
+    # Run on branch commit, but not tag
+    # Only run if branch is master
+    - if: '$CI_COMMIT_BRANCH == "master"'
+
+build:
+  stage: build
+  script:
+    - echo "Building frontend..."
+    # Prepare frontend .env: Go to Settings > CI/CD > Variables > Add Variable.
+    # Add variable for each environment.
+    # Choose Type=File and enter content for .env file.
+    - |
+      if [ -n "$DOTENV" ]
+      then
+        cp $DOTENV .env
+      fi
+    # Install dependencies
+    - npm ci --cache .npm --prefer-offline
+    # Build static site
+    - npm run generate
+
+deploy:
+  stage: release
+  image: google/cloud-sdk
+  script:
+    # Google Cloud service accounts
+    - gcloud auth activate-service-account --key-file=$GCP_SERVICE_KEY
+    # Upload files to destination server and path
+    - gcloud compute scp --project=$GCP_PROJECT_ID --zone=$GCE_ZONE --recurse dist/* $GCE_INSTANCE_ID_PATH
