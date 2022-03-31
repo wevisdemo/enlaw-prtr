@@ -9,7 +9,7 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		paths: { assets: "", base: "" },
+		paths: { assets: "", base: "/enlaw-prtr" },
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
