@@ -1,0 +1,87 @@
+
+<svg
+	fill="none"
+	height="445"
+	viewBox="0 0 511 445"
+	width="511"
+	xmlns="http://www.w3.org/2000/svg"
+	><g opacity=".4"
+		><g fill="#fff"
+			><circle cx="327.156" cy="82.959" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 183.361 82.959)"
+			/><circle cx="327.156" cy="162.089" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 183.361 162.089)"
+			/><circle cx="327.156" cy="241.219" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 183.361 241.219)"
+			/><circle cx="327.156" cy="320.349" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 183.361 320.349)"
+			/><circle cx="396.076" cy="162.089" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 114.441 162.089)"
+			/><circle cx="396.076" cy="241.219" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 114.441 241.219)"
+			/><circle cx="396.076" cy="320.349" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 114.441 320.349)"
+			/><circle cx="327.156" cy="399.479" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 183.361 399.479)"
+			/><circle cx="464.996" cy="241.219" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 45.5209 241.219)"
+			/><circle cx="464.996" cy="320.349" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 45.5209 320.349)"
+			/><circle cx="396.076" cy="399.479" r="45.5211" /><circle
+				r="45.5211"
+				transform="matrix(-1 0 0 1 114.441 399.479)"
+			/></g
+		><rect
+			fill="#20aad7"
+			height="40.8413"
+			rx="4"
+			transform="matrix(.84129102 .54058249 -.54058249 .84129102 137.340798 -107.035796)"
+			width="13.6138"
+			x="250.959"
+			y="180.382"
+		/><rect
+			fill="#20aad7"
+			height="40.8413"
+			rx="4"
+			transform="matrix(.841291 -.540583 -.540583 -.841291 270.529 222.101)"
+			width="13.6138"
+		/><rect
+			fill="#20aad7"
+			height="40.8413"
+			rx="4"
+			width="13.6138"
+			x="248.452"
+			y="150.603"
+		/><rect
+			fill="#20aad7"
+			height="40.8413"
+			rx="4"
+			width="13.6138"
+			x="248.452"
+			y="100.402"
+		/><rect
+			fill="#20aad7"
+			height="40.8413"
+			rx="4"
+			width="13.6138"
+			x="248.452"
+			y="50.2007"
+		/><rect
+			fill="#20aad7"
+			height="40.8413"
+			rx="4"
+			width="13.6138"
+			x="248.452"
+		/></g
+	></svg
+>

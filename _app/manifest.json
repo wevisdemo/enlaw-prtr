@@ -1,0 +1,64 @@
+{
+  ".svelte-kit/runtime/client/start.js": {
+    "file": "start-2fa123c9.js",
+    "src": ".svelte-kit/runtime/client/start.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor-6d52520d.js"
+    ],
+    "dynamicImports": [
+      "src/routes/__layout.svelte",
+      ".svelte-kit/runtime/components/error.svelte",
+      "src/routes/index.svelte"
+    ]
+  },
+  "src/routes/__layout.svelte": {
+    "file": "pages/__layout.svelte-1728e342.js",
+    "src": "src/routes/__layout.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-6d52520d.js"
+    ],
+    "css": [
+      "assets/pages/__layout.svelte-1f75c567.css"
+    ],
+    "assets": [
+      "assets/anakotmai-light-0f193f78.woff2",
+      "assets/anakotmai-medium-67740c03.woff2",
+      "assets/anakotmai-bold-036cba4f.woff2",
+      "assets/BaiJamjuree-Regular-cb637e02.ttf",
+      "assets/Kanit-Regular-545410e2.ttf",
+      "assets/Kanit-Italic-45af9929.ttf",
+      "assets/Kanit-Bold-1b4ea31d.ttf",
+      "assets/Kanit-BoldItalic-a166fc13.ttf"
+    ]
+  },
+  ".svelte-kit/runtime/components/error.svelte": {
+    "file": "error.svelte-9a79655c.js",
+    "src": ".svelte-kit/runtime/components/error.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-6d52520d.js"
+    ]
+  },
+  "src/routes/index.svelte": {
+    "file": "pages/index.svelte-735b24b0.js",
+    "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-6d52520d.js"
+    ],
+    "css": [
+      "assets/pages/index.svelte-397a0b47.css"
+    ]
+  },
+  "_vendor-6d52520d.js": {
+    "file": "chunks/vendor-6d52520d.js",
+    "css": [
+      "assets/vendor-72db7ec1.css"
+    ]
+  }
+}
