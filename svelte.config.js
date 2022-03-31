@@ -9,7 +9,7 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		paths: { assets: "", base: "/PERSONAL_PATH" },
+		paths: { assets: "", base: "" },
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
