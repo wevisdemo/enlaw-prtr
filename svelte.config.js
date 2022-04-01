@@ -1,8 +1,9 @@
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 
+const BASE_PATH = process.env.BASE_PATH || '/enlaw-prtr';
+
 // git subtree push --prefix build/ origin gh-pages
-// TEST
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
@@ -10,7 +11,7 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		paths: { assets: "", base: "/enlaw-prtr" },
+		paths: { assets: "", base: BASE_PATH, },
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
