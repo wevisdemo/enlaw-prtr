@@ -3,7 +3,10 @@ import preprocess from 'svelte-preprocess';
 
 const BASE_PATH = process.env.BASE_PATH || '';
 
-// git subtree push --prefix build/ origin gh-pages
+// build
+// cd
+// deploy
+// cd..
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
