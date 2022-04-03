@@ -1,11 +1,9 @@
 <script>
 	import LandingTitle from '../components/LandingComponent/LandingTitle.svelte';
-	import DocumentButton from '../components/Common/DocumentButton.svelte';
 	import DocumentIcon from '../components/ImportanceComponent/DocumentIcon.svelte';
-	import { ExportToCsv } from 'export-to-csv';
 
 	import { onMount } from 'svelte';
-	import { getRealTimeCounting, getAll } from '../config/db';
+	import { getRealTimeCounting } from '../config/db';
 
 	const goal = [10000, 20000, 50000, 100000];
 
@@ -24,42 +22,6 @@
 	const updateCounting = (newValue) => {
 		couting = newValue;
 	};
-
-	const fetchAllPettitor = async () => {
-		let result = await getAll();
-		// console.log('result', result);
-		exportCvs(result);
-	};
-
-	function exportCvs(data) {
-		console.log('data', data);
-		const reportName = 'pettitor';
-		const result = data.map((d, i) => ({
-			id: i + 1,
-			title: d.title,
-			name: `${d.surname} ${d.lastname}`,
-			citizen_id: d.citizenId.replace(/(\d{1})(\d{4})(\d{5})(\d{2})(\d{1})/,"$1-$2-$3-$4-$5"),
-			birthDay: `${d.birthDay_day}/${d.birthDay_month}/${d.birthDay_year}`,
-			email: d.email,
-			tel: d.tel,
-			location: `${d.location} `,
-			signature: d.signature,
-		}));
-		console.log('result', result);
-
-		const options = {
-			fieldSeparator: ',',
-			decimalSeparator: '.',
-			showTitle: true,
-			title: reportName,
-			useTextFile: false,
-			useKeysAsHeaders: true,
-			filename: reportName,
-		};
-
-		const csvExporter = new ExportToCsv(options);
-		csvExporter.generateCsv(result);
-	}
 
 	$: currentGoal = goal[goal.filter((i) => i < couting).length] || goal[3];
 	$: percentWidth =
@@ -85,21 +47,59 @@
 			>
 				{#if couting}
 					<p
-						class="font-anakotmai text-6xl tracking-[0.24em] counting_number_big text-white"
+						class="font-anakotmai text-[32px] md:text-6xl tracking-[0.24em] counting_number_big text-white"
 					>
 						{getNumberWithCommas(couting)}
 					</p>
+					{#if couting >= goal[0]}
+						<div
+							class="absolute ml-48 md:ml-60 mt-12 md:mt-[133px] w-[120px] md:w-[190px] h-[104px] md:h-[165px]"
+						>
+							<img
+								class="ml-0.5"
+								src="img/milestone/milestone_meet.svg"
+								alt="milestone meet"
+							/>
+						</div>
+					{/if}
 				{/if}
 			</div>
 
 			<div class="mt-1 sm:mt-7 w-full">
 				<div class=" w-full flex justify-end items-center">
-					<p class="font-anakotmai mt-1">{getNumberWithCommas(currentGoal)}</p>
-					<img
-						class="ml-0.5"
-						src="img/milestone/milestone_check_light.svg"
-						alt="check light"
-					/>
+					<div
+						class="flex justify-end"
+						style="width: {(goal[0] / currentGoal) * 100}%"
+					>
+						<p class="font-anakotmai mt-1">
+							{getNumberWithCommas(
+								currentGoal > goal[0] ? goal[0] : currentGoal
+							)}
+						</p>
+						{#if couting > goal[0]}
+							<img
+								class="ml-0.5"
+								src="img/milestone/milestone_check_dark.svg"
+								alt="check dark"
+							/>
+						{:else}
+							<img
+								class="ml-0.5"
+								src="img/milestone/milestone_check_light.svg"
+								alt="check light"
+							/>
+						{/if}
+					</div>
+					{#if couting > goal[0]}
+						<div
+							class="flex justify-end"
+							style="width: {100 - (goal[0] / currentGoal) * 100}%"
+						>
+							<p class="font-anakotmai mt-1">
+								{getNumberWithCommas(currentGoal)}
+							</p>
+						</div>
+					{/if}
 				</div>
 				{#if couting < goal[0]}
 					<div
@@ -157,9 +157,6 @@
 			<div class="mt-4 flex justify-center w-[26px] md:w-[370px]">
 				<button
 					class="flex justify-center px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
-					on:click={() => {
-						fetchAllPettitor();
-					}}
 				>
 					<span
 						class="mr-[12.5px] font-anakotmai whitespace-nowrap overflow-hidden"

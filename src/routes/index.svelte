@@ -13,10 +13,9 @@
 </script>
 
 <div>
-	<div class="sticky top-0 py-3 px-11 bg-prtr-fresh-green shadow-md z-50">
-		<FixedTopBar />
-	</div>
-
+	<nav class="sticky top-0 py-3 px-11 bg-prtr-fresh-green shadow-md z-50">
+	<FixedTopBar />
+</nav>
 	<div>
 		<Landing />
 		<Introduce />
@@ -28,7 +27,9 @@
 		<About />
 	</div>
 
-	<div class="sticky bottom-0 py-3.5 px-[15px] md:px-11 xl:px-[193px] bg-prtr-deep-blue border border-white">
+	<div
+		class="sticky bottom-0 py-3.5 px-[15px] md:px-11 xl:px-[193px] bg-prtr-deep-blue border border-white"
+	>
 		<FixedButtonBar />
 	</div>
 </div>

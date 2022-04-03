@@ -1,5 +1,6 @@
 {
   "homepage": "https://wevisdemo.github.io/enlaw-prtr",
+  "private": false,
   "name": "enlaw-prtr",
   "version": "0.0.1",
   "scripts": {
@@ -17,7 +18,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.19.1",
-		"@sveltejs/adapter-static": "^1.0.0-next.29",
+    "@sveltejs/adapter-static": "^1.0.0-next.29",
     "@sveltejs/kit": "next",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",

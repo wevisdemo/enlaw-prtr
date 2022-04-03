@@ -6,7 +6,7 @@
 	import Modal from 'svelte-simple-modal';
 </script>
 
-<div class="bg-prtr-deep-blue flex justify-center pt-20 pb-[69px]">
+<div class="bg-prtr-deep-blue flex justify-center pt-20 pb-[69px]" id="sign">
 	<div class="flex flex-col lg:flex-row">
 		<div class="w-[280px] md:w-[640px] lg:w-[425px] flex flex-col text-white">
 			<p

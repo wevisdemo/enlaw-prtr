@@ -7,9 +7,9 @@
 		<img src="img/logo/logo_default.svg" alt='logo' width="128px" height="30px" />
 
 		<div class="prtr_menu hidden md:flex justify-end">
-			<NavbarBtn>รู้จัก PRTR</NavbarBtn>
-			<NavbarBtn>ร่วมลงชื่อ</NavbarBtn>
-			<NavbarBtn>เกี่ยวกับเรา</NavbarBtn>
+			<NavbarBtn link='introduce'>รู้จัก PRTR</NavbarBtn>
+			<NavbarBtn link='sign'>ร่วมลงชื่อ</NavbarBtn>
+			<NavbarBtn link='partner'>เกี่ยวกับเรา</NavbarBtn>
 		</div>
 	</div>
 </span>

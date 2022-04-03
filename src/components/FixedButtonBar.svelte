@@ -20,12 +20,14 @@
 			</LinkIconWrapper>
 		</div>
 
-		<button
-			class="bg-white text-prtr-deep-blue rounded w-[158px] md:w-[331px] lg:w-[480px] py-1 ml-5 mr-0 sm:mr-6 lg:mr-[58px] flex justify-center items-center font-anakotmai"
-		>
-			<span class="text-xl">ลงชื่อเลย</span>
-			<span class="ml-1.5"><PenIcon /></span>
-		</button>
+		<a href='#sign'>
+			<button
+				class="bg-white text-prtr-deep-blue rounded w-[158px] md:w-[331px] lg:w-[480px] py-1 ml-5 mr-0 sm:mr-6 lg:mr-[58px] flex justify-center items-center font-anakotmai"
+			>
+				<span class="text-xl">ลงชื่อเลย</span>
+				<span class="ml-1.5"><PenIcon /></span>
+			</button>
+		</a>
 	</div>
 </span>
 
