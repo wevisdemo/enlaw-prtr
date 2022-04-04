@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-d75f7dbf.js",
+    "file": "start-6d7238d2.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -22,7 +22,7 @@
       "_vendor-9333f74f.js"
     ],
     "css": [
-      "assets/pages/__layout.svelte-66e3ed5b.css"
+      "assets/pages/__layout.svelte-90974fb4.css"
     ],
     "assets": [
       "assets/anakotmai-light-0f193f78.woff2",
@@ -45,7 +45,7 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-64421b7f.js",
+    "file": "pages/index.svelte-92b22e4d.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
