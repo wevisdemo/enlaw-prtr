@@ -10,6 +10,9 @@
         ],
         "tr": [
           "prtr-export"
+        ],
+        "target": [
+          "enlaw-prtr"
         ]
       }
     }
