@@ -1,12 +1,9 @@
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 
-const BASE_PATH = process.env.BASE_PATH || '';
-
-// build
-// cd
-// deploy
-// cd..
+// npm run build
+// firebase target:apply hosting [target] prtr-export , [target] is target name , [prtr-export] is target site
+// firebase deploy
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
@@ -17,33 +14,8 @@ const config = {
 	// })],
 
 	kit: {
-		paths: { assets: '', base: `${BASE_PATH}` },
-		appDir: '_app',
-		// browser: {
-		// 	hydrate: false,
-		// 	router: false,
-		// },
-		trailingSlash: 'always',
-		adapter: adapter({
-			out: 'build',
-			pages: 'build',
-			assets: 'build',
-			precompress: false,
-		}),
-		files: {
-			assets: 'static',
-			routes: 'src/routes',
-			template: 'src/app.html',
-		},
-		package: {
-			dir: 'package',
-			emitTypes: true,
-			// excludes all .d.ts and files starting with _ as the name
-			exports: (filepath) => !/^_|\/_|\.d\.ts$/.test(filepath),
-			files: () => true,
-		},
-		routes: (filepath) =>
-			!/(?:(?:^_|\/_)|(?:^\.|\/\.)(?!well-known))/.test(filepath),
+		paths: { base: '' },
+		adapter: adapter(),
 		prerender: {
 			// crawl: true,
 			enabled: true,

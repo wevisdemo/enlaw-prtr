@@ -34,8 +34,11 @@
 					<SignForm />
 				</Modal>
 			</div>
-			<p class="pt-6 pb-6 text-white text-center">อ่านเพิ่มเติม</p>
+			
 			<div class="w-[300px] md:w-[420px]">
+				<div class="flex justify-center">
+					<p class="pt-6 pb-6 text-white text-center">อ่านเพิ่มเติม</p>
+				</div>
 				<div>
 					<CommonExpand title="ใครลงชื่อเสนอ PRTR ได้บ้าง ?">
 						<ul class="list-disc  ml-5">

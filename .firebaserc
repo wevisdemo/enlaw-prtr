@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "enlaw-prtr"
+  },
+  "targets": {
+    "enlaw-prtr": {
+      "hosting": {
+        "prtr-export": [
+          "build"
+        ],
+        "tr": [
+          "prtr-export"
+        ]
+      }
+    }
+  }
+}
