@@ -68,7 +68,7 @@
 </script>
 
 <div class="bg-prtr-fresh-green flex flex-col pt-16 pb-12 overflow-hidden">
-	<div class="flex flex-col lg:flex-row justify-between w-full ml-0 lg:ml-52">
+	<div class="flex flex-col lg:flex-row justify-between w-full">
 		<div class="flex flex-col md:flex-row justify-center items-center">
 			<div class="w-[140px] md:w-[240px] h-[34px] md:h-[56px]">
 				<img

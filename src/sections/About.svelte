@@ -23,10 +23,12 @@
 				>
 			</p>
 			<div class=" text-prtr-deep-blue mt-6 lg:mt-12 flex justify-center lg:justify-start">
-				<button
+				<a href="https://airtable.com/shryu4errnlj1LWsM">
+					<button
 					class="py-[5px] px-[10px] bg-white border border-prtr-deep-blue font-anakotmai"
 					>ส่ง Feedback</button
 				>
+				</a>
 				<button
 					class="py-[5px] px-[10px] bg-white border border-prtr-deep-blue font-anakotmai ml-3"
 					>Github</button

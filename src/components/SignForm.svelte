@@ -25,9 +25,9 @@
 
 	let track_w = 380;
 
-	const formOption = {
+	let formOption = {
 		title: TitleValue,
-		day: RangeDay[2],
+		day: RangeDay['1'],
 		month: RangeMonth,
 		year: RangeYear,
 	};
@@ -35,6 +35,7 @@
 		mask: '000-000-0000',
 	};
 	const phoneRegExp = /^[1-9]\d{2}-\d{3}-\d{4}/gm;
+
 
 	onMount(() => {
 		signature_canvas.width = track_w;
@@ -44,7 +45,7 @@
 		});
 	});
 
-	const { form, errors, handleChange, handleSubmit, handleReset } = createForm({
+	const { form, state, errors, handleChange, handleSubmit, handleReset } = createForm({
 		initialValues: {
 			location: '',
 			citizenId: '',
@@ -60,7 +61,7 @@
 		},
 		validationSchema: yup.object().shape({
 			location: yup.string().required(),
-			citizenId: yup.number().required(),
+			citizenId: yup.string().required(),
 			title: yup.string().required(),
 			surname: yup.string().required(),
 			lastname: yup.string().required(),
@@ -80,6 +81,18 @@
 		},
 	});
 
+	function getDay(m, y) {
+		let mIndex = m === '' ? 13 : `${RangeMonth.indexOf(m) + 1}`
+		let result = RangeDay[mIndex]
+		if (mIndex === '') {
+			result = RangeDay['1']
+		}
+		if (mIndex === '2' && y % 4 === 0 && y !== '') {
+			result = RangeDay['13']
+		}
+		formOption.day = result
+	}
+
 	const doClearSignPad = () => {
 		signature_value.clear();
 	};
@@ -98,6 +111,16 @@
 		handleReset()
 		doClearSignPad()
 	}
+
+	function LimitLength(t) {
+		let text = t.toString()
+		if (text.length >= 13) {
+			$form.citizenId = text.substr(0, 13)
+		}
+	}
+
+	$: getDay($form.birthDay_month, $form.birthDay_year)
+	$: LimitLength($form.citizenId)
 </script>
 
 <div
@@ -263,7 +286,7 @@
 
 		<div class="mb-2.5">
 			<p class="mb-0.5 font-anakotmai">
-				ลงลายมือชื่อ* (validation in progress)
+				ลงลายมือชื่อ*
 			</p>
 			<div class="w-[280px] md:w-[380px] h-[260px]" bind:clientWidth={track_w}>
 				<canvas bind:this={signature_canvas} class="cursor-crosshair" />

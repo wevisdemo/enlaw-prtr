@@ -2,31 +2,56 @@
 	import LandingTitle from '../components/LandingComponent/LandingTitle.svelte';
 	import DocumentIcon from '../components/ImportanceComponent/DocumentIcon.svelte';
 
+	import Modal from 'svelte-simple-modal';
+	import AdjustCount from '../components/LandingComponent/AdjustCount.svelte';
+
 	import { onMount } from 'svelte';
 	import { getRealTimeCounting } from '../config/db';
+	import RangeMonth from '../values/RangeMonth';
 
 	const goal = [10000, 20000, 50000, 100000];
 
-	let couting;
+	let counting;
 	let currentGoal = goal[0];
 	let percentWidth = 0;
+	let dateNow;
+
+	let current_count;
+	let dummy_count = 0;
+	let isDummy = false;
+	function toggleDummy() {
+		isDummy = !isDummy;
+	}
+	function changeDummy(newValue) {
+		dummy_count = newValue;
+	}
+	$: current_count = isDummy ? dummy_count : counting;
 
 	onMount(() => {
 		getRealTimeCounting(updateCounting);
 	});
+
+	function fetchTime(tmp) {
+		let time = new Date();
+		dateNow = `${time.getDate()} ${
+			RangeMonth[time.getMonth()]
+		} ${time.getFullYear()}`;
+	}
 
 	const getNumberWithCommas = (x) => {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	};
 
 	const updateCounting = (newValue) => {
-		couting = newValue;
+		counting = newValue;
 	};
 
-	$: currentGoal = goal[goal.filter((i) => i < couting).length] || goal[3];
+	$: fetchTime(counting);
+	$: currentGoal =
+		goal[goal.filter((i) => i < current_count).length] || goal[3];
 	$: percentWidth =
-		couting < goal[3]
-			? Math.round((couting / currentGoal) * 100 * 100) / 100
+		current_count < goal[3]
+			? Math.round((current_count / currentGoal) * 100 * 100) / 100
 			: 100;
 </script>
 
@@ -45,13 +70,25 @@
 			<div
 				class="w-[240px] h-[44px] sm:w-[380px] sm:h-[78px] bg-prtr-healthy-blue shadow-md rounded-xl flex justify-center items-center"
 			>
-				{#if couting}
-					<p
+				{#if current_count}
+					<!-- <p
 						class="font-anakotmai text-[32px] md:text-6xl tracking-[0.24em] counting_number_big text-white"
 					>
-						{getNumberWithCommas(couting)}
-					</p>
-					{#if couting >= goal[0]}
+						{getNumberWithCommas(counting)}
+					</p> -->
+
+					<!-- special added -->
+					<Modal>
+						<AdjustCount
+							text={getNumberWithCommas(current_count)}
+							{dummy_count}
+							{toggleDummy}
+							{changeDummy}
+							{isDummy}
+						/>
+					</Modal>
+
+					{#if current_count >= goal[0]}
 						<div
 							class="absolute ml-48 md:ml-60 mt-12 md:mt-[133px] w-[120px] md:w-[190px] h-[104px] md:h-[165px]"
 						>
@@ -76,7 +113,7 @@
 								currentGoal > goal[0] ? goal[0] : currentGoal
 							)}
 						</p>
-						{#if couting > goal[0]}
+						{#if current_count > goal[0]}
 							<img
 								class="ml-0.5"
 								src="img/milestone/milestone_check_dark.svg"
@@ -90,7 +127,7 @@
 							/>
 						{/if}
 					</div>
-					{#if couting > goal[0]}
+					{#if current_count > goal[0]}
 						<div
 							class="flex justify-end"
 							style="width: {100 - (goal[0] / currentGoal) * 100}%"
@@ -101,12 +138,12 @@
 						</div>
 					{/if}
 				</div>
-				{#if couting < goal[0]}
+				{#if current_count < goal[0]}
 					<div
 						class="w-full h-[30px] bg-prtr-air-blue border border-prtr-deep-blue"
 					>
 						<p class="float-right pr-2">
-							ยังขาดอีก ${getNumberWithCommas(goal[0] - couting)} รายชื่อ
+							ยังขาดอีก {getNumberWithCommas(goal[0] - current_count)} รายชื่อ
 						</p>
 						<div
 							class="h-full bg-prtr-healthy-blue"
@@ -130,7 +167,8 @@
 
 				<div class="mt-4 flex justify-center">
 					<p class="p-1.5 w-fit font-anakotmai">
-						อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65
+						<!-- อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65 -->
+						อัปเดตข้อมูลล่าสุด {dateNow}
 					</p>
 				</div>
 			</div>

@@ -63,7 +63,7 @@
 <div
 	class="bg-gradient-to-b from-prtr-gradient-a font-kanit via-prtr-gradient-b to-prtr-gradient-c flex flex-col justify-center items-center w-screen h-screen"
 >
-	<p class="font-kanit text-title mb-4 md:mb-11">EXPORT PETTITOR</p>
+	<p class="font-kanit text-title mb-4 md:mb-11 text-prtr-deep-blue">EXPORT PETTITOR</p>
 	{#if isLogin}
 		<div class="flex">
 			<button
@@ -88,6 +88,7 @@
 			<input
 				class="mt-5 bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight font-baijamjuree"
 				placeholder="password"
+				type="password"
 				bind:value={input}
 			/>
 			<div class="flex justify-center">

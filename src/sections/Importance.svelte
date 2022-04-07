@@ -13,7 +13,6 @@
 		? 'bg_3_big.svg'
 		: 'bg_3_small.svg'}')"
 >
-
 	<div class="flex flex-col">
 		<div class="flex flex-col lg:flex-row">
 			<div class="text-prtr-deep-blue flex flex-col px-0 md:px-[52px] lg:px-0">
@@ -32,10 +31,11 @@
 				<div
 					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-3 mt-3 md:mt-20 lg:mt-6 px-5"
 				>
-					<div class="w-[280px] md:w-[300px] font-anakotmai text-xl leading-7">
+					<div class="w-[280px] md:w-[305px] font-anakotmai text-xl leading-7">
 						<DocumentButton>อ่านเอกสารสรุปร่าง พ.ร.บ.</DocumentButton>
+						
 					</div>
-					<div class="w-[280px] md:w-[300px] font-anakotmai text-xl leading-7">
+					<div class="w-[280px] md:w-[305px] font-anakotmai text-xl leading-7">
 						<DocumentButton>อ่านร่างพ.ร.บ.ฉบับเต็ม</DocumentButton>
 					</div>
 				</div>

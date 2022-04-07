@@ -1,10 +1,10 @@
 function RangeYear() {
-    const min = 2533
+    const min = 2447
     const max = 2547
 
     let i;
     let tmp = [];
-    for (i = min; i <= max; i++) {
+    for (i = max; i >= min; i--) {
         tmp.push(i.toString());
     }
     return tmp;
