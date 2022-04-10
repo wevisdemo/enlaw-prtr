@@ -208,7 +208,7 @@
 			class=" text-prtr-deep-blue bg-contain flex flex-col justify-center items-center
 		mt-[118px] lg:mt-0 mb-0 lg:mb-[152px] sm:hidden"
 		>
-			<div class=" px-[30px]">
+			<div class=" px-[27px]">
 				<h1 class="text-2xl sm:text-4xl font-bold text-center">
 					“ข้อมูลมลพิษ คือสิทธิที่ประชาชนต้องเข้าถึงได้”
 				</h1>

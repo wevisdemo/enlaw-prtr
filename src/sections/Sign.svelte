@@ -38,10 +38,6 @@
 
 		<div class="flex flex-col items-center lg:items-start">
 			<div class="flex justify-center lg:justify-start">
-				<!-- <SignSuccess /> -->
-				<!-- <Modal>
-					<SignForm />
-				</Modal> -->
 				{#if !isSigned}
 					<Modal>
 						<SignForm toggleSign={toggleSign} />
