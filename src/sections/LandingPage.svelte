@@ -219,9 +219,15 @@
 				</p>
 
 				<div class="mt-4 flex justify-center lg:block">
-					<p class="p-1.5 border border-prtr-deep-blue w-fit font-anakotmai">
-						อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65
-					</p>
+					<button
+					class="flex justify-center px-6 md:px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
+				>
+					<span
+						class="font-anakotmai whitespace-nowrap overflow-hidden"
+						>อ่านร่างพ.ร.บ.ฉบับเต็ม</span
+					>
+					<DocumentIcon />
+				</button>
 				</div>
 
 				<div class=" w-full flex justify-center items-center">

@@ -14,11 +14,13 @@
 	import SignaturePad from 'signature_pad';
 
 	import { submitData } from '../config/db';
-	
-    import { getContext } from 'svelte';
-    import Popup from './Popup.svelte';
-    const { open } = getContext('simple-modal');
-    const showSurprise = () => open(Popup);
+
+	import { getContext } from 'svelte';
+	import Popup from './Popup.svelte';
+	const { open } = getContext('simple-modal');
+	const showSurprise = () => open(Popup);
+
+	export let toggleSign;
 
 	let signature_value;
 	let signature_canvas;
@@ -36,7 +38,6 @@
 	};
 	const phoneRegExp = /^[1-9]\d{2}-\d{3}-\d{4}/gm;
 
-
 	onMount(() => {
 		signature_canvas.width = track_w;
 		signature_canvas.height = 260;
@@ -45,52 +46,53 @@
 		});
 	});
 
-	const { form, state, errors, handleChange, handleSubmit, handleReset } = createForm({
-		initialValues: {
-			location: '',
-			citizenId: '',
-			title: '',
-			surname: '',
-			lastname: '',
-			birthDay_day: '',
-			birthDay_month: '',
-			birthDay_year: '',
-			email: '',
-			tel: '',
-			isAgree: false,
-		},
-		validationSchema: yup.object().shape({
-			location: yup.string().required(),
-			citizenId: yup.string().required(),
-			title: yup.string().required(),
-			surname: yup.string().required(),
-			lastname: yup.string().required(),
-			birthDay_day: yup.string().required(),
-			birthDay_month: yup.string().required(),
-			birthDay_year: yup.string().required(),
-			email: yup.string().email('Email is not valid'),
-			tel: yup.string().matches(phoneRegExp, {
-				message: 'Phone number is not valid',
-				excludeEmptyString: true,
+	const { form, state, errors, handleChange, handleSubmit, handleReset } =
+		createForm({
+			initialValues: {
+				location: '',
+				citizenId: '',
+				title: '',
+				surname: '',
+				lastname: '',
+				birthDay_day: '',
+				birthDay_month: '',
+				birthDay_year: '',
+				email: '',
+				tel: '',
+				isAgree: false,
+			},
+			validationSchema: yup.object().shape({
+				location: yup.string().required(),
+				citizenId: yup.string().required(),
+				title: yup.string().required(),
+				surname: yup.string().required(),
+				lastname: yup.string().required(),
+				birthDay_day: yup.string().required(),
+				birthDay_month: yup.string().required(),
+				birthDay_year: yup.string().required(),
+				email: yup.string().email('Email is not valid'),
+				tel: yup.string().matches(phoneRegExp, {
+					message: 'Phone number is not valid',
+					excludeEmptyString: true,
+				}),
+				isAgree: yup.boolean().isTrue(),
 			}),
-			isAgree: yup.boolean().isTrue(),
-		}),
-		onSubmit: (values) => {
-			showSurprise()
-			doSubmit(values);
-		},
-	});
+			onSubmit: (values) => {
+				toggleSign();
+				// doSubmit(values);
+			},
+		});
 
 	function getDay(m, y) {
-		let mIndex = m === '' ? 13 : `${RangeMonth.indexOf(m) + 1}`
-		let result = RangeDay[mIndex]
+		let mIndex = m === '' ? 13 : `${RangeMonth.indexOf(m) + 1}`;
+		let result = RangeDay[mIndex];
 		if (mIndex === '') {
-			result = RangeDay['1']
+			result = RangeDay['1'];
 		}
 		if (mIndex === '2' && y % 4 === 0 && y !== '') {
-			result = RangeDay['13']
+			result = RangeDay['13'];
 		}
-		formOption.day = result
+		formOption.day = result;
 	}
 
 	const doClearSignPad = () => {
@@ -104,23 +106,27 @@
 		delete submitBody.isAgree;
 		console.log('submitBody.signature', submitBody.signature);
 
-		submitData({ onSuccess: doSuccess, body: submitBody, id: values.citizenId });
+		submitData({
+			onSuccess: doSuccess,
+			body: submitBody,
+			id: values.citizenId,
+		});
 	};
 
 	const doSuccess = () => {
-		handleReset()
-		doClearSignPad()
-	}
+		handleReset();
+		doClearSignPad();
+	};
 
 	function LimitLength(t) {
-		let text = t.toString()
+		let text = t.toString();
 		if (text.length >= 13) {
-			$form.citizenId = text.substr(0, 13)
+			$form.citizenId = text.substr(0, 13);
 		}
 	}
 
-	$: getDay($form.birthDay_month, $form.birthDay_year)
-	$: LimitLength($form.citizenId)
+	$: getDay($form.birthDay_month, $form.birthDay_year);
+	$: LimitLength($form.citizenId);
 </script>
 
 <div
@@ -285,9 +291,7 @@
 		</div>
 
 		<div class="mb-2.5">
-			<p class="mb-0.5 font-anakotmai">
-				ลงลายมือชื่อ*
-			</p>
+			<p class="mb-0.5 font-anakotmai">ลงลายมือชื่อ*</p>
 			<div class="w-[280px] md:w-[380px] h-[260px]" bind:clientWidth={track_w}>
 				<canvas bind:this={signature_canvas} class="cursor-crosshair" />
 			</div>
@@ -353,7 +357,7 @@
 			class="flex justify-center w-full bg-white text-prtr-deep-blue border border-prtr-deep-blue py-5 rounded shadow-md"
 			type="submit"
 		>
-			<span class="mr-1">ลงชื่อ</span>
+			<span class="mr-1">ลงชื่อเลย</span>
 			<PenIcon />
 		</button>
 	</form>

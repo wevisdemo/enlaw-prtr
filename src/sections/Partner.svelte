@@ -72,7 +72,7 @@
 				<PartnerButton
 					icon="img/client/logo/share_twitter.svg"
 					text="Twitter"
-					link="https://twitter.com/EarthTH2009@EarthTH2009"
+					link="https://twitter.com/EarthTH2009"
 				/>
 			</div>
 		</div>

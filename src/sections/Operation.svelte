@@ -1,7 +1,6 @@
 <script>
 	import ScrollIndicator from '../components/OperationComponent/ScrollIndicator.svelte';
 	import { spring } from 'svelte/motion';
-	import { onMount } from 'svelte';
 
 	let limit;
 	const defaultCoordination = { x: 0 };
