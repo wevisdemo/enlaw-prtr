@@ -7,7 +7,7 @@
 	let coords = spring(defaultCoordination);
 	let position = 0;
 
-	const drag = (node) => {
+	const pcDrag = (node) => {
 		let x;
 
 		coords.subscribe((current) => {
@@ -22,6 +22,7 @@
 			window.addEventListener('pointermove', mousemove);
 		}
 
+		// touch only have start and move
 		function mouseup() {
 			window.removeEventListener('pointerup', mouseup);
 			window.removeEventListener('pointermove', mousemove);
@@ -29,24 +30,24 @@
 			x = 0;
 
 			if (position < -limit) {
-				position = -limit
+				position = -limit;
 				coords.update(() => {
 					return {
 						x: -limit,
 					};
-			});
+				});
 			} else if (position > 0) {
-				position = 0
+				position = 0;
 				coords.update(() => {
 					return {
 						x: 0,
 					};
-			});
+				});
 			}
 		}
 
 		function mousemove(event) {
-			const dx = event.clientX - x
+			const dx = event.movementX;
 			x = event.clientX;
 
 			position = position + dx;
@@ -64,6 +65,63 @@
 			});
 		}
 	};
+
+	function mobileDrag(node) {
+		let x;
+
+		coords.subscribe((current) => {
+			node.style.transform = `translate3d(${current.x}px, 0px, 0)`;
+		});
+
+		node.addEventListener('touchstart', touchstart);
+
+		function touchstart(event) {
+			x = event.touches[0].clientX;
+			window.addEventListener('touchend', touchend);
+			window.addEventListener('touchmove', touchmove);
+		}
+
+		function touchend() {
+			window.removeEventListener('touchend', touchend);
+
+			x = 0;
+
+			if (position < -limit) {
+				position = -limit;
+				coords.update(() => {
+					return {
+						x: -limit,
+					};
+				});
+			} else if (position > 0) {
+				position = 0;
+				coords.update(() => {
+					return {
+						x: 0,
+					};
+				});
+			}
+		}
+
+		function touchmove(event) {
+			const dx = event.touches[0].clientX - x;
+			x = event.touches[0].clientX;
+
+			position = position + dx;
+
+			coords.update((current) => {
+				if (position >= -limit && position <= 0) {
+					return {
+						x: current.x + dx,
+					};
+				} else {
+					return {
+						x: current.x,
+					};
+				}
+			});
+		}
+	}
 </script>
 
 <div class="bg-prtr-fresh-green flex flex-col pt-16 pb-12 overflow-hidden">
@@ -97,11 +155,9 @@
 		</div>
 	</div>
 
-	<!-- <div>{position}</div> -->
-
 	<div
 		bind:clientWidth={limit}
-		class=" mt-16 overflow-visible w-[1050px] md:w-[1000px] lg:w-[860px] 2xl:w-[460px] 4xl:w-[55px]"
+		class=" mt-16 overflow-visible w-[1400px] xs:w-[1300px] md:w-[1200px] lg:w-[860px] 2xl:w-[460px] 4xl:w-[55px]"
 	/>
 	<div class="w-[1735px] h-[720px] ml-24 hidden 4xl:block">
 		<img
@@ -111,8 +167,18 @@
 		/>
 	</div>
 	<div
-		use:drag
-		class="w-[1646px] md:w-[1735px] h-[680px] md:h-[720px] mt-16 ml-8 md:ml-24 4xl:hidden"
+		use:pcDrag
+		class="hidden lg:block 4xl:hidden w-[1735px] h-[680px] md:h-[720px] mt-16 ml-8 md:ml-24"
+	>
+		<img
+			src="img/flowchart/flowchart.svg"
+			alt="flowchart"
+			class="rounded-3xl shadow-md tmp"
+		/>
+	</div>
+	<div
+		use:mobileDrag
+		class="block lg:hidden w-[1646px] md:w-[1735px] h-[680px] md:h-[720px] mt-16 ml-8 md:ml-24"
 	>
 		<img
 			src="img/flowchart/flowchart.svg"
