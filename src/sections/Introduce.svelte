@@ -1,10 +1,11 @@
 <script>
+	import { scrollRef } from 'svelte-scrolling';
 	import CommonCard from '../components/Common/CommonCard.svelte';
 </script>
 
 <div
 	class="bg-prtr-healthy-blue pt-8 md:pt-16 pb-9 md:pb-28 w-full flex justify-center"
-	id="introduce"
+	use:scrollRef={'introduce'}
 >
 	<div class="max-w-7xl pl-0 lg:pl-[53px]">
 		<div class="flex justify-center md:justify-start items-center">

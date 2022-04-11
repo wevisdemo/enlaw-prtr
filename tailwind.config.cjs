@@ -22,7 +22,7 @@ module.exports = {
 				anakotmai: ['Anakotmai'],
 			},
 			fontSize: {
-				'title': '80px',
+				'title': '78px',
 				'mini-title': '28px'
 			},
 			lineHeight: {

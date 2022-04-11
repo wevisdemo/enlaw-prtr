@@ -5,9 +5,9 @@
 <div
 	class={`flex justify-between bg-prtr-healthy-blue py-6 px-6 mb-1 border border-prtr-border-purple rounded-lg text-white`}
 >
-	<p class="text-2xl mr-5 text-left"><slot /></p>
+	<p class="text-[28px] mr-5 text-left font-kanit leading-[110%]"><slot /></p>
 	<div class="flex flex-col items-center w-fit">
-		<p class="text-sm whitespace-nowrap">{isExpand ? 'ปิด' : 'อ่านเพิ่มเติม'}</p>
+		<p class="text-sm whitespace-nowrap font-anakotmai">{isExpand ? 'ปิด' : 'อ่านเพิ่มเติม'}</p>
 
 		<!-- rotate icon animation -->
 		{#if isExpand}
@@ -17,7 +17,7 @@
 				viewBox="0 0 49 49"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				class="mt-1"
+				class="mt-1 mr-[10px]"
 			>
 				<circle
 					r="24"

@@ -1,10 +1,11 @@
 <script>
+	import { scrollRef } from 'svelte-scrolling';
 	import PartnerButton from '../components/PartnerComponent/PartnerButton.svelte';
 </script>
 
 <div
 	class="flex justify-center items-center pt-14 pb-16 mb-1.5 flex-col text-prtr-deep-blue"
-	id="partner"
+	use:scrollRef={'partner'}
 >
 	<div class="flex justify-center items-center">
 		<p class="font-kanit font-bold leading-title text-4xl md:text-title">

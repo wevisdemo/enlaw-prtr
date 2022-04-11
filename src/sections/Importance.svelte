@@ -15,10 +15,10 @@
 >
 	<div class="flex flex-col">
 		<div class="flex flex-col lg:flex-row">
-			<div class="text-prtr-deep-blue flex flex-col px-0 md:px-[52px] lg:px-0">
+			<div class="text-prtr-deep-blue flex flex-col px-0 md:px-[50px] lg:px-0">
 				<div class="flex justify-center lg:justify-start lg:pl-5">
 					<p
-						class="font-kanit text-4xl md:text-title font-bold leading-title mb-6 w-[310px] md:w-[675px] lg:w-[430px] text-center md:text-left"
+						class="font-kanit text-4xl md:text-title font-bold leading-title mb-6 text-center md:text-left"
 					>
 						เรื่องนี้สำคัญอย่างไร
 					</p>

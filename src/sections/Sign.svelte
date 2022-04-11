@@ -1,4 +1,6 @@
 <script>
+	import { scrollRef } from 'svelte-scrolling'
+	
 	import SignForm from '../components/SignForm.svelte';
 	import SignSuccess from '../components/SignSuccess.svelte';
 	import CommonExpand from '../components/Common/CommonExpand.svelte';
@@ -13,7 +15,7 @@
 	}
 </script>
 
-<div class="bg-prtr-deep-blue flex justify-center pt-20 pb-[69px]" id="sign">
+<div class="bg-prtr-deep-blue flex justify-center pt-20 pb-[69px]" use:scrollRef={'sign'}>
 	<div class="flex flex-col lg:flex-row">
 		<div class="w-[280px] md:w-[640px] lg:w-[425px] flex flex-col text-white">
 			<p
