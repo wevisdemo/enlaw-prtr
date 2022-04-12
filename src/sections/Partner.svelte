@@ -86,18 +86,11 @@
 	</div>
 
 	<div class="flex justify-center items-center mt-11">
-		<div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-			{#each Array(6) as _, i}
-				<div class="w-[100px] md:w-[120px] h-[100px] md:h-[120px]">
-					<svg
-						viewBox="0 0 120 120"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<circle cx="60" cy="60" r="60" fill="#EEEEEE" />
-					</svg>
-				</div>
-			{/each}
-		</div>
+		<a href="https://wevis.info/" class="mx-4">
+			<img src="img/company_logo/wevis_logo.svg" alt="wevis logo" />
+		</a>
+		<a href="https://punchup.world/" class="mx-4">
+			<img src="img/company_logo/punch_up_logo.svg" alt="punch-up logo" />
+		</a>
 	</div>
 </div>
