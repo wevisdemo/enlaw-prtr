@@ -76,7 +76,7 @@
 			}),
 			onSubmit: (values) => {
 				toggleSign();
-				// doSubmit(values);
+				doSubmit(values);
 			},
 		});
 
