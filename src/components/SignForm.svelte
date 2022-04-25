@@ -3,8 +3,6 @@
 	import * as yup from 'yup';
 	import { imask } from 'svelte-imask';
 
-	import PenIcon from './FixedButtonBar/icon/PenIcon.svelte';
-
 	import TitleValue from '../values/TitleValue';
 	import RangeDay from '../values/RangeDay';
 	import RangeMonth from '../values/RangeMonth';
@@ -18,6 +16,9 @@
 
 	let signature_value;
 	let signature_canvas;
+	let alertToSign = false;
+	let isDisabled = true;
+	let reCheckAgree = false;
 
 	let track_w;
 	let openSignpad = false;
@@ -43,7 +44,7 @@
 		}
 	}
 
-	const { form, state, errors, handleChange, handleSubmit, handleReset } =
+	const { form, isModified, isValid, handleChange, handleSubmit, handleReset } =
 		createForm({
 			initialValues: {
 				location: '',
@@ -75,8 +76,13 @@
 				isAgree: yup.boolean().isTrue(),
 			}),
 			onSubmit: (values) => {
-				toggleSign();
-				doSubmit(values);
+				if (signature_value?.isEmpty()) {
+					signAlert();
+				} else {
+					alertToSign = false;
+					toggleSign();
+					// doSubmit(values);
+				}
 			},
 		});
 
@@ -93,15 +99,14 @@
 	}
 
 	const doClearSignPad = () => {
+		openSignpad = false;
 		signature_value.clear();
 	};
 
 	const doSubmit = (values) => {
 		const submitBody = { ...values };
-		console.log('signature_value', signature_value);
 		submitBody.signature = signature_value.toDataURL('image/jpeg');
 		delete submitBody.isAgree;
-		console.log('submitBody.signature', submitBody.signature);
 
 		submitData({
 			onSuccess: doSuccess,
@@ -122,9 +127,30 @@
 		}
 	}
 
+	function signAlert() {
+		openSignpad = false;
+		alertToSign = true;
+	}
+
 	$: getDay($form.birthDay_month, $form.birthDay_year);
 	$: LimitLength($form.citizenId);
 	$: resizeCanvas(track_w);
+	$: console.log('$form.isAgree', $form.isAgree);
+	$: console.log('typeof $form.isAgree', typeof $form.isAgree);
+	$: typeof $form.isAgree === 'string'
+		// @ts-ignore
+		? reCheckAgree === 'true'
+		: (reCheckAgree = $form.isAgree);
+	$: isDisabled =
+		$form.location === '' ||
+		$form.citizenId === '' ||
+		$form.title === '' ||
+		$form.surname === '' ||
+		$form.lastname === '' ||
+		$form.birthDay_day === '' ||
+		$form.birthDay_month === '' ||
+		$form.birthDay_year === '' ||
+		!reCheckAgree
 </script>
 
 <div
@@ -137,7 +163,6 @@
 				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				required
 				bind:value={$form.location}
-				on:change={handleChange}
 				id="location"
 			/>
 			<p class="text-xs">ระบุเป็นชื่อจังหวัด</p>
@@ -301,6 +326,7 @@
 					<div class="z-10 absolute ml-[305px] mt-[207px]">
 						<button
 							class="border border-prtr-deep-blue p-1.5 flex items-center rounded h-9"
+							type="button"
 							on:click={doClearSignPad}
 						>
 							<span class="mr-1">ล้าง</span>
@@ -348,11 +374,15 @@
 					<button
 						class=" w-[216px] h-9 bg-white border shadow-md border-prtr-deep-blue p-1.5 flex items-center rounded justify-center"
 						on:click={() => (openSignpad = true)}
+						type="button"
 						><p class="mr-1 font-anakotmai">คลิ๊กเพื่อกรอกลายเซ็น</p>
-						<PenIcon /></button
+						<img src="img/pen_icon/pen_icon.svg" alt="pen icon" /></button
 					>
 				</div>
 			</div>
+			{#if alertToSign}
+				<p class=" text-red-500 font-anakotmai">กรุณาเซ็นชื่อ</p>
+			{/if}
 		</div>
 
 		<div class="mb-2.5 flex">
@@ -365,17 +395,34 @@
 			/>
 			<div>
 				<p class="text-sm">
-					ข้าพเจ้ายินยอมลงชื่อเสนอกฎหมาย อ่านนโยบายคุ้มครอง ข้อมูลส่วนบุคคล
+					ข้าพเจ้ายินยอมลงชื่อเสนอกฎหมาย
+					<a
+						href="docs/doc_1.pdf"
+						download="PRIVACY POLICY งาน PRTR"
+						class=" text-prtr-healthy-blue underline"
+					>
+						<span>อ่านนโยบายคุ้มครอง ข้อมูลส่วนบุคคล</span>
+					</a>
 				</p>
 			</div>
 		</div>
 
 		<button
-			class="flex justify-center w-full bg-white text-prtr-deep-blue border border-prtr-deep-blue py-5 rounded shadow-md"
+			class="flex justify-center w-full bg-white text-prtr-deep-blue border border-prtr-deep-blue py-5 rounded shadow-md disabled:text-prtr-disabled disabled:border-prtr-disabled"
 			type="submit"
+			disabled={isDisabled}
 		>
 			<span class="mr-1">ลงชื่อเลย</span>
-			<PenIcon />
+			<img
+				src="img/pen_icon/pen_icon.svg"
+				alt="pen icon"
+				class=" {isDisabled ? 'hidden' : 'block'}"
+			/>
+			<img
+				src="img/pen_icon/pen_icon_disabled.svg"
+				alt="pen icon disabled"
+				class=" {isDisabled ? 'block' : 'hidden'}"
+			/>
 		</button>
 	</form>
 </div>

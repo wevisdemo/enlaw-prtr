@@ -193,15 +193,17 @@
 			</div>
 
 			<div class="mt-4 flex justify-center w-[26px] md:w-[370px]">
-				<button
-					class="flex justify-center px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
-				>
-					<span
-						class="mr-[12.5px] font-anakotmai whitespace-nowrap overflow-hidden"
-						>อ่านร่างพ.ร.บ.ฉบับเต็ม</span
+				<a href="docs/doc_3.pdf" download="ร่างกฎหมาย PRTR ฉบับเต็ม">
+					<button
+						class="flex justify-center px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
 					>
-					<DocumentIcon />
-				</button>
+						<span
+							class="mr-[12.5px] font-anakotmai whitespace-nowrap overflow-hidden"
+							>อ่านร่างพ.ร.บ.ฉบับเต็ม</span
+						>
+						<DocumentIcon />
+					</button>
+				</a>
 			</div>
 		</div>
 		<div
@@ -220,14 +222,13 @@
 
 				<div class="mt-4 flex justify-center lg:block">
 					<button
-					class="flex justify-center px-6 md:px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
-				>
-					<span
-						class="font-anakotmai whitespace-nowrap overflow-hidden"
-						>อ่านร่างพ.ร.บ.ฉบับเต็ม</span
+						class="flex justify-center px-6 md:px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
 					>
-					<DocumentIcon />
-				</button>
+						<span class="font-anakotmai whitespace-nowrap overflow-hidden"
+							>อ่านร่างพ.ร.บ.ฉบับเต็ม</span
+						>
+						<DocumentIcon />
+					</button>
 				</div>
 
 				<div class=" w-full flex justify-center items-center">

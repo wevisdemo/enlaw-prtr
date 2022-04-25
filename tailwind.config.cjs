@@ -9,6 +9,7 @@ module.exports = {
 				'prtr-healthy-blue': '#20AAD7',
 				'prtr-air-blue': '#B6E8F8',
 				'prtr-grey': '#C4C4C4',
+				'prtr-disabled': '#8393a5',
 				'prtr-border-purple': '#373746',
 				'prtr-border-blue': '#08274C',
 				'prtr-gradient-a': '#B6E8F8',
@@ -29,7 +30,7 @@ module.exports = {
 				'title': '90%',
 			},
 			screens: {
-				xs: '425px',
+				'xs': '425px',
 				'4xl': '1850px'
 			},
 			backgroundPosition: {

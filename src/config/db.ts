@@ -23,19 +23,6 @@ export async function getOneTimeCounting() {
 	return snapshot.size;
 }
 
-export async function getAll() {
-	const { db } = getFirebase();
-	const colRef = collection(db, 'participant');
-	const snapshot = await getDocs(colRef);
-	let result = [];
-	snapshot.forEach((doc) => {
-		result.push(doc.data());
-	});
-
-	return result;
-}
-
-// '2000000000002'
 export async function submitData(props) {
 	const { onSuccess, body, id } = props;
 	const { db } = getFirebase();

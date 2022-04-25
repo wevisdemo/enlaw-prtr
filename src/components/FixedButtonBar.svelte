@@ -2,8 +2,6 @@
 	import { onMount } from 'svelte';
 	import LinkIconWrapper from './FixedButtonBar/LinkIconWrapper.svelte';
 
-	import PenIcon from './FixedButtonBar/icon/PenIcon.svelte';
-
 	let url;
 
 	onMount(() => (url = window.location.href));
@@ -27,7 +25,9 @@
 				/>
 			</a>
 
-			<LinkIconWrapper url="https://twitter.com/intent/tweet?text=https://enlaw-prtr.web.app/">
+			<LinkIconWrapper
+				url="https://twitter.com/intent/tweet?text=https://enlaw-prtr.web.app/"
+			>
 				<img
 					src="img/share_icon/share_twitter_default.svg"
 					alt="share twitter"
@@ -36,7 +36,9 @@
 					class="mx-2"
 				/>
 			</LinkIconWrapper>
-			<LinkIconWrapper url="https://social-plugins.line.me/lineit/share?url=https://enlaw-prtr.web.app/">
+			<LinkIconWrapper
+				url="https://social-plugins.line.me/lineit/share?url=https://enlaw-prtr.web.app/"
+			>
 				<img
 					src="img/share_icon/share_line_default.svg"
 					alt="share line"
@@ -51,7 +53,13 @@
 				class="bg-white text-prtr-deep-blue rounded w-[158px] md:w-[331px] lg:w-[480px] py-1 ml-5 mr-0 sm:mr-6 lg:mr-[58px] flex justify-center items-center font-anakotmai"
 			>
 				<span class="text-xl">ลงชื่อเลย</span>
-				<span class="ml-1.5"><PenIcon /></span>
+				<span class="ml-1.5"
+					><img
+						src="img/pen_icon/pen_icon.svg"
+						alt="pen icon"
+						class=" disabled:hidden"
+					/></span
+				>
 			</button>
 		</a>
 	</div>

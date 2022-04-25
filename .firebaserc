@@ -5,11 +5,8 @@
   "targets": {
     "enlaw-prtr": {
       "hosting": {
-        "prtr-export": [
+        "enlaw-prtr": [
           "build"
-        ],
-        "tr": [
-          "prtr-export"
         ],
         "target": [
           "enlaw-prtr"

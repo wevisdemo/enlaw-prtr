@@ -85,7 +85,7 @@
 								<li>ส่งแบบฟอร์มไปที่ …. (TBC)</li>
 							</ul>
 							<div class="mt-6 mb-5">
-								<DocumentButton>ดาวน์โหลดแบบฟอร์ม</DocumentButton>
+								<DocumentButton docName='doc_1'>ดาวน์โหลดแบบฟอร์ม</DocumentButton>
 							</div>
 						</div>
 					</CommonExpand>

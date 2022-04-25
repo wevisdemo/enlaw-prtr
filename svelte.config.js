@@ -2,7 +2,7 @@ import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 
 // npm run build
-// firebase target:apply hosting target prtr-export , [target] is target name , [prtr-export] is target site
+// firebase target:apply hosting target enlaw-prtr , [target] is target name , [enlaw-prtr] is target site
 // firebase deploy
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
