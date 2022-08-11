@@ -42,6 +42,18 @@ export async function submitData(props) {
 	}
 }
 
+export async function getAll() {
+	const { db } = getFirebase();
+	const colRef = collection(db, 'participant');
+	const snapshot = await getDocs(colRef);
+	let result = [];
+	snapshot.forEach((doc) => {
+		result.push(doc.data());
+	});
+
+	return result;
+}
+
 async function checkExist(id) {
 	const { db } = getFirebase();
 	const docRef = doc(db, 'participant', id);
