@@ -161,8 +161,8 @@
 	/>
 	<div class="w-[1735px] h-[720px] ml-24 hidden 4xl:block">
 		<img
-			src="img/flowchart/flowchart.svg"
-			alt="flowchart"
+			src="img/flowchart/diagram.svg"
+			alt="diagram"
 			class="rounded-3xl shadow-md tmp"
 		/>
 	</div>
@@ -171,8 +171,8 @@
 		class="hidden lg:block 4xl:hidden w-[1735px] h-[680px] md:h-[720px] mt-16 ml-8 md:ml-24"
 	>
 		<img
-			src="img/flowchart/flowchart.svg"
-			alt="flowchart"
+			src="img/flowchart/diagram.svg"
+			alt="diagram"
 			class="rounded-3xl shadow-md tmp"
 		/>
 	</div>
@@ -181,8 +181,8 @@
 		class="block lg:hidden w-[1646px] md:w-[1735px] h-[680px] md:h-[720px] mt-16 ml-8 md:ml-24"
 	>
 		<img
-			src="img/flowchart/flowchart.svg"
-			alt="flowchart"
+			src="img/flowchart/diagram.svg"
+			alt="diagram"
 			class="rounded-3xl shadow-md tmp"
 		/>
 	</div>

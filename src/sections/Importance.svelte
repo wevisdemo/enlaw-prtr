@@ -31,12 +31,12 @@
 				<div
 					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-3 mt-3 md:mt-20 lg:mt-6 px-5"
 				>
-					<div class="w-[280px] md:w-[305px] font-anakotmai text-xl leading-7">
-						<DocumentButton docName='doc_2'>อ่านเอกสารสรุปร่าง พ.ร.บ.</DocumentButton>
+					<div class="w-[280px] md:w-[355px] font-anakotmai text-xl leading-7">
+						<DocumentButton docName='doc_2'>ไฟล์สรุปร่าง PRTR</DocumentButton>
 						
 					</div>
-					<div class="w-[280px] md:w-[305px] font-anakotmai text-xl leading-7">
-						<DocumentButton docName='doc_3'>อ่านร่างพ.ร.บ.ฉบับเต็ม</DocumentButton>
+					<div class="w-[280px] md:w-[355px] font-anakotmai text-xl leading-7">
+						<DocumentButton docName='doc_3'>ร่าง PRTR ฉบับเต็ม (ประทับรับรอง)</DocumentButton>
 					</div>
 				</div>
 			</div>

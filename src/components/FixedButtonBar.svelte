@@ -1,8 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
+	import { scrollTo } from 'svelte-scrolling';
 	import LinkIconWrapper from './FixedButtonBar/LinkIconWrapper.svelte';
 
 	let url;
+
+	function handleButton() {
+		console.log('url', url)
+	}
 
 	onMount(() => (url = window.location.href));
 </script>
@@ -48,9 +53,10 @@
 			</LinkIconWrapper>
 		</div>
 
-		<a href="#sign">
+		<a href="#sign" use:scrollTo={"sign"}>
 			<button
 				class="bg-white text-prtr-deep-blue rounded w-[158px] md:w-[331px] lg:w-[480px] py-1 ml-5 mr-0 sm:mr-6 lg:mr-[58px] flex justify-center items-center font-anakotmai"
+				on:click={() => handleButton()}
 			>
 				<span class="text-xl">ลงชื่อเลย</span>
 				<span class="ml-1.5"

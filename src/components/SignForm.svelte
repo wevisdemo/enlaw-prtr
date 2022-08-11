@@ -87,7 +87,7 @@
 		});
 
 	function getDay(m, y) {
-		let mIndex = m === '' ? 13 : `${RangeMonth.indexOf(m) + 1}`;
+		let mIndex = m === '' ? 1 : `${RangeMonth.indexOf(m) + 1}`;
 		let result = RangeDay[mIndex];
 		if (mIndex === '') {
 			result = RangeDay['1'];
@@ -135,11 +135,9 @@
 	$: getDay($form.birthDay_month, $form.birthDay_year);
 	$: LimitLength($form.citizenId);
 	$: resizeCanvas(track_w);
-	$: console.log('$form.isAgree', $form.isAgree);
-	$: console.log('typeof $form.isAgree', typeof $form.isAgree);
 	$: typeof $form.isAgree === 'string'
-		// @ts-ignore
-		? reCheckAgree === 'true'
+		? // @ts-ignore
+		  reCheckAgree === 'true'
 		: (reCheckAgree = $form.isAgree);
 	$: isDisabled =
 		$form.location === '' ||
@@ -150,7 +148,7 @@
 		$form.birthDay_day === '' ||
 		$form.birthDay_month === '' ||
 		$form.birthDay_year === '' ||
-		!reCheckAgree
+		!reCheckAgree;
 </script>
 
 <div

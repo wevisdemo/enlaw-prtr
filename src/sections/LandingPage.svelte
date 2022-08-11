@@ -71,13 +71,6 @@
 				class="w-[240px] h-[44px] sm:w-[380px] sm:h-[78px] bg-prtr-healthy-blue shadow-md rounded-xl flex justify-center items-center"
 			>
 				{#if current_count}
-					<!-- <p
-						class="font-anakotmai text-[32px] md:text-6xl tracking-[0.24em] counting_number_big text-white"
-					>
-						{getNumberWithCommas(counting)}
-					</p> -->
-
-					<!-- special added -->
 					<Modal>
 						<AdjustCount
 							text={getNumberWithCommas(current_count)}
@@ -186,20 +179,20 @@
 					“ข้อมูลมลพิษ คือสิทธิที่ประชาชนต้องเข้าถึงได้”
 				</p>
 				<p class="text-2xl mt-4 text-center lg:text-left">
-					ร่วมเป็นส่วนหนึ่งสนับสนุนให้มีการรายงานการ
-					ปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อมเพื่อ
+					ร่วมเป็นส่วนหนึ่งสนับสนุนให้มีการ
+					รายงานและเปิดเผยข้อมูลการปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อม
 					ให้การเข้าถึงข้อมูลมลพิษเป็นสิทธิของประชาชน อย่างแท้จริง
 				</p>
 			</div>
 
 			<div class="mt-4 flex justify-center w-[26px] md:w-[370px]">
-				<a href="docs/doc_3.pdf" download="ร่างกฎหมาย PRTR ฉบับเต็ม">
+				<a href="docs/doc_3.pdf" download="ร่าง PRTR ฉบับเต็ม (ประทับรับรอง)">
 					<button
 						class="flex justify-center px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
 					>
 						<span
 							class="mr-[12.5px] font-anakotmai whitespace-nowrap overflow-hidden"
-							>อ่านร่างพ.ร.บ.ฉบับเต็ม</span
+							>อ่านร่าง พ.ร.บ. ฉบับเต็ม</span
 						>
 						<DocumentIcon />
 					</button>
@@ -215,8 +208,8 @@
 					“ข้อมูลมลพิษ คือสิทธิที่ประชาชนต้องเข้าถึงได้”
 				</h1>
 				<p class="text-lg mt-4 text-center">
-					ร่วมเป็นส่วนหนึ่งสนับสนุนให้มีการรายงานการ
-					ปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อมเพื่อ
+					ร่วมเป็นส่วนหนึ่งสนับสนุนให้มีการ
+					รายงานและเปิดเผยข้อมูลการปล่อยและเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อม
 					ให้การเข้าถึงข้อมูลมลพิษเป็นสิทธิของประชาชน อย่างแท้จริง
 				</p>
 

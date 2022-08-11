@@ -79,6 +79,40 @@
 		</div>
 	</div>
 
+	<div class="flex flex-col lg:flex-row">
+		<div
+			class="flex flex-col md:flex-row mt-3 md:mt-8 lg:mt-[42px] items-center md:items-start"
+		>
+			<div class="pt-0.5 mr-0 md:mr-[64px] lg:mr-[76px] w-[180px] h-[176px]">
+				<img
+					src="img/client/img/logo_greenpeace.png"
+					alt="client earth"
+					class="mr-2.5"
+				/>
+			</div>
+			<div class="mt-8 md:mt-0 flex flex-col items-center md:items-start">
+				<p class="font-kanit font-bold leading-7 text-xl md:text-[28px] mb-3">
+					ติดตาม GREENPEACE
+				</p>
+				<PartnerButton
+					icon="img/client/logo/share_web.svg"
+					text="Website"
+					link="https://www.greenpeace.org/thailand/"
+				/>
+				<PartnerButton
+					icon="img/client/logo/share_facebook.svg"
+					text="Facebook"
+					link="https://www.facebook.com/greenpeaceseath"
+				/>
+				<PartnerButton
+					icon="img/client/logo/share_twitter.svg"
+					text="Twitter"
+					link="https://twitter.com/greenpeaceth"
+				/>
+			</div>
+		</div>
+	</div>
+
 	<div class="flex justify-center items-center mt-8 lg:mt-[114px]">
 		<p class="font-kanit font-bold leading-title text-xl md:text-title">
 			Partners

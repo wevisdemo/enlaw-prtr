@@ -13,7 +13,6 @@
     const showSurprise = () => open(Popup, { toggleDummy: toggleDummy, changeDummy: changeDummy, dummy_count: dummy_count, isDummy: isDummy });
 
     function onClick() {
-        // console.log('TEST')
         showSurprise()
     }
 </script>
