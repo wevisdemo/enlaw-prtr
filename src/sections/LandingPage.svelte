@@ -186,7 +186,7 @@
 			</div>
 
 			<div class="mt-4 flex justify-center w-[26px] md:w-[370px]">
-				<a href="docs/doc_3.pdf" download="ร่าง PRTR ฉบับเต็ม (ประทับรับรอง)">
+				<a href="docs/doc_3.pdf" download="อ่านร่าง พ.ร.บ. ฉบับเต็ม">
 					<button
 						class="flex justify-center px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
 					>
