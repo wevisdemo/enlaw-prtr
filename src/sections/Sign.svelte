@@ -107,15 +107,6 @@
 						</div>
 					</CommonExpand>
 				</div>
-				<div class="mt-5">
-					<div
-						class={`flex justify-between bg-prtr-healthy-blue py-6 px-6 mb-1 border border-prtr-border-purple rounded-lg text-white`}
-					>
-						<p class="text-[28px] mr-5 text-left font-kanit leading-[110%]">
-							อ่านนโยบายคุ้มครองข้อมูลส่วนบุคคล
-						</p>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
