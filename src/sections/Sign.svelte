@@ -32,11 +32,12 @@
 	<meta property="og:type" content="website">
 
 	<!-- TWITTER -->
-	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:card" content="summary">
 	<meta property="twitter:domain" content="https://thaiprtr.com">
 	<meta property="twitter:url" content="https://thaiprtr.com">
 	<meta name="twitter:title" content={META_TITLE}>
 	<meta name="twitter:description" content={META_DESCRIPTION}>
+	<meta name="twitter:image:src" content={META_IMAGE}>
 	<meta name="twitter:image" content={META_IMAGE}>
 </svelte:head>
 <div
