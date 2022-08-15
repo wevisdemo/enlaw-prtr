@@ -27,7 +27,7 @@
 <svelte:head>
 	<meta property="og:title" content={META_TITLE} />
 	<meta property="og:url" content="https://thaiprtr.com" />
-	<meta name="description" content={META_DESCRIPTION} />
+	<!-- <meta name="description" content={META_DESCRIPTION} /> -->
 	<meta property="og:description" content={META_DESCRIPTION} />
 	<meta property="og:image" content={META_IMAGE} />
 	<meta property="og:type" content="website">
