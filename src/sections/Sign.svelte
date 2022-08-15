@@ -30,6 +30,15 @@
 	<meta name="description" content={META_DESCRIPTION} />
 	<meta property="og:description" content={META_DESCRIPTION} />
 	<meta property="og:image" content={META_IMAGE} />
+	<meta property="og:type" content="website">
+
+	<!-- TWITTER -->
+	<meta name="twitter:title" content={META_TITLE}>
+	<meta property="twitter:url" content="https://thaiprtr.com">
+	<meta name="twitter:description" content={META_DESCRIPTION}>
+	<meta name="twitter:image" content={META_IMAGE}>
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content="https://thaiprtr.com">
 </svelte:head>
 <div
 	class="bg-prtr-deep-blue flex justify-center pt-20 pb-[69px]"

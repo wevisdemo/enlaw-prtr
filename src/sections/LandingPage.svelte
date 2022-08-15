@@ -217,14 +217,18 @@
 				</p>
 
 				<div class="mt-4 flex justify-center lg:block">
-					<button
-						class="flex justify-center px-6 md:px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
-					>
-						<span class="font-anakotmai whitespace-nowrap overflow-hidden"
-							>อ่านร่างพ.ร.บ.ฉบับเต็ม</span
+					<a
+						href="https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/Draft-ThaiPRTR-Act.pdf?alt=media&token=31021d9f-d092-445e-a103-161b2e4e4d81"
+						target="_blank"
+						><button
+							class="flex justify-center px-6 md:px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
 						>
-						<DocumentIcon />
-					</button>
+							<span class="font-anakotmai whitespace-nowrap overflow-hidden"
+								>อ่านร่าง พ.ร.บ. ฉบับเต็ม</span
+							>
+							<DocumentIcon />
+						</button>
+					</a>
 				</div>
 
 				<div class=" w-full flex justify-center items-center">
