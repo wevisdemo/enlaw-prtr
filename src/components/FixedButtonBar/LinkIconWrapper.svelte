@@ -1,7 +1,11 @@
 <script>
     export let url;
+    
+    function newTab(url) {
+		window.open(url);
+	}
 </script>
 
-<a rel="noreferrer noopener" href={url}>
+<button rel="noreferrer noopener" on:click={() => newTab(url)}>
 	<slot />
-</a>
+</button>

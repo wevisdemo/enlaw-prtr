@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<title>EnLaw - PRTR</title>
+	<title>Thai PRTR</title>
 </svelte:head>
 <div class="scroll-smooth">
 	<nav class="sticky top-0 py-3 px-11 bg-prtr-fresh-green shadow-md z-50">

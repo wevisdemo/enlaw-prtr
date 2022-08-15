@@ -100,7 +100,7 @@
 								</li>
 							</ul>
 							<div class="mt-6 mb-5">
-								<DocumentButton docName="doc_1"
+								<DocumentButton docName="doc_2"
 									>แบบฟอร์มเข้าชื่อ PRTR ฉบับเต็ม</DocumentButton
 								>
 							</div>

@@ -9,6 +9,10 @@
 		console.log('url', url)
 	}
 
+	function newTab(url) {
+		window.open(url);
+	}
+
 	onMount(() => (url = window.location.href));
 </script>
 
@@ -19,8 +23,8 @@
 				แชร์ให้เพื่อน
 			</p>
 
-			<a
-				href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fenlaw-prtr.web.app%2F&amp;src=sdkpreparse"
+			<button
+				on:click={() => newTab("https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthaiprtr.com%2F&amp;src=sdkpreparse")}
 			>
 				<img
 					src="img/share_icon/share_facebook_default.svg"
@@ -28,10 +32,9 @@
 					height="32px"
 					width="32px"
 				/>
-			</a>
-
+			</button>
 			<LinkIconWrapper
-				url="https://twitter.com/intent/tweet?text=https://enlaw-prtr.web.app/"
+				url="https://twitter.com/intent/tweet?text=https://thaiprtr.com/"
 			>
 				<img
 					src="img/share_icon/share_twitter_default.svg"
@@ -42,7 +45,7 @@
 				/>
 			</LinkIconWrapper>
 			<LinkIconWrapper
-				url="https://social-plugins.line.me/lineit/share?url=https://enlaw-prtr.web.app/"
+				url="https://social-plugins.line.me/lineit/share?url=https://thaiprtr.com/"
 			>
 				<img
 					src="img/share_icon/share_line_default.svg"

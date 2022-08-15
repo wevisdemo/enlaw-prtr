@@ -46,6 +46,10 @@
 		counting = newValue;
 	};
 
+	function newTab(url) {
+		window.open(url, '_blank');
+	}
+
 	$: fetchTime(counting);
 	$: currentGoal =
 		goal[goal.filter((i) => i < current_count).length] || goal[3];
@@ -186,7 +190,10 @@
 			</div>
 
 			<div class="mt-4 flex justify-center w-[26px] md:w-[370px]">
-				<a href="docs/doc_3.pdf" download="อ่านร่าง พ.ร.บ. ฉบับเต็ม">
+				<a
+					href="https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%87%20PRTR%20%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%95%E0%B9%87%E0%B8%A1%20(%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%B1%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%A3%E0%B8%AD%E0%B8%87).pdf?alt=media&token=31c0b828-52f9-4d89-9239-c5d8568515f0"
+					target="_blank"
+				>
 					<button
 						class="flex justify-center px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
 					>
