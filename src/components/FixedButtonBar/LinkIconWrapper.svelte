@@ -1,8 +1,8 @@
 <script>
-    export let url;
-    
-    function newTab(url) {
-		window.open(url);
+	export let url;
+
+	function newTab(url) {
+		window.open(url, '_blank');
 	}
 </script>
 

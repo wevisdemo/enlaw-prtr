@@ -13,8 +13,24 @@
 	function toggleSign() {
 		isSigned = !isSigned;
 	}
+
+	const META_TITLE = isSigned
+		? 'ฉันได้ร่วมลงชื่อเพื่อสนับสนุน “หยุดปกปิดมลพิษ ด้วยกฎหมาย PRTR”'
+		: 'หยุดปกปิดมลพิษ ด้วยกฎหมาย PRTR';
+	const META_DESCRIPTION =
+		'ร่วมลงชื่อเสนอร่างพระราชบัญญัติการรายงานการปล่อยและการเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อม (ภาคประชาชน)';
+	const META_IMAGE = isSigned
+		? 'https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/02_share.jpg?alt=media&token=9f15b996-7525-426e-b7d2-39346fe7ba4b'
+		: 'https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/01_default.jpg?alt=media&token=47bbfdfc-36a1-4f2b-8cde-7807f6fa0010';
 </script>
 
+<svelte:head>
+	<meta property="og:title" content={META_TITLE} />
+	<meta property="og:url" content="https://thaiprtr.com" />
+	<meta name="description" content={META_DESCRIPTION} />
+	<meta property="og:description" content={META_DESCRIPTION} />
+	<meta property="og:image" content={META_IMAGE} />
+</svelte:head>
 <div
 	class="bg-prtr-deep-blue flex justify-center pt-20 pb-[69px]"
 	use:scrollRef={'sign'}

@@ -9,7 +9,7 @@
 	// 	doc_3: 'ร่าง PRTR ฉบับเต็ม (ประทับรับรอง)',
 	// };
 	const fileLinkMapping = {
-		doc_1: 'https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%87%20PRTR%20%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%95%E0%B9%87%E0%B8%A1%20(%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%B1%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%A3%E0%B8%AD%E0%B8%87).pdf?alt=media&token=31c0b828-52f9-4d89-9239-c5d8568515f0',
+		doc_1: 'https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/Draft-ThaiPRTR-Act.pdf?alt=media&token=31021d9f-d092-445e-a103-161b2e4e4d81',
 		doc_2: 'https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%9F%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A1%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20PRTR.pdf?alt=media&token=f5bba19f-b9b1-47ac-bc5c-4311239dd101',
 		doc_3: 'https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%87%20PRTR.pdf?alt=media&token=bea1e14a-21ad-4c70-9bfb-a0b53547c3cf',
 	};

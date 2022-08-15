@@ -46,10 +46,6 @@
 		counting = newValue;
 	};
 
-	function newTab(url) {
-		window.open(url, '_blank');
-	}
-
 	$: fetchTime(counting);
 	$: currentGoal =
 		goal[goal.filter((i) => i < current_count).length] || goal[3];
@@ -191,7 +187,7 @@
 
 			<div class="mt-4 flex justify-center w-[26px] md:w-[370px]">
 				<a
-					href="https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%87%20PRTR%20%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%95%E0%B9%87%E0%B8%A1%20(%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%97%E0%B8%B1%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%A3%E0%B8%AD%E0%B8%87).pdf?alt=media&token=31c0b828-52f9-4d89-9239-c5d8568515f0"
+					href="https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/Draft-ThaiPRTR-Act.pdf?alt=media&token=31021d9f-d092-445e-a103-161b2e4e4d81"
 					target="_blank"
 				>
 					<button
