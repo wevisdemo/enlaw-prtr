@@ -44,7 +44,7 @@
 		}
 	}
 
-	const { form, isModified, isValid, handleChange, handleSubmit, handleReset } =
+	const { form, errors, handleChange, handleSubmit, handleReset } =
 		createForm({
 			initialValues: {
 				location: '',
@@ -76,6 +76,7 @@
 				isAgree: yup.boolean().isTrue(),
 			}),
 			onSubmit: (values) => {
+				console.log('values', values);
 				if (signature_value?.isEmpty()) {
 					signAlert();
 				} else {
@@ -154,11 +155,16 @@
 <div
 	class="bg-white w-[300px] md:w-[420px] py-5 px-2.5 md:px-5 font-normal text-prtr-deep-blue"
 >
-	<form on:submit={handleSubmit}>
+	<form
+		on:submit={(f) => {
+			console.log('SUBMIT!');
+			handleSubmit(f);
+		}}
+	>
 		<div class="mb-2.5">
 			<label class="mb-0.5 font-anakotmai" for="location">เขียนที่*</label>
 			<input
-				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.location && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				required
 				bind:value={$form.location}
 				id="location"
@@ -171,7 +177,7 @@
 				เลขประจำตัวประชาชน*
 			</label>
 			<input
-				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.citizenId && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				type="number"
 				required
 				bind:value={$form.citizenId}
@@ -185,7 +191,7 @@
 			<div class="basis-1/4  pr-2.5">
 				<label class="mb-0.5 font-anakotmai" for="title">คำนำหน้าชื่อ</label>
 				<select
-					class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
+					class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree {$errors.title && 'border-red-500'}"
 					id="title"
 					required
 					bind:value={$form.title}
@@ -199,7 +205,7 @@
 			<div class="basis-3/4">
 				<label class="mb-0.5 font-anakotmai" for="surname">ชื่อ*</label>
 				<input
-					class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+					class="bg-prtr-air-blue text-lg border {$errors.surname && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 					required
 					bind:value={$form.surname}
 					on:change={handleChange}
@@ -213,7 +219,7 @@
 		<div class="mb-2.5">
 			<label class="mb-0.5 font-anakotmai" for="lastname">นามสกุล*</label>
 			<input
-				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.lastname && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				required
 				bind:value={$form.lastname}
 				on:change={handleChange}
@@ -229,7 +235,7 @@
 						>วันเกิด*</label
 					>
 					<select
-						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
+						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree {$errors.birthDay_day && 'border-red-500'}"
 						id="birthDay_day"
 						required
 						bind:value={$form.birthDay_day}
@@ -247,7 +253,7 @@
 						>เดือนเกิด*</label
 					>
 					<select
-						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
+						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree {$errors.birthDay_month && 'border-red-500'}"
 						id="birthDay_month"
 						required
 						bind:value={$form.birthDay_month}
@@ -265,7 +271,7 @@
 						>ปีพ.ศ.เกิด*</label
 					>
 					<select
-						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree"
+						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree border {$errors.birthDay_year && 'border-red-500'}"
 						id="birthDay_year"
 						required
 						bind:value={$form.birthDay_year}
@@ -282,7 +288,7 @@
 		<div class="mb-2.5">
 			<label class="mb-0.5 font-anakotmai" for="email">อีเมล (Optional)</label>
 			<input
-				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.email && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				bind:value={$form.email}
 				on:change={handleChange}
 				id="email"
@@ -298,7 +304,7 @@
 				เบอร์โทรศัพท์ (Optional)
 			</label>
 			<input
-				class="bg-prtr-air-blue text-lg border rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.tel && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				bind:value={$form.tel}
 				on:change={handleChange}
 				id="tel"
