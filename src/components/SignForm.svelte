@@ -80,7 +80,6 @@
 					signAlert();
 				} else {
 					alertToSign = false;
-					toggleSign();
 					doSubmit(values);
 				}
 			},
@@ -116,12 +115,13 @@
 	};
 
 	const doSuccess = () => {
+		toggleSign();
 		handleReset();
 		doClearSignPad();
 	};
 
 	function LimitLength(t) {
-		let text = t.toString();
+		let text = t ? t.toString() : '';
 		if (text.length >= 13) {
 			$form.citizenId = text.substr(0, 13);
 		}
@@ -321,7 +321,7 @@
 					<div class="absolute z-0 border-prtr-deep-blue border">
 						<canvas bind:this={signature_canvas} class="cursor-crosshair" />
 					</div>
-					<div class="z-10 absolute ml-[305px] mt-[207px]">
+					<div class="z-10 absolute ml-[205px] md:ml-[305px] mt-[207px]">
 						<button
 							class="border border-prtr-deep-blue p-1.5 flex items-center rounded h-9"
 							type="button"

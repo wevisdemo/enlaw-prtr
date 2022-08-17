@@ -83,7 +83,7 @@
 		<div
 			class="flex flex-col md:flex-row mt-3 md:mt-8 lg:mt-[42px] items-center md:items-start"
 		>
-			<div class="pt-0.5 mr-0 md:mr-[64px] lg:mr-[76px] w-[180px] h-[176px]">
+			<div class="pt-0.5 mr-0 md:mr-[64px] lg:mr-[76px] max-w-[180px] max-h-[176px]">
 				<img
 					src="img/client/img/logo_greenpeace.png"
 					alt="client earth"

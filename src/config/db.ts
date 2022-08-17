@@ -31,7 +31,7 @@ export async function submitData(props) {
 	try {
 		const isExit = await checkExist(id);
 		if (isExit) {
-			alert("Sorry, user cannot 'RESIGN' this petition");
+			alert("เลขบัตรประจำตัวประชาชนนี้ ใช้ลงชื่อไปแล้ว");
 		} else {
 			await setDoc(colRef, body).then((res) => {
 				onSuccess();

@@ -32,7 +32,7 @@
 	</div>
 
 	<div
-		class="sticky bottom-0 py-3.5 px-[15px] md:px-11 xl:px-[193px] bg-prtr-deep-blue border border-white"
+		class="sticky bottom-0 py-3.5 px-[15px] md:px-11 xl:px-[193px] bg-prtr-deep-blue border border-white z-50"
 	>
 		<FixedButtonBar />
 	</div>
