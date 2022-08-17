@@ -81,7 +81,7 @@
 				} else {
 					alertToSign = false;
 					toggleSign();
-					// doSubmit(values);
+					doSubmit(values);
 				}
 			},
 		});
