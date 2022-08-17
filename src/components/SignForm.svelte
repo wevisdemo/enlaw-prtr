@@ -32,7 +32,7 @@
 	const telMask = {
 		mask: '000-000-0000',
 	};
-	const phoneRegExp = /^[1-9]\d{2}-\d{3}-\d{4}/gm;
+	const phoneRegExp = /((\+66|0)(\d{1,2}\-?\d{3}\-?\d{3,4}))|((\+๖๖|๐)([๐-๙]{1,2}\-?[๐-๙]{3}\-?[๐-๙]{3,4}))/gm;
 
 	function resizeCanvas(w) {
 		if (signature_canvas !== undefined) {
