@@ -1,11 +1,9 @@
 const firebaseConfig = {
-	apiKey: 'AIzaSyBNKupb6NYEKlbkPimETSykQvhjtniE_gQ',
-	authDomain: 'enlaw-prtr.firebaseapp.com',
-	projectId: 'enlaw-prtr',
-	storageBucket: 'enlaw-prtr.appspot.com',
-	messagingSenderId: '43453881514',
-	appId: '1:43453881514:web:22f0aa5914d528055dc4d3',
-	measurementId: 'G-ERJZH5CMCF',
+	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+	authDomain: `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.firebaseapp.com`,
+	projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+	storageBucket: `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.appspot.com`,
+	appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 export default firebaseConfig;
