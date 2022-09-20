@@ -125,7 +125,7 @@
 </script>
 
 <div class="bg-prtr-fresh-green flex flex-col pt-16 pb-12 overflow-hidden">
-	<div class="flex flex-col lg:flex-row justify-between w-full">
+	<div class="flex flex-col lg:flex-row justify-between w-full px-8 md:px-24">
 		<div class="flex flex-col md:flex-row justify-center items-center">
 			<div class="w-[140px] md:w-[240px] h-[34px] md:h-[56px]">
 				<img
@@ -142,9 +142,9 @@
 			</p>
 		</div>
 		<div
-			class="flex justify-center items-center font-anakotmai pr-0 lg:pr-16 mt-[14px] md:mt-[19px] lg:mt-0"
+			class="flex justify-center items-center font-anakotmai mt-[14px] md:mt-[19px] lg:mt-0"
 		>
-			<div class="mr-[9px] md:mr-1 w-[21px] md:w-[38px] h-[22] md:h-10">
+			<div class="w-[21px] md:w-[38px] h-[22] md:h-10">
 				<ScrollIndicator />
 			</div>
 			<div class="hidden md:block">
