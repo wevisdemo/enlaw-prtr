@@ -7,6 +7,7 @@ import {
 	onSnapshot,
 	writeBatch,
 	increment,
+	serverTimestamp,
 } from 'firebase/firestore';
 
 export function getRealTimeCounting(doUpdate) {
@@ -35,7 +36,10 @@ export async function submitData({ body, id, onSuccess }) {
 		} else {
 			const batch = writeBatch(db);
 
-			batch.set(doc(db, 'participant', id), body);
+			batch.set(doc(db, 'participant', id), {
+				...body,
+				signedAt: serverTimestamp(),
+			});
 			batch.update(doc(db, 'counter', 'participant'), {
 				total: increment(1),
 			});
