@@ -4,38 +4,45 @@ import {
 	getDoc,
 	getDocs,
 	doc,
-	setDoc,
 	onSnapshot,
+	writeBatch,
+	increment,
 } from 'firebase/firestore';
 
-export async function getRealTimeCounting(doUpdate) {
+export function getRealTimeCounting(doUpdate) {
 	const { db } = getFirebase();
-	const colRef = collection(db, 'participant');
-	await onSnapshot(colRef, { includeMetadataChanges: true }, (doc) => {
-		doUpdate(doc.docs.length);
+	const colRef = doc(db, 'counter', 'participant');
+
+	onSnapshot(colRef, { includeMetadataChanges: true }, (doc) => {
+		doUpdate(doc.get('total'));
 	});
 }
 export async function getOneTimeCounting() {
 	const { db } = getFirebase();
-	const colRef = collection(db, 'participant');
-	const snapshot = await getDocs(colRef);
+	const colRef = doc(db, 'counter', 'participant');
+	const snapshot = await getDoc(colRef);
 
-	return snapshot.size;
+	return snapshot.get('total');
 }
 
-export async function submitData(props) {
-	const { onSuccess, body, id } = props;
+export async function submitData({ body, id, onSuccess }) {
 	const { db } = getFirebase();
-	const colRef = doc(db, 'participant', id);
 
 	try {
 		const isExit = await checkExist(id);
 		if (isExit) {
-			alert("เลขบัตรประจำตัวประชาชนนี้ ใช้ลงชื่อไปแล้ว");
+			alert('เลขบัตรประจำตัวประชาชนนี้ ใช้ลงชื่อไปแล้ว');
 		} else {
-			await setDoc(colRef, body).then((res) => {
-				onSuccess();
+			const batch = writeBatch(db);
+
+			batch.set(doc(db, 'participant', id), body);
+			batch.update(doc(db, 'counter', 'participant'), {
+				total: increment(1),
 			});
+
+			await batch.commit();
+
+			onSuccess();
 		}
 	} catch (e) {
 		console.error('Error adding document: ', e);

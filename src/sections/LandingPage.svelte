@@ -11,16 +11,14 @@
 
 	const goal = [10000, 20000, 50000, 100000];
 
-	let counting;
 	let currentGoal = goal[0];
 	let percentWidth = 0;
 	let dateNow;
 
-	let current_count;
+	let current_count = -1;
 
 	onMount(() => {
 		getRealTimeCounting(updateCounting);
-		fetchTime();
 	});
 
 	function fetchTime() {
@@ -35,7 +33,8 @@
 	};
 
 	const updateCounting = (newValue) => {
-		counting = newValue;
+		current_count = newValue;
+		fetchTime();
 	};
 
 	$: currentGoal =
@@ -61,7 +60,7 @@
 			<div
 				class="w-[240px] h-[44px] sm:w-[380px] sm:h-[78px] bg-prtr-healthy-blue shadow-md rounded-xl flex justify-center items-center"
 			>
-				{#if current_count}
+				{#if current_count >= 0}
 					<Modal>
 						<AdjustCount text={getNumberWithCommas(current_count)} />
 					</Modal>
