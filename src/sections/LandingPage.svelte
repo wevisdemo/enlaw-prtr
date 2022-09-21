@@ -1,8 +1,6 @@
 <script>
 	import LandingTitle from '../components/LandingComponent/LandingTitle.svelte';
 	import DocumentIcon from '../components/ImportanceComponent/DocumentIcon.svelte';
-
-	import Modal from 'svelte-simple-modal';
 	import AdjustCount from '../components/LandingComponent/AdjustCount.svelte';
 
 	import { onMount } from 'svelte';
@@ -15,7 +13,8 @@
 	let percentWidth = 0;
 	let dateNow;
 
-	let current_count = -1;
+	let isCounterReady = false;
+	let currentCount = 0;
 
 	onMount(() => {
 		getRealTimeCounting(updateCounting);
@@ -33,15 +32,15 @@
 	};
 
 	const updateCounting = (newValue) => {
-		current_count = newValue;
+		currentCount = newValue;
+		isCounterReady = true;
 		fetchTime();
 	};
 
-	$: currentGoal =
-		goal[goal.filter((i) => i < current_count).length] || goal[3];
+	$: currentGoal = goal[goal.filter((i) => i < currentCount).length] || goal[3];
 	$: percentWidth =
-		current_count < goal[3]
-			? Math.round((current_count / currentGoal) * 100 * 100) / 100
+		currentCount < goal[3]
+			? Math.round((currentCount / currentGoal) * 100 * 100) / 100
 			: 100;
 </script>
 
@@ -60,22 +59,21 @@
 			<div
 				class="w-[240px] h-[44px] sm:w-[380px] sm:h-[78px] bg-prtr-healthy-blue shadow-md rounded-xl flex justify-center items-center"
 			>
-				{#if current_count >= 0}
-					<Modal>
-						<AdjustCount text={getNumberWithCommas(current_count)} />
-					</Modal>
+				<AdjustCount
+					isLoading={!isCounterReady}
+					text={getNumberWithCommas(currentCount)}
+				/>
 
-					{#if current_count >= goal[0]}
-						<div
-							class="absolute ml-48 md:ml-60 mt-12 md:mt-[133px] w-[120px] md:w-[190px] h-[104px] md:h-[165px]"
-						>
-							<img
-								class="ml-0.5"
-								src="img/milestone/milestone_meet.svg"
-								alt="milestone meet"
-							/>
-						</div>
-					{/if}
+				{#if currentCount >= goal[0]}
+					<div
+						class="absolute ml-48 md:ml-60 mt-12 md:mt-[133px] w-[120px] md:w-[190px] h-[104px] md:h-[165px]"
+					>
+						<img
+							class="ml-0.5"
+							src="img/milestone/milestone_meet.svg"
+							alt="milestone meet"
+						/>
+					</div>
 				{/if}
 			</div>
 
@@ -90,7 +88,7 @@
 								currentGoal > goal[0] ? goal[0] : currentGoal
 							)}
 						</p>
-						{#if current_count > goal[0]}
+						{#if currentCount > goal[0]}
 							<img
 								class="ml-0.5"
 								src="img/milestone/milestone_check_dark.svg"
@@ -104,7 +102,7 @@
 							/>
 						{/if}
 					</div>
-					{#if current_count > goal[0]}
+					{#if currentCount > goal[0]}
 						<div
 							class="flex justify-end"
 							style="width: {100 - (goal[0] / currentGoal) * 100}%"
@@ -115,12 +113,12 @@
 						</div>
 					{/if}
 				</div>
-				{#if current_count < goal[0]}
+				{#if currentCount < goal[0]}
 					<div
 						class="w-full h-[30px] bg-prtr-air-blue border border-prtr-deep-blue"
 					>
 						<p class="float-right pr-2">
-							ยังขาดอีก {getNumberWithCommas(goal[0] - current_count)} รายชื่อ
+							ยังขาดอีก {getNumberWithCommas(goal[0] - currentCount)} รายชื่อ
 						</p>
 						<div
 							class="h-full bg-prtr-healthy-blue"

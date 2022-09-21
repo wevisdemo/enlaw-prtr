@@ -11,6 +11,7 @@
 	import SignaturePad from 'signature_pad';
 
 	import { submitData } from '../config/db';
+	import Spinner from './Spinner.svelte';
 
 	export let toggleSign;
 
@@ -32,7 +33,8 @@
 	const telMask = {
 		mask: '000-000-0000',
 	};
-	const phoneRegExp = /((\+66|0)(\d{1,2}\-?\d{3}\-?\d{3,4}))|((\+๖๖|๐)([๐-๙]{1,2}\-?[๐-๙]{3}\-?[๐-๙]{3,4}))/gm;
+	const phoneRegExp =
+		/((\+66|0)(\d{1,2}\-?\d{3}\-?\d{3,4}))|((\+๖๖|๐)([๐-๙]{1,2}\-?[๐-๙]{3}\-?[๐-๙]{3,4}))/gm;
 
 	function resizeCanvas(w) {
 		if (signature_canvas !== undefined) {
@@ -44,46 +46,52 @@
 		}
 	}
 
-	const { form, errors, handleChange, handleSubmit, handleReset } =
-		createForm({
-			initialValues: {
-				location: '',
-				citizenId: '',
-				title: '',
-				surname: '',
-				lastname: '',
-				birthDay_day: '',
-				birthDay_month: '',
-				birthDay_year: '',
-				email: '',
-				tel: '',
-				isAgree: false,
-			},
-			validationSchema: yup.object().shape({
-				location: yup.string().required(),
-				citizenId: yup.string().required(),
-				title: yup.string().required(),
-				surname: yup.string().required(),
-				lastname: yup.string().required(),
-				birthDay_day: yup.string().required(),
-				birthDay_month: yup.string().required(),
-				birthDay_year: yup.string().required(),
-				email: yup.string().email('Email is not valid'),
-				tel: yup.string().matches(phoneRegExp, {
-					message: 'Phone number is not valid',
-					excludeEmptyString: true,
-				}),
-				isAgree: yup.boolean().isTrue(),
+	const {
+		form,
+		errors,
+		handleChange,
+		handleSubmit,
+		handleReset,
+		isSubmitting,
+	} = createForm({
+		initialValues: {
+			location: '',
+			citizenId: '',
+			title: '',
+			surname: '',
+			lastname: '',
+			birthDay_day: '',
+			birthDay_month: '',
+			birthDay_year: '',
+			email: '',
+			tel: '',
+			isAgree: false,
+		},
+		validationSchema: yup.object().shape({
+			location: yup.string().required(),
+			citizenId: yup.string().required(),
+			title: yup.string().required(),
+			surname: yup.string().required(),
+			lastname: yup.string().required(),
+			birthDay_day: yup.string().required(),
+			birthDay_month: yup.string().required(),
+			birthDay_year: yup.string().required(),
+			email: yup.string().email('Email is not valid'),
+			tel: yup.string().matches(phoneRegExp, {
+				message: 'Phone number is not valid',
+				excludeEmptyString: true,
 			}),
-			onSubmit: (values) => {
-				if (signature_value?.isEmpty()) {
-					signAlert();
-				} else {
-					alertToSign = false;
-					doSubmit(values);
-				}
-			},
-		});
+			isAgree: yup.boolean().isTrue(),
+		}),
+		onSubmit: async (values) => {
+			if (signature_value?.isEmpty()) {
+				signAlert();
+			} else {
+				alertToSign = false;
+				await doSubmit(values);
+			}
+		},
+	});
 
 	function getDay(m, y) {
 		let mIndex = m === '' ? 1 : `${RangeMonth.indexOf(m) + 1}`;
@@ -102,12 +110,12 @@
 		signature_value.clear();
 	};
 
-	const doSubmit = (values) => {
+	const doSubmit = async (values) => {
 		const submitBody = { ...values };
 		submitBody.signature = signature_value.toDataURL('image/jpeg');
 		delete submitBody.isAgree;
 
-		submitData({
+		await submitData({
 			onSuccess: doSuccess,
 			body: submitBody,
 			id: values.citizenId,
@@ -154,13 +162,12 @@
 <div
 	class="bg-white w-[300px] md:w-[420px] py-5 px-2.5 md:px-5 font-normal text-prtr-deep-blue"
 >
-	<form
-		on:submit={handleSubmit}
-	>
+	<form on:submit={handleSubmit}>
 		<div class="mb-2.5">
 			<label class="mb-0.5 font-anakotmai" for="location">เขียนที่*</label>
 			<input
-				class="bg-prtr-air-blue text-lg border {$errors.location && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.location &&
+					'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				required
 				bind:value={$form.location}
 				id="location"
@@ -173,7 +180,8 @@
 				เลขประจำตัวประชาชน*
 			</label>
 			<input
-				class="bg-prtr-air-blue text-lg border {$errors.citizenId && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.citizenId &&
+					'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				type="number"
 				required
 				bind:value={$form.citizenId}
@@ -187,7 +195,8 @@
 			<div class="basis-1/4  pr-2.5">
 				<label class="mb-0.5 font-anakotmai" for="title">คำนำหน้าชื่อ</label>
 				<select
-					class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree {$errors.title && 'border-red-500'}"
+					class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree {$errors.title &&
+						'border-red-500'}"
 					id="title"
 					required
 					bind:value={$form.title}
@@ -201,7 +210,8 @@
 			<div class="basis-3/4">
 				<label class="mb-0.5 font-anakotmai" for="surname">ชื่อ*</label>
 				<input
-					class="bg-prtr-air-blue text-lg border {$errors.surname && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+					class="bg-prtr-air-blue text-lg border {$errors.surname &&
+						'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 					required
 					bind:value={$form.surname}
 					on:change={handleChange}
@@ -215,7 +225,8 @@
 		<div class="mb-2.5">
 			<label class="mb-0.5 font-anakotmai" for="lastname">นามสกุล*</label>
 			<input
-				class="bg-prtr-air-blue text-lg border {$errors.lastname && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.lastname &&
+					'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				required
 				bind:value={$form.lastname}
 				on:change={handleChange}
@@ -231,7 +242,8 @@
 						>วันเกิด*</label
 					>
 					<select
-						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree {$errors.birthDay_day && 'border-red-500'}"
+						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree {$errors.birthDay_day &&
+							'border-red-500'}"
 						id="birthDay_day"
 						required
 						bind:value={$form.birthDay_day}
@@ -249,7 +261,8 @@
 						>เดือนเกิด*</label
 					>
 					<select
-						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree {$errors.birthDay_month && 'border-red-500'}"
+						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree {$errors.birthDay_month &&
+							'border-red-500'}"
 						id="birthDay_month"
 						required
 						bind:value={$form.birthDay_month}
@@ -267,7 +280,8 @@
 						>ปีพ.ศ.เกิด*</label
 					>
 					<select
-						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree border {$errors.birthDay_year && 'border-red-500'}"
+						class="bg-prtr-air-blue text-lg p-1.5 font-baijamjuree border {$errors.birthDay_year &&
+							'border-red-500'}"
 						id="birthDay_year"
 						required
 						bind:value={$form.birthDay_year}
@@ -284,15 +298,14 @@
 		<div class="mb-2.5">
 			<label class="mb-0.5 font-anakotmai" for="email">อีเมล (Optional)</label>
 			<input
-				class="bg-prtr-air-blue text-lg border {$errors.email && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.email &&
+					'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				bind:value={$form.email}
 				on:change={handleChange}
 				id="email"
 				type="email"
 			/>
-			<p class="text-xs">
-				E-mail ที่ใช้งานในปัจจุบัน
-			</p>
+			<p class="text-xs">E-mail ที่ใช้งานในปัจจุบัน</p>
 		</div>
 
 		<div class="mb-2.5">
@@ -300,7 +313,8 @@
 				เบอร์โทรศัพท์ (Optional)
 			</label>
 			<input
-				class="bg-prtr-air-blue text-lg border {$errors.tel && 'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
+				class="bg-prtr-air-blue text-lg border {$errors.tel &&
+					'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
 				bind:value={$form.tel}
 				on:change={handleChange}
 				id="tel"
@@ -410,19 +424,23 @@
 		<button
 			class="flex justify-center w-full bg-white text-prtr-deep-blue border border-prtr-deep-blue py-5 rounded shadow-md disabled:text-prtr-disabled disabled:border-prtr-disabled"
 			type="submit"
-			disabled={isDisabled}
+			disabled={isDisabled || $isSubmitting}
 		>
-			<span class="mr-1">ลงชื่อเลย</span>
-			<img
-				src="img/pen_icon/pen_icon.svg"
-				alt="pen icon"
-				class=" {isDisabled ? 'hidden' : 'block'}"
-			/>
-			<img
-				src="img/pen_icon/pen_icon_disabled.svg"
-				alt="pen icon disabled"
-				class=" {isDisabled ? 'block' : 'hidden'}"
-			/>
+			{#if $isSubmitting}
+				<Spinner color="rgb(8 39 76)" />
+			{:else}
+				<span class="mr-1">ลงชื่อเลย</span>
+				<img
+					src="img/pen_icon/pen_icon.svg"
+					alt="pen icon"
+					class=" {isDisabled ? 'hidden' : 'block'}"
+				/>
+				<img
+					src="img/pen_icon/pen_icon_disabled.svg"
+					alt="pen icon disabled"
+					class=" {isDisabled ? 'block' : 'hidden'}"
+				/>
+			{/if}
 		</button>
 	</form>
 </div>
