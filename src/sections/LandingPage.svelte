@@ -33,8 +33,8 @@
 
 	const updateCounting = (newValue) => {
 		currentCount = newValue;
-		isCounterReady = true;
 		fetchTime();
+		isCounterReady = true;
 	};
 
 	$: currentGoal = goal[goal.filter((i) => i < currentCount).length] || goal[3];
@@ -142,7 +142,11 @@
 
 				<div class="mt-4 flex justify-center">
 					<p class="p-1.5 w-fit font-anakotmai">
-						อัปเดตข้อมูลล่าสุด {dateNow}
+						{#if isCounterReady}
+							อัปเดตข้อมูลล่าสุด {dateNow}
+						{:else}
+							กำลังโหลดข้อมูล...
+						{/if}
 					</p>
 				</div>
 			</div>
