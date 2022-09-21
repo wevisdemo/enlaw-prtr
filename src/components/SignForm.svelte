@@ -76,7 +76,6 @@
 				isAgree: yup.boolean().isTrue(),
 			}),
 			onSubmit: (values) => {
-				console.log('values', values);
 				if (signature_value?.isEmpty()) {
 					signAlert();
 				} else {
@@ -156,10 +155,7 @@
 	class="bg-white w-[300px] md:w-[420px] py-5 px-2.5 md:px-5 font-normal text-prtr-deep-blue"
 >
 	<form
-		on:submit={(f) => {
-			console.log('SUBMIT!');
-			handleSubmit(f);
-		}}
+		on:submit={handleSubmit}
 	>
 		<div class="mb-2.5">
 			<label class="mb-0.5 font-anakotmai" for="location">เขียนที่*</label>
