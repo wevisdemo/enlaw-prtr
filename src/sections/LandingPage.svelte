@@ -17,21 +17,13 @@
 	let dateNow;
 
 	let current_count;
-	let dummy_count = 0;
-	let isDummy = false;
-	function toggleDummy() {
-		isDummy = !isDummy;
-	}
-	function changeDummy(newValue) {
-		dummy_count = newValue;
-	}
-	$: current_count = isDummy ? dummy_count : counting;
 
 	onMount(() => {
 		getRealTimeCounting(updateCounting);
+		fetchTime();
 	});
 
-	function fetchTime(tmp) {
+	function fetchTime() {
 		let time = new Date();
 		dateNow = `${time.getDate()} ${
 			RangeMonth[time.getMonth()]
@@ -46,7 +38,6 @@
 		counting = newValue;
 	};
 
-	$: fetchTime(counting);
 	$: currentGoal =
 		goal[goal.filter((i) => i < current_count).length] || goal[3];
 	$: percentWidth =
@@ -72,13 +63,7 @@
 			>
 				{#if current_count}
 					<Modal>
-						<AdjustCount
-							text={getNumberWithCommas(current_count)}
-							{dummy_count}
-							{toggleDummy}
-							{changeDummy}
-							{isDummy}
-						/>
+						<AdjustCount text={getNumberWithCommas(current_count)} />
 					</Modal>
 
 					{#if current_count >= goal[0]}
@@ -160,7 +145,6 @@
 
 				<div class="mt-4 flex justify-center">
 					<p class="p-1.5 w-fit font-anakotmai">
-						<!-- อัปเดตข้อมูลล่าสุด 24 ธ.ค. 65 -->
 						อัปเดตข้อมูลล่าสุด {dateNow}
 					</p>
 				</div>
