@@ -296,7 +296,7 @@
 		</div>
 
 		<div class="mb-2.5">
-			<label class="mb-0.5 font-anakotmai" for="email">อีเมล (Optional)</label>
+			<label class="mb-0.5 font-anakotmai" for="email">อีเมล (ไม่บังคับ)</label>
 			<input
 				class="bg-prtr-air-blue text-lg border {$errors.email &&
 					'border-red-500'} rounded-sm w-full py-1.5 px-2 text-prtr-deep-blue leading-tight focus:outline-none focus:shadow-outline font-baijamjuree"
@@ -305,12 +305,15 @@
 				id="email"
 				type="email"
 			/>
-			<p class="text-xs">E-mail ที่ใช้งานในปัจจุบัน</p>
+			<p class="text-xs">
+				ระบุ E-mail ที่ใช้งานในปัจจุบัน
+				เพื่อรับข้อมูลข่าวสารความเคลื่อนไหวเกี่ยวกับร่างกฎหมาย PRTR
+			</p>
 		</div>
 
 		<div class="mb-2.5">
 			<label class="mb-0.5 font-anakotmai" for="tel">
-				เบอร์โทรศัพท์ (Optional)
+				เบอร์โทรศัพท์ (ไม่บังคับ)
 			</label>
 			<input
 				class="bg-prtr-air-blue text-lg border {$errors.tel &&
