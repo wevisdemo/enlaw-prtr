@@ -4,7 +4,6 @@
 	import { imask } from 'svelte-imask';
 
 	import TitleValue from '../values/TitleValue';
-	import RangeDay from '../values/RangeDay';
 	import RangeMonth from '../values/RangeMonth';
 	import RangeYear from '../values/RangeYear';
 
@@ -26,7 +25,7 @@
 
 	let formOption = {
 		title: TitleValue,
-		day: RangeDay['1'],
+		day: getDay(),
 		month: RangeMonth,
 		year: RangeYear,
 	};
@@ -93,16 +92,12 @@
 		},
 	});
 
-	function getDay(m, y) {
-		let mIndex = m === '' ? 1 : `${RangeMonth.indexOf(m) + 1}`;
-		let result = RangeDay[mIndex];
-		if (mIndex === '') {
-			result = RangeDay['1'];
-		}
-		if (mIndex === '2' && y % 4 === 0 && y !== '') {
-			result = RangeDay['13'];
-		}
-		formOption.day = result;
+	function getDay(month, year) {
+		const lastDayOfMonth = month && year
+			? new Date(year - 543, RangeMonth.indexOf(month) + 1, 0).getDate()
+			: 31
+
+		return new Array(lastDayOfMonth).fill(null).map((_, i) => `${i + 1}`);
 	}
 
 	const doClearSignPad = () => {
@@ -140,7 +135,7 @@
 		alertToSign = true;
 	}
 
-	$: getDay($form.birthDay_month, $form.birthDay_year);
+	$: formOption.day = getDay($form.birthDay_month, $form.birthDay_year);
 	$: LimitLength($form.citizenId);
 	$: resizeCanvas(track_w);
 	$: typeof $form.isAgree === 'string'
