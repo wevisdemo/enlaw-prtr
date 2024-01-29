@@ -1,8 +1,5 @@
 @import './tailwind.css';
 
-@import '@wevisdemo/ui/styles/typography.css';
-@import '@wevisdemo/ui/styles/components.css';
-
 @font-face {
 	font-family: 'Anakotmai';
 	src: url('../static/fonts/anakotmai-light.woff2') format('woff2');
