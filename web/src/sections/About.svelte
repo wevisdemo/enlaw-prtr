@@ -29,10 +29,6 @@
 					>ส่ง Feedback</button
 				>
 				</a>
-				<button
-					class="py-[5px] px-[10px] bg-white border border-prtr-deep-blue font-anakotmai ml-3"
-					>Github</button
-				>
 			</div>
 		</div>
 	</div>
