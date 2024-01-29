@@ -1,0 +1,16 @@
+{
+	"name": "@enlaw-prtr/preprocessor",
+	"version": "0.0.1",
+	"dependencies": {
+		"arquero": "^5.2.0",
+		"firebase": "^10.2.0",
+		"valibot": "^0.27.0"
+	},
+	"scripts": {
+		"fetch": "ts-node src/fetcher.ts",
+		"clean": "ts-node src/cleaner.ts"
+	},
+	"devDependencies": {
+		"ts-node": "^10.9.1"
+	}
+}
