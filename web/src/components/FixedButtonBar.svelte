@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-	import { scrollTo } from 'svelte-scrolling';
-	import LinkIconWrapper from './FixedButtonBar/LinkIconWrapper.svelte';
+	// import { scrollTo } from 'svelte-scrolling';
+	// import LinkIconWrapper from './FixedButtonBar/LinkIconWrapper.svelte';
 
 	let url;
 	let encodedURL;
@@ -61,20 +61,19 @@
 			</a>
 		</div>
 
-		<a href="#sign" use:scrollTo={'sign'} class="z-50">
-			<button
-				class="bg-white text-prtr-deep-blue rounded w-[158px] md:w-[331px] lg:w-[480px] py-1 ml-5 mr-0 sm:mr-6 lg:mr-[58px] flex justify-center items-center font-anakotmai z-50"
-			>
-				<span class="text-xl">ลงชื่อเลย</span>
-				<span class="ml-1.5"
-					><img
-						src="img/pen_icon/pen_icon.svg"
-						alt="pen icon"
-						class=" disabled:hidden"
-					/></span
-				>
-			</button>
-		</a>
+		<button
+			disabled
+			class="bg-white text-prtr-deep-blue rounded w-[158px] md:w-[331px] lg:w-[480px] py-1 ml-5 mr-0 sm:mr-6 lg:mr-[58px] flex justify-center items-center font-anakotmai z-50 opacity-40"
+		>
+			<span class="text-xl">ปิดรับลงชื่อแล้ว</span>
+			<!-- <span class="ml-1.5"
+				><img
+					src="img/pen_icon/pen_icon.svg"
+					alt="pen icon"
+					class=" disabled:hidden"
+				/></span
+			> -->
+		</button>
 	</div>
 </span>
 

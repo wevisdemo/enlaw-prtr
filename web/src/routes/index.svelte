@@ -7,14 +7,17 @@
 	import Benefit from '../sections/Benefit.svelte';
 	import Operation from '../sections/Operation.svelte';
 	import Importance from '../sections/Importance.svelte';
-	import Sign from '../sections/Sign.svelte';
+	// import Sign from '../sections/Sign.svelte';
 	import Partner from '../sections/Partner.svelte';
 	import About from '../sections/About.svelte';
 </script>
 
 <svelte:head>
 	<title>Thai PRTR</title>
-	<meta name="description" content='ร่วมลงชื่อเสนอร่างพระราชบัญญัติการรายงานการปล่อยและการเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อม (ภาคประชาชน)' />
+	<meta
+		name="description"
+		content="ร่วมลงชื่อเสนอร่างพระราชบัญญัติการรายงานการปล่อยและการเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อม (ภาคประชาชน)"
+	/>
 </svelte:head>
 <div class="scroll-smooth">
 	<nav class="sticky top-0 py-3 px-11 bg-prtr-fresh-green shadow-md z-50">
@@ -26,7 +29,7 @@
 		<Benefit />
 		<Operation />
 		<Importance />
-		<Sign />
+		<!-- <Sign /> -->
 		<Partner />
 		<About />
 	</div>

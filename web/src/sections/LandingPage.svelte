@@ -3,39 +3,39 @@
 	import DocumentIcon from '../components/ImportanceComponent/DocumentIcon.svelte';
 	import AdjustCount from '../components/LandingComponent/AdjustCount.svelte';
 
-	import { onMount } from 'svelte';
-	import { getRealTimeCounting } from '../config/db';
-	import RangeMonth from '../values/RangeMonth';
+	// import { onMount } from 'svelte';
+	// import { getRealTimeCounting } from '../config/db';
+	// import RangeMonth from '../values/RangeMonth';
 
 	const goal = [10000, 20000, 50000, 100000];
 
 	let currentGoal = goal[0];
 	let percentWidth = 0;
-	let dateNow;
+	let dateNow = new Date('2024/02/01');
 
-	let isCounterReady = false;
-	let currentCount = 0;
+	let isCounterReady = true; //false;
+	let currentCount = 11985; // As
 
-	onMount(() => {
-		getRealTimeCounting(updateCounting);
-	});
+	// onMount(() => {
+	// 	getRealTimeCounting(updateCounting);
+	// });
 
-	function fetchTime() {
-		let time = new Date();
-		dateNow = `${time.getDate()} ${
-			RangeMonth[time.getMonth()]
-		} ${time.getFullYear()}`;
-	}
+	// function fetchTime() {
+	// 	let time = new Date();
+	// 	dateNow = `${time.getDate()} ${
+	// 		RangeMonth[time.getMonth()]
+	// 	} ${time.getFullYear()}`;
+	// }
 
 	const getNumberWithCommas = (x) => {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	};
 
-	const updateCounting = (newValue) => {
-		currentCount = newValue;
-		fetchTime();
-		isCounterReady = true;
-	};
+	// const updateCounting = (newValue) => {
+	// 	currentCount = newValue;
+	// 	fetchTime();
+	// 	isCounterReady = true;
+	// };
 
 	$: currentGoal = goal[goal.filter((i) => i < currentCount).length] || goal[3];
 	$: percentWidth =
@@ -143,7 +143,9 @@
 				<div class="mt-4 flex justify-center">
 					<p class="p-1.5 w-fit font-anakotmai">
 						{#if isCounterReady}
-							อัปเดตข้อมูลล่าสุด {dateNow}
+							อัปเดตข้อมูลล่าสุด {dateNow.toLocaleDateString('TH-th', {
+								dateStyle: 'long',
+							})}
 						{:else}
 							กำลังโหลดข้อมูล...
 						{/if}
