@@ -2,6 +2,7 @@ import { readFile } from "fs/promises";
 import { PDFDocument, PDFFont, PDFPage } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import { SignedPetition } from "./renderer";
+import { removeImageBackground } from "./image";
 
 type FillingBox = { x: number; y: number; maxWidth?: number };
 
@@ -139,7 +140,9 @@ async function fillPage(
   }
 
   // Fill signature
-  const signature = await targetedDoc.embedPng(sign.signature);
+  const signature = await targetedDoc.embedPng(
+    await removeImageBackground(sign.signature)
+  );
   const { width: signatureFitWidth, height: signatureFitHeight } =
     signature.scaleToFit(100, 50);
   page.drawImage(signature, {

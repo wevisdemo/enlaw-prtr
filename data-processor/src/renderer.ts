@@ -3,8 +3,7 @@ import { fill } from "./fill";
 import { parse } from "csv-parse/sync";
 
 const OUTPUT_DIR = "out";
-
-const TARGETTED_FILENAME = "test"; //"enlaw-prtr-cleaned-signature-";
+const TARGETTED_FILENAME = "enlaw-prtr-cleaned-signature-";
 
 export type SignedPetition = {
   citizenId: string;
