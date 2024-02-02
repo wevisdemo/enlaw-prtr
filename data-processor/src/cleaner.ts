@@ -34,7 +34,9 @@ const cleanData = aq
       (d: Record) =>
         d.surname.length > 1 &&
         d.lastname.length > 1 &&
-        d[PERSONALID_KEY].split("").every((digit) => !isNaN(+digit)) &&
+        d.location.length &&
+        d.signedAt.seconds &&
+        d[PERSONALID_KEY] &&
         validatePersonalId(d[PERSONALID_KEY])
     )
   )
@@ -71,8 +73,12 @@ for (let i = 0; i * WITH_SIGNATURE_MAX_ROW < cleanData.size; i++) {
   );
 }
 
-// https://th.wikipedia.org/wiki/เลขประจำตัวประชาชนไทย#ตัวเลขหลักที่_13
 function validatePersonalId(value: string) {
+  if (value.length !== 13 || value.split("").some((digit) => isNaN(+digit))) {
+    return false;
+  }
+
+  // https://th.wikipedia.org/wiki/เลขประจำตัวประชาชนไทย#ตัวเลขหลักที่_13
   const n13 = +value.charAt(12);
   const sum = value
     .substring(0, 12)
