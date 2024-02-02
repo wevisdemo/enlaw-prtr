@@ -53,9 +53,14 @@ export async function fill(signs: SignedPetition[]) {
     if (i !== 0 && i % 100 === 0) {
       console.log(`--- Filling page number ${i}...`);
     }
-    const [page] = await targetedDoc.copyPages(templateDoc, [0]);
-    await fillPage(signs[i], { page, targetedDoc, font });
-    targetedDoc.addPage(page);
+    try {
+      const [page] = await targetedDoc.copyPages(templateDoc, [0]);
+      await fillPage(signs[i], { page, targetedDoc, font });
+      targetedDoc.addPage(page);
+    } catch (e) {
+      console.error("Error filling", signs[i]);
+      throw e;
+    }
   }
 
   return targetedDoc.save();

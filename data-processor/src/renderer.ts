@@ -3,7 +3,7 @@ import { fill } from "./fill";
 import { parse } from "csv-parse/sync";
 
 const OUTPUT_DIR = "out";
-const TARGETTED_FILENAME = "enlaw-prtr-cleaned-signature-";
+const TARGETTED_FILENAME = "enlaw-prtr-cleaned-signature";
 
 export type SignedPetition = {
   citizenId: string;
@@ -14,9 +14,9 @@ export type SignedPetition = {
 };
 
 async function main() {
-  const filenames = (await readdir(OUTPUT_DIR)).filter((filename) =>
-    filename.startsWith(TARGETTED_FILENAME)
-  );
+  const filenames = (await readdir(OUTPUT_DIR))
+    .filter((filename) => filename.startsWith(TARGETTED_FILENAME))
+    .sort((a, z) => a.localeCompare(z));
 
   let counter = 0;
 
