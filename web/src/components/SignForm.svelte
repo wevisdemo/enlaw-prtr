@@ -409,7 +409,7 @@
 				<p class="text-sm">
 					ข้าพเจ้ายินยอมลงชื่อเสนอกฎหมาย
 					<a
-						href="https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/Privacy%20Policy-ThaiPRTR-Act.pdf?alt=media&token=31834d81-6085-49b7-98e7-1424eceff296"
+						href="/docs/PrivacyPolicy-ThaiPRTR-Act.pdf"
 						target="_blank"
 						class=" text-prtr-healthy-blue underline"
 					>

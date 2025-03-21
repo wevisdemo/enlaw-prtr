@@ -20,8 +20,8 @@
 	const META_DESCRIPTION =
 		'ร่วมลงชื่อเสนอร่างพระราชบัญญัติการรายงานการปล่อยและการเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อม (ภาคประชาชน)';
 	const META_IMAGE = isSigned
-		? 'https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/02_share.jpg?alt=media&token=9f15b996-7525-426e-b7d2-39346fe7ba4b'
-		: 'https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/01_default.jpg?alt=media&token=47bbfdfc-36a1-4f2b-8cde-7807f6fa0010';
+		? 'https://thaiprtr.com/img/og/02_share.jpg'
+		: 'https://thaiprtr.com/img/og/01_default.jpg';
 </script>
 
 <svelte:head>

@@ -174,7 +174,7 @@
 
 			<div class="mt-4 flex justify-center w-[26px] md:w-[370px]">
 				<a
-					href="https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/Draft-ThaiPRTR-Act.pdf?alt=media&token=31021d9f-d092-445e-a103-161b2e4e4d81"
+					href="/docs/ร่างพรบPRTRภาคประชาชน-ฉบับประธานสภาเห็นชอบให้เข้าชื่อ.pdf"
 					target="_blank"
 				>
 					<button
@@ -205,7 +205,7 @@
 
 				<div class="mt-4 flex justify-center lg:block">
 					<a
-						href="https://firebasestorage.googleapis.com/v0/b/enlaw-prtr.appspot.com/o/Draft-ThaiPRTR-Act.pdf?alt=media&token=31021d9f-d092-445e-a103-161b2e4e4d81"
+						href="/docs/ร่างพรบPRTRภาคประชาชน-ฉบับประธานสภาเห็นชอบให้เข้าชื่อ.pdf"
 						target="_blank"
 						><button
 							class="flex justify-center px-6 md:px-[21px] py-1 bg-prtr-air-blue border border-prtr-deep-blue shadow-md rounded w-full text-xl"
