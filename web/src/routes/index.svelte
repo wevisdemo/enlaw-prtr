@@ -12,13 +12,6 @@
 	import About from '../sections/About.svelte';
 </script>
 
-<svelte:head>
-	<title>Thai PRTR</title>
-	<meta
-		name="description"
-		content="ร่วมลงชื่อเสนอร่างพระราชบัญญัติการรายงานการปล่อยและการเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อม (ภาคประชาชน)"
-	/>
-</svelte:head>
 <div class="scroll-smooth">
 	<nav class="sticky top-0 py-3 px-11 bg-prtr-fresh-green shadow-md z-50">
 		<FixedTopBar />

@@ -13,33 +13,8 @@
 	function toggleSign() {
 		isSigned = !isSigned;
 	}
-
-	const META_TITLE = isSigned
-		? 'ฉันได้ร่วมลงชื่อเพื่อสนับสนุน “หยุดปกปิดมลพิษ ด้วยกฎหมาย PRTR”'
-		: 'หยุดปกปิดมลพิษ ด้วยกฎหมาย PRTR';
-	const META_DESCRIPTION =
-		'ร่วมลงชื่อเสนอร่างพระราชบัญญัติการรายงานการปล่อยและการเคลื่อนย้ายสารมลพิษสู่สิ่งแวดล้อม (ภาคประชาชน)';
-	const META_IMAGE = isSigned
-		? 'https://thaiprtr.com/img/og/02_share.jpg'
-		: 'https://thaiprtr.com/img/og/01_default.jpg';
 </script>
 
-<svelte:head>
-	<meta property="og:title" content={META_TITLE} />
-	<meta property="og:url" content="https://thaiprtr.com" />
-	<meta property="og:description" content={META_DESCRIPTION} />
-	<meta property="og:image" content={META_IMAGE} />
-	<meta property="og:type" content="website">
-
-	<!-- TWITTER -->
-	<meta property="twitter:card" content="summary">
-	<meta property="twitter:domain" content="https://thaiprtr.com">
-	<meta property="twitter:url" content="https://thaiprtr.com">
-	<meta name="twitter:title" content={META_TITLE}>
-	<meta name="twitter:description" content={META_DESCRIPTION}>
-	<meta name="twitter:image:src" content={META_IMAGE}>
-	<meta name="twitter:image" content={META_IMAGE}>
-</svelte:head>
 <div
 	class="bg-prtr-deep-blue flex justify-center pt-20 pb-[69px]"
 	use:scrollRef={'sign'}
